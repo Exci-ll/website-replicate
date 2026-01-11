@@ -8,9 +8,9 @@ const Header = () => {
 
   return (
     <>
-      <header className="w-full py-4 px-4 md:px-6 flex items-center justify-between bg-background">
+      <header className="w-full py-4 px-4 md:px-6 flex items-center justify-between bg-[#f5f0e8]">
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 bg-lime rounded-lg flex items-center justify-center">
+          <div className="w-8 h-8 bg-[#c8e972] rounded-lg flex items-center justify-center">
             <span className="text-lg">🍵</span>
           </div>
           <span className="font-bold text-foreground">tea checker</span>
