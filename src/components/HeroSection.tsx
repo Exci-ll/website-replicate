@@ -1,6 +1,8 @@
 import { ArrowRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const HeroSection = () => {
+  const navigate = useNavigate();
   return (
     <section className="mx-4 md:mx-6 rounded-3xl gradient-lime p-8 md:p-12 lg:p-16">
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12">
@@ -64,7 +66,10 @@ const HeroSection = () => {
             </div>
 
             {/* CTA Button */}
-            <button className="w-full bg-foreground text-card rounded-xl py-4 px-6 flex items-center justify-between font-semibold hover:opacity-90 transition-opacity">
+            <button 
+              onClick={() => navigate("/search")}
+              className="w-full bg-foreground text-card rounded-xl py-4 px-6 flex items-center justify-between font-semibold hover:opacity-90 transition-opacity"
+            >
               <div className="text-left">
                 <div className="text-lg">Check now</div>
                 <div className="text-sm opacity-70 font-normal">Get your report in 3 min</div>
