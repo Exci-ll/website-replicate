@@ -6,46 +6,47 @@
 
 @layer base {
   :root {
-    /* Exact Tea Checker colors - cream/beige background */
-    --background: 36 43% 96%;
-    --foreground: 0 0% 8%;
+    /* Exact Tea Checker colors - cream/beige background #f5f0e8 */
+    --background: 38 35% 93%;
+    --foreground: 0 0% 10%;
 
     --card: 0 0% 100%;
-    --card-foreground: 0 0% 8%;
+    --card-foreground: 0 0% 10%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 8%;
+    --popover-foreground: 0 0% 10%;
 
-    /* Bright lime green accent - matching original */
-    --primary: 78 75% 65%;
-    --primary-foreground: 0 0% 8%;
+    /* Bright lime green accent - exact match #c8e972 */
+    --primary: 78 70% 68%;
+    --primary-foreground: 0 0% 10%;
 
-    --secondary: 36 43% 96%;
-    --secondary-foreground: 0 0% 8%;
+    --secondary: 38 35% 93%;
+    --secondary-foreground: 0 0% 10%;
 
-    --muted: 36 25% 91%;
-    --muted-foreground: 0 0% 40%;
+    --muted: 40 25% 90%;
+    --muted-foreground: 0 0% 45%;
 
-    --accent: 78 75% 65%;
-    --accent-foreground: 0 0% 8%;
+    --accent: 78 70% 68%;
+    --accent-foreground: 0 0% 10%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 36 20% 88%;
-    --input: 36 20% 88%;
-    --ring: 78 75% 55%;
+    --border: 40 15% 85%;
+    --input: 40 15% 85%;
+    --ring: 78 70% 58%;
 
     --radius: 1rem;
 
     /* Custom Tea Checker colors - exact match */
-    --cream: 36 43% 96%;
-    --cream-dark: 36 35% 92%;
-    --lime: 78 75% 65%;
-    --lime-light: 78 80% 72%;
-    --lime-dark: 78 65% 55%;
-    --dark: 0 0% 8%;
-    --tea-green: 78 75% 65%;
+    --cream: 38 35% 93%;
+    --cream-dark: 38 30% 88%;
+    --lime: 78 70% 68%;
+    --lime-light: 78 75% 75%;
+    --lime-dark: 78 60% 55%;
+    --dark: 0 0% 10%;
+    --tea-green: 78 70% 68%;
+    --pro-tip-bg: 80 50% 80%;
     
     /* Yellow for Amazon Pay */
     --amazon-yellow: 45 100% 55%;
@@ -67,19 +68,23 @@
     --card-foreground: 45 50% 96%;
     --popover: 0 0% 15%;
     --popover-foreground: 45 50% 96%;
-    --primary: 72 85% 63%;
+    --primary: 78 70% 68%;
     --primary-foreground: 0 0% 10%;
     --secondary: 0 0% 20%;
     --secondary-foreground: 45 50% 96%;
     --muted: 0 0% 20%;
     --muted-foreground: 0 0% 60%;
-    --accent: 72 85% 63%;
+    --accent: 78 70% 68%;
     --accent-foreground: 0 0% 10%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
     --border: 0 0% 20%;
     --input: 0 0% 20%;
-    --ring: 72 85% 50%;
+    --ring: 78 70% 58%;
+    
+    --lime: 78 70% 68%;
+    --lime-light: 78 75% 75%;
+    --lime-dark: 78 60% 55%;
   }
 }
 

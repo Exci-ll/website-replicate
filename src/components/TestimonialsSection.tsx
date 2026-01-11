@@ -38,7 +38,7 @@ const TestimonialsSection = () => {
         
         <div className="grid md:grid-cols-3 gap-6">
           {testimonials.map((testimonial, index) => (
-            <div key={index} className="bg-card rounded-2xl p-6 shadow-sm border border-border card-hover">
+            <div key={index} className="bg-white rounded-2xl p-6 shadow-sm border border-border card-hover">
               <div className="flex items-center gap-3 mb-4">
                 <img 
                   src={testimonial.image} 
@@ -46,7 +46,7 @@ const TestimonialsSection = () => {
                   className="w-12 h-12 rounded-full object-cover"
                 />
                 <div>
-                  <div className="font-semibold">{testimonial.name}</div>
+                  <div className="font-semibold text-foreground">{testimonial.name}</div>
                   <div className="text-muted-foreground text-sm">{testimonial.handle}</div>
                 </div>
               </div>

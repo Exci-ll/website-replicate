@@ -22,17 +22,17 @@ const HeroSection = () => {
               <img 
                 src="https://i.pravatar.cc/40?img=52" 
                 alt="User" 
-                className="w-9 h-9 rounded-full border-2 border-card"
+                className="w-9 h-9 rounded-full border-2 border-white"
               />
               <img 
                 src="https://i.pravatar.cc/40?img=22" 
                 alt="User" 
-                className="w-9 h-9 rounded-full border-2 border-card"
+                className="w-9 h-9 rounded-full border-2 border-white"
               />
               <img 
                 src="https://i.pravatar.cc/40?img=23" 
                 alt="User" 
-                className="w-9 h-9 rounded-full border-2 border-card"
+                className="w-9 h-9 rounded-full border-2 border-white"
               />
             </div>
             <span className="text-sm text-foreground">
@@ -43,13 +43,13 @@ const HeroSection = () => {
 
         {/* Right CTA Card */}
         <div className="w-full max-w-sm">
-          <div className="bg-card rounded-2xl p-5 shadow-lg">
+          <div className="bg-white rounded-2xl p-5 shadow-lg">
             <div className="text-center mb-3">
               <div className="w-10 h-10 bg-lime/30 rounded-lg flex items-center justify-center mx-auto">
                 <span className="text-2xl">🍵</span>
               </div>
             </div>
-            <h2 className="text-xl font-bold text-center mb-1">Have you been posted?</h2>
+            <h2 className="text-xl font-bold text-center mb-1 text-foreground">Have you been posted?</h2>
             <p className="text-muted-foreground text-center text-sm mb-5">
               Find out what women are saying about you on Tea
             </p>
@@ -70,7 +70,7 @@ const HeroSection = () => {
             {/* CTA Button - Black like original */}
             <button 
               onClick={() => navigate("/search")}
-              className="w-full bg-foreground text-card rounded-xl py-3.5 px-5 flex items-center justify-between font-semibold hover:opacity-90 transition-opacity"
+              className="w-full bg-foreground text-white rounded-xl py-3.5 px-5 flex items-center justify-between font-semibold hover:opacity-90 transition-opacity"
             >
               <div className="text-left">
                 <div className="text-base">Check now</div>
