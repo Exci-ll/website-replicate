@@ -13,10 +13,12 @@ interface QuizStep {
   subtitle: string;
   proTip?: string;
   bottomText?: string;
-  type?: "text" | "number" | "email" | "select" | "location";
+  type?: "text" | "number" | "email" | "select" | "location" | "disclaimer";
   options?: string[];
+  isOptional?: boolean;
 }
 
+// Exact quiz steps from teachecker.app - 11 steps total
 const quizSteps: QuizStep[] = [
   {
     id: "name",
@@ -42,7 +44,7 @@ const quizSteps: QuizStep[] = [
     id: "location",
     question: "Where do you date?",
     emoji: "📍",
-    placeholder: "Start typing your address...",
+    placeholder: "Start typing your city...",
     subtitle: "The city or area where you've been active on dating apps",
     bottomText: "Location matching helps find local posts",
     type: "location",
@@ -97,6 +99,7 @@ const quizSteps: QuizStep[] = [
     proTip: "Instagram handles are sometimes shared in Tea posts.",
     bottomText: "Social media links increase search accuracy",
     type: "text",
+    isOptional: true,
   },
   {
     id: "phone",
@@ -123,7 +126,7 @@ const quizSteps: QuizStep[] = [
     question: "Searching the Tea database...",
     emoji: "🔍",
     placeholder: "",
-    subtitle: "This may take a moment",
+    subtitle: "Scanning 11M+ posts for mentions of you",
     type: "text",
   },
 ];
@@ -133,7 +136,7 @@ const libraries: ("places")[] = ["places"];
 
 const mapContainerStyle = {
   width: "100%",
-  height: "300px",
+  height: "200px",
   borderRadius: "12px",
 };
 
@@ -151,9 +154,10 @@ const Search = () => {
   const [showLocationSuggestions, setShowLocationSuggestions] = useState(false);
   const [locationSuggestions, setLocationSuggestions] = useState<google.maps.places.AutocompletePrediction[]>([]);
   const [mapCenter, setMapCenter] = useState(defaultCenter);
-  const [hasNavigated, setHasNavigated] = useState(false);
+  const [searchProgress, setSearchProgress] = useState(0);
   const autocompleteService = useRef<google.maps.places.AutocompleteService | null>(null);
   const placesService = useRef<google.maps.places.PlacesService | null>(null);
+  const hasNavigatedRef = useRef(false);
 
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: "AIzaSyBtoiqRpEWSG1Mc4XLINiT9GMo6J27NvXs",
@@ -176,7 +180,7 @@ const Search = () => {
       autocompleteService.current.getPlacePredictions(
         {
           input: inputValue,
-          types: ["geocode"],
+          types: ["(cities)"],
         },
         (predictions, status) => {
           if (status === google.maps.places.PlacesServiceStatus.OK && predictions) {
@@ -193,6 +197,33 @@ const Search = () => {
     }
   }, [inputValue, step.type]);
 
+  // Searching animation and auto-navigate to checkout
+  useEffect(() => {
+    if (step.id === "searching" && !hasNavigatedRef.current) {
+      const progressInterval = setInterval(() => {
+        setSearchProgress(prev => {
+          if (prev >= 100) {
+            clearInterval(progressInterval);
+            return 100;
+          }
+          return prev + 2;
+        });
+      }, 60);
+
+      const timer = setTimeout(() => {
+        if (!hasNavigatedRef.current) {
+          hasNavigatedRef.current = true;
+          navigate("/checkout", { state: { answers } });
+        }
+      }, 3500);
+
+      return () => {
+        clearInterval(progressInterval);
+        clearTimeout(timer);
+      };
+    }
+  }, [step.id, navigate, answers]);
+
   const handleNext = useCallback(() => {
     let valueToSave = inputValue;
     
@@ -200,21 +231,19 @@ const Search = () => {
       valueToSave = selectedApps.join(", ");
     }
 
-    if (valueToSave.trim() || step.id === "searching" || step.id === "instagram") {
+    const canProceed = valueToSave.trim() || step.isOptional || step.id === "searching";
+    
+    if (canProceed) {
       const newAnswers = { ...answers, [step.id]: valueToSave };
       setAnswers(newAnswers);
       
-      if (currentStep === totalSteps - 1) {
-        navigate("/checkout", { state: { answers: newAnswers } });
-      } else if (step.id === "searching") {
-        // Will be handled by effect
-      } else {
+      if (currentStep < totalSteps - 1) {
         setCurrentStep(currentStep + 1);
         setInputValue("");
         setSelectedApps([]);
       }
     }
-  }, [inputValue, step, selectedApps, answers, currentStep, totalSteps, navigate]);
+  }, [inputValue, step, selectedApps, answers, currentStep, totalSteps]);
 
   const handleBack = () => {
     if (currentStep > 0) {
@@ -233,7 +262,7 @@ const Search = () => {
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === "Enter") {
+    if (e.key === "Enter" && !isNextDisabled()) {
       handleNext();
     }
   };
@@ -270,21 +299,14 @@ const Search = () => {
     placesService.current = new google.maps.places.PlacesService(map);
   };
 
-  // Auto-advance for searching step
-  useEffect(() => {
-    if (step.id === "searching" && !hasNavigated) {
-      setHasNavigated(true);
-      const timer = setTimeout(() => {
-        navigate("/checkout", { state: { answers } });
-      }, 3000);
-      return () => clearTimeout(timer);
-    }
-  }, [step.id, navigate, answers, hasNavigated]);
-
   const isNextDisabled = () => {
-    if (step.id === "instagram") return false; // Optional field
+    if (step.isOptional) return false;
+    if (step.id === "searching") return true;
     if (step.type === "select" && step.id === "dating_apps") {
       return selectedApps.length === 0;
+    }
+    if (step.type === "select") {
+      return !inputValue.trim();
     }
     return !inputValue.trim();
   };
@@ -309,7 +331,7 @@ const Search = () => {
           </div>
         </header>
 
-        {/* Progress Bar - segmented style matching original */}
+        {/* Progress Bar - segmented style matching original (11 segments) */}
         <div className="px-4 py-3">
           <div className="flex gap-1">
             {quizSteps.map((_, index) => (
@@ -332,7 +354,45 @@ const Search = () => {
               {step.question}
             </h1>
 
-            {step.id !== "searching" ? (
+            {step.id === "searching" ? (
+              // Searching Animation
+              <div className="flex flex-col items-center justify-center py-12 space-y-6">
+                <div className="relative">
+                  <div className="w-24 h-24 rounded-full bg-[#c8e972]/20 flex items-center justify-center">
+                    <div className="w-16 h-16 rounded-full bg-[#c8e972]/40 flex items-center justify-center animate-pulse">
+                      <span className="text-4xl">🔍</span>
+                    </div>
+                  </div>
+                  {/* Rotating ring */}
+                  <div className="absolute inset-0 rounded-full border-4 border-transparent border-t-[#c8e972] animate-spin" />
+                </div>
+                
+                {/* Progress bar */}
+                <div className="w-full max-w-xs">
+                  <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
+                    <div 
+                      className="h-full bg-[#c8e972] rounded-full transition-all duration-100"
+                      style={{ width: `${searchProgress}%` }}
+                    />
+                  </div>
+                  <p className="text-center text-sm text-gray-500 mt-2">
+                    {searchProgress}% complete
+                  </p>
+                </div>
+
+                <div className="text-center space-y-2">
+                  <p className="text-gray-600 font-medium">Scanning Tea database...</p>
+                  <p className="text-sm text-gray-500">{step.subtitle}</p>
+                </div>
+
+                {/* Animated dots */}
+                <div className="flex items-center gap-1.5">
+                  <div className="w-2.5 h-2.5 bg-[#c8e972] rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
+                  <div className="w-2.5 h-2.5 bg-[#c8e972] rounded-full animate-bounce" style={{ animationDelay: "150ms" }} />
+                  <div className="w-2.5 h-2.5 bg-[#c8e972] rounded-full animate-bounce" style={{ animationDelay: "300ms" }} />
+                </div>
+              </div>
+            ) : (
               <>
                 {step.type === "location" ? (
                   <div className="relative">
@@ -372,7 +432,7 @@ const Search = () => {
                             </div>
                           </button>
                         ))}
-                        <div className="px-4 py-2 text-right border-t border-gray-100">
+                        <div className="px-4 py-2 text-right border-t border-gray-100 bg-gray-50">
                           <span className="text-xs text-gray-400">powered by </span>
                           <span className="text-xs font-medium text-gray-600">Google</span>
                         </div>
@@ -382,12 +442,12 @@ const Search = () => {
                     <p className="text-gray-500 text-sm mt-2">{step.subtitle}</p>
 
                     {/* Google Map */}
-                    {isLoaded && inputValue && (
+                    {isLoaded && inputValue.length > 3 && (
                       <div className="mt-4 rounded-xl overflow-hidden border border-gray-200">
                         <GoogleMap
                           mapContainerStyle={mapContainerStyle}
                           center={mapCenter}
-                          zoom={13}
+                          zoom={12}
                           onLoad={handleMapLoad}
                           options={{
                             disableDefaultUI: true,
@@ -396,16 +456,6 @@ const Search = () => {
                         >
                           <Marker position={mapCenter} />
                         </GoogleMap>
-                      </div>
-                    )}
-                    
-                    {/* Fallback map placeholder when Google Maps isn't loaded */}
-                    {!isLoaded && inputValue && (
-                      <div className="mt-4 rounded-xl overflow-hidden border border-gray-200 h-[300px] bg-gray-100 flex items-center justify-center">
-                        <div className="text-center text-gray-500">
-                          <MapPin className="w-8 h-8 mx-auto mb-2 text-[#c8e972]" />
-                          <p className="text-sm">{inputValue}</p>
-                        </div>
                       </div>
                     )}
                   </div>
@@ -460,16 +510,6 @@ const Search = () => {
                   </div>
                 )}
               </>
-            ) : (
-              <div className="flex flex-col items-center justify-center py-16 space-y-6">
-                <div className="text-6xl animate-bounce">{step.emoji}</div>
-                <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 bg-[#c8e972] rounded-full animate-pulse" />
-                  <div className="w-3 h-3 bg-[#c8e972] rounded-full animate-pulse" style={{ animationDelay: "0.2s" }} />
-                  <div className="w-3 h-3 bg-[#c8e972] rounded-full animate-pulse" style={{ animationDelay: "0.4s" }} />
-                </div>
-                <p className="text-gray-500">{step.subtitle}</p>
-              </div>
             )}
           </div>
 
