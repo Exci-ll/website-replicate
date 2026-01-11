@@ -18,7 +18,7 @@ interface QuizStep {
   isOptional?: boolean;
 }
 
-// Exact quiz steps from teachecker.app - 11 steps total
+// Exact quiz steps from teachecker.app - matches original exactly
 const quizSteps: QuizStep[] = [
   {
     id: "name",
@@ -331,13 +331,13 @@ const Search = () => {
           </div>
         </header>
 
-        {/* Progress Bar - segmented style matching original (11 segments) */}
-        <div className="px-4 py-3">
-          <div className="flex gap-1">
-            {quizSteps.map((_, index) => (
+        {/* Progress Bar - segmented style matching original exactly (12 segments) */}
+        <div className="px-4 py-2">
+          <div className="flex gap-[3px]">
+            {Array.from({ length: 12 }).map((_, index) => (
               <div
                 key={index}
-                className={`h-1.5 flex-1 rounded-full transition-all duration-300 ${
+                className={`h-[5px] flex-1 rounded-sm transition-all duration-300 ${
                   index <= currentStep 
                     ? "bg-[#c8e972]" 
                     : "bg-gray-200"
