@@ -23,10 +23,10 @@ const features = [
 
 const FeaturesSection = () => {
   return (
-    <section className="py-12 px-4 md:px-6 bg-[#c8e972] mx-4 md:mx-6 rounded-3xl">
+<section className="py-12 px-4 md:px-6 bg-[#e8d4f8] mx-4 md:mx-6 rounded-3xl">
       <div className="max-w-5xl mx-auto">
         <h2 className="text-2xl md:text-3xl font-extrabold text-center mb-10 uppercase tracking-tight text-gray-900">
-          Use Tea Checker to
+          Use Tea Finder to
         </h2>
         
         <div className="grid md:grid-cols-3 gap-4 mb-10">
@@ -48,7 +48,7 @@ const FeaturesSection = () => {
               <Star key={i} className="w-4 h-4 fill-current" />
             ))}
           </div>
-          <span className="font-semibold text-sm text-gray-900">274,436+ reviews</span>
+          <span className="font-semibold text-sm text-gray-900">274,547+ reviews</span>
         </div>
 
         {/* Avoid Red Flags */}

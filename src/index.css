@@ -153,4 +153,18 @@
     transform: translateY(-4px);
     box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.1);
   }
+
+  /* Shine animation for buttons */
+  @keyframes shine {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+
+  .animate-shine {
+    animation: shine 2.5s infinite;
+  }
 }
