@@ -26,7 +26,7 @@ const Checkout = () => {
   const navigate = useNavigate();
   const answers = location.state?.answers || {};
   const [timeLeft, setTimeLeft] = useState(251); // 4:11 in seconds
-  const [selectedPayment, setSelectedPayment] = useState<"card" | "klarna">("card");
+  const [selectedPayment, setSelectedPayment] = useState<"card" | "klarna" | null>(null);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -46,15 +46,22 @@ const Checkout = () => {
     console.log("Processing payment...", { answers, selectedPayment });
   };
 
-  // Generate colorful progress bar segments
-  const progressSegments = Array.from({ length: 24 }).map((_, i) => {
-    if (i < 4) return "bg-[#c8e972]";
-    if (i < 7) return "bg-[#b8d962]";
-    if (i < 10) return "bg-[#a8c952]";
-    if (i < 13) return "bg-yellow-400";
-    if (i < 16) return "bg-orange-400";
-    if (i < 18) return "bg-red-400";
-    return "bg-gray-200";
+  // Generate colorful progress bar segments - exact match to original
+  // Original pattern: green gradient → yellow → orange → pink/red → gray
+  const progressSegments = Array.from({ length: 28 }).map((_, i) => {
+    if (i < 3) return "bg-[#c8e972]"; // lime green
+    if (i < 6) return "bg-[#b8d962]"; // lighter green
+    if (i < 8) return "bg-[#a8c952]"; // green
+    if (i < 10) return "bg-[#9cbd4a]"; // darker green
+    if (i < 12) return "bg-[#8eb342]"; // even darker
+    if (i < 14) return "bg-[#7fa33a]"; // blue-green
+    if (i < 16) return "bg-[#d4e157]"; // yellow-green
+    if (i < 18) return "bg-[#ffeb3b]"; // yellow
+    if (i < 20) return "bg-[#ffc107]"; // orange-yellow
+    if (i < 22) return "bg-[#ff9800]"; // orange
+    if (i < 24) return "bg-[#ff7043]"; // orange-red
+    if (i < 25) return "bg-[#ef5350]"; // red
+    return "bg-gray-200"; // gray for remaining
   });
 
   return (
@@ -177,31 +184,34 @@ const Checkout = () => {
                     </li>
                   </ul>
                 </div>
-                <div className="text-right bg-[#c8e972]/20 rounded-xl px-3 py-2 border border-[#c8e972]/30">
-                  <div className="flex items-start justify-end">
-                    <span className="text-sm mt-1">$</span>
-                    <span className="text-3xl font-bold">0</span>
-                    <div className="flex flex-col ml-0.5">
-                      <span className="text-lg font-bold">59</span>
-                      <span className="text-[10px] text-gray-500">per day</span>
+                <div className="text-right relative">
+                  <div className="absolute left-0 top-0 bottom-0 w-1 bg-[#c8e972] rounded-full" />
+                  <div className="pl-4">
+                    <div className="flex items-start justify-end">
+                      <span className="text-sm mt-1">$</span>
+                      <span className="text-3xl font-bold">0</span>
+                      <div className="flex flex-col ml-0.5">
+                        <span className="text-lg font-bold">.59</span>
+                        <span className="text-[10px] text-gray-500">per day</span>
+                      </div>
                     </div>
+                    <p className="text-xs text-gray-400 line-through">$1.20/day</p>
                   </div>
-                  <p className="text-xs text-gray-400 line-through">$1.20/day</p>
                 </div>
               </div>
 
-              {/* Amazon Pay Button - exact yellow */}
-              <Button 
-                className="w-full h-12 bg-[#FFD814] hover:bg-[#F7CA00] text-gray-900 rounded-lg mb-1.5 font-medium text-sm"
+              {/* Amazon Pay Button - exact match to original */}
+              <button 
+                className="w-full h-12 bg-[#FFD814] hover:bg-[#F7CA00] text-gray-900 rounded-xl font-medium text-sm flex flex-col items-center justify-center"
                 onClick={handlePayment}
               >
-                <span className="flex items-center gap-1.5">
+                <span className="flex items-center gap-1">
                   Pay with <span className="font-bold italic">amazon</span>
                 </span>
-              </Button>
-              <p className="text-center text-xs text-gray-500 mb-4">Pay now or later</p>
+                <span className="text-[10px] text-gray-600">Pay now or later</span>
+              </button>
 
-              <div className="relative flex items-center justify-center mb-4">
+              <div className="relative flex items-center justify-center my-4">
                 <div className="absolute inset-0 flex items-center">
                   <div className="w-full border-t border-gray-200" />
                 </div>
@@ -210,30 +220,30 @@ const Checkout = () => {
                 </span>
               </div>
 
-              {/* Payment Options */}
+              {/* Payment Options - matching original exactly */}
               <div className="space-y-2 mb-4">
                 <button
                   onClick={() => setSelectedPayment("card")}
-                  className={`w-full flex items-center gap-3 p-3.5 rounded-xl border-2 transition-colors ${
+                  className={`w-full flex items-center gap-3 p-3.5 rounded-xl border transition-colors ${
                     selectedPayment === "card" 
-                      ? "border-gray-900 bg-gray-50" 
+                      ? "border-gray-900" 
                       : "border-gray-200 hover:border-gray-300"
                   }`}
                 >
-                  <CreditCard className="w-5 h-5" />
-                  <span className="font-medium text-sm">Card</span>
+                  <CreditCard className="w-5 h-5 text-gray-600" />
+                  <span className="font-medium text-sm text-gray-900">Card</span>
                 </button>
                 
                 <button
                   onClick={() => setSelectedPayment("klarna")}
-                  className={`w-full flex items-center gap-3 p-3.5 rounded-xl border-2 transition-colors ${
+                  className={`w-full flex items-center gap-3 p-3.5 rounded-xl border transition-colors ${
                     selectedPayment === "klarna" 
-                      ? "border-gray-900 bg-gray-50" 
+                      ? "border-gray-900" 
                       : "border-gray-200 hover:border-gray-300"
                   }`}
                 >
                   <span className="w-5 h-5 bg-[#FFB3C7] text-gray-900 rounded text-[10px] font-bold flex items-center justify-center">K</span>
-                  <span className="font-medium text-sm">Klarna</span>
+                  <span className="font-medium text-sm text-gray-900">Klarna</span>
                 </button>
               </div>
 
