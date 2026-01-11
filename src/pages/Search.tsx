@@ -43,7 +43,7 @@ const quizSteps: QuizStep[] = [
     question: "How old are you?",
     emoji: "🎂",
     placeholder: "Enter your age",
-    subtitle: "We'll search posts mentioning ages within ±3 years",
+    subtitle: "We'll search posts mentioning ages within ±6 years",
     tipLabel: "Why we ask:",
     tipText: "Tea posts often include age. This helps us find relevant matches more accurately.",
     tipColor: "purple",
@@ -433,7 +433,7 @@ const Search = () => {
                     <span className="text-xl">📋</span>
                   </div>
                   <div>
-                    <p className="font-bold text-gray-900">47 new posts</p>
+                    <p className="font-bold text-gray-900">37 new posts</p>
                     <p className="text-sm text-gray-700">added this week in your area</p>
                   </div>
                 </div>
@@ -443,7 +443,7 @@ const Search = () => {
                     <span className="text-xl">🔍</span>
                   </div>
                   <div>
-                    <p className="font-bold text-gray-900">12 searches this hour</p>
+                    <p className="font-bold text-gray-900">13 searches this hour</p>
                     <p className="text-sm text-gray-700">women checking profiles nearby</p>
                   </div>
                 </div>
@@ -453,7 +453,7 @@ const Search = () => {
                     <span className="text-xl">🚨</span>
                   </div>
                   <div>
-                    <p className="font-bold text-gray-900">3 hours ago</p>
+                    <p className="font-bold text-gray-900">7 hours ago</p>
                     <p className="text-sm text-gray-500">last post about a man your age</p>
                   </div>
                 </div>
