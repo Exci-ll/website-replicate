@@ -156,7 +156,7 @@ const Search = () => {
   const placesService = useRef<google.maps.places.PlacesService | null>(null);
 
   const { isLoaded } = useLoadScript({
-    googleMapsApiKey: "AIzaSyBxxxxxxxxxxxxxxxxxxxxxx", // Will need a real API key
+    googleMapsApiKey: "AIzaSyBtoiqRpEWSG1Mc4XLINiT9GMo6J27NvXs",
     libraries,
   });
 
