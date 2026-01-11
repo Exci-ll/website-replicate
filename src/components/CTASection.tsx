@@ -16,7 +16,7 @@ const CTASection = () => {
         
         <button 
           onClick={() => navigate("/search")}
-          className="inline-flex items-center gap-3 bg-foreground text-card rounded-full py-4 px-8 font-semibold text-lg hover:opacity-90 transition-opacity"
+          className="inline-flex items-center gap-3 bg-gray-900 text-white rounded-full py-4 px-8 font-semibold text-lg hover:bg-gray-800 transition-colors"
         >
           Check if you've been posted
           <ArrowRight className="w-5 h-5" />

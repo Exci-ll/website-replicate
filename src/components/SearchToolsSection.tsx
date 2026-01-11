@@ -20,7 +20,7 @@ const SearchToolsSection = () => {
           {tools.map((tool, index) => (
             <span 
               key={index} 
-              className="px-6 py-3 bg-lime rounded-full text-foreground font-medium text-lg"
+              className="px-6 py-3 bg-[#c8e972] rounded-full text-gray-900 font-medium text-lg"
             >
               {tool}
             </span>
