@@ -11,12 +11,14 @@ const logos = [
 
 const LogoTicker = () => {
   return (
-    <div className="w-full bg-lime py-4 overflow-hidden my-8">
+    <div className="w-full bg-lime py-3 overflow-hidden my-6">
       <div className="flex scrolling-ticker">
         {[...logos, ...logos, ...logos, ...logos].map((logo, index) => (
-          <div key={index} className="flex items-center gap-6 px-6 whitespace-nowrap">
-            <span className="text-lg font-semibold text-foreground/80">{logo}</span>
-            <span className="text-xl opacity-60">🍵</span>
+          <div key={index} className="flex items-center gap-4 px-4 whitespace-nowrap">
+            <div className="w-5 h-5 bg-lime-dark/30 rounded flex items-center justify-center">
+              <span className="text-sm">🍵</span>
+            </div>
+            <span className="text-sm font-semibold text-foreground/90">{logo}</span>
           </div>
         ))}
       </div>

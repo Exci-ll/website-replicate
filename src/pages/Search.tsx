@@ -159,103 +159,112 @@ const Search = () => {
   }
 
   return (
-    <div className="min-h-screen bg-background flex flex-col">
-      {/* Header */}
-      <header className="flex items-center justify-center py-4 px-6 relative">
-        <button 
-          onClick={handleBack}
-          className="absolute left-6 p-2 hover:bg-muted rounded-full transition-colors"
-        >
-          <ArrowLeft className="w-5 h-5" />
-        </button>
-        <div className="flex items-center gap-2">
-          <span className="text-xl">🍵</span>
-          <span className="font-bold text-foreground">tea checker</span>
+    <div className="min-h-screen bg-background flex flex-col items-center">
+      {/* Card Container for Quiz */}
+      <div className="w-full max-w-md bg-card min-h-screen flex flex-col shadow-xl">
+        {/* Header */}
+        <header className="flex items-center justify-center py-4 px-6 relative border-b border-border">
+          <button 
+            onClick={handleBack}
+            className="absolute left-4 p-2 hover:bg-muted rounded-full transition-colors"
+          >
+            <ArrowLeft className="w-5 h-5" />
+          </button>
+          <div className="flex items-center gap-2">
+            <div className="w-8 h-8 bg-lime rounded-lg flex items-center justify-center">
+              <span className="text-lg">🍵</span>
+            </div>
+            <span className="font-bold text-foreground">tea checker</span>
+          </div>
+        </header>
+
+        {/* Progress Bar - segmented style like original */}
+        <div className="px-4 py-3">
+          <div className="flex gap-1">
+            {quizSteps.map((_, index) => (
+              <div
+                key={index}
+                className={`h-1 flex-1 rounded-full transition-all duration-300 ${
+                  index < currentStep 
+                    ? "bg-lime" 
+                    : index === currentStep 
+                      ? "bg-lime" 
+                      : "bg-muted"
+                }`}
+              />
+            ))}
+          </div>
         </div>
-      </header>
 
-      {/* Progress Bar */}
-      <div className="px-6 py-2">
-        <div className="flex gap-1">
-          {quizSteps.map((_, index) => (
-            <div
-              key={index}
-              className={`h-1.5 flex-1 rounded-full transition-colors ${
-                index <= currentStep ? "bg-lime" : "bg-muted"
-              }`}
-            />
-          ))}
-        </div>
-      </div>
+        {/* Content */}
+        <main className="flex-1 flex flex-col px-6 py-6">
+          <div className="space-y-5">
+            <h1 className="text-2xl font-bold text-foreground">
+              {step.question}
+            </h1>
 
-      {/* Content */}
-      <main className="flex-1 flex flex-col items-center justify-start px-6 py-8 max-w-lg mx-auto w-full">
-        <div className="w-full space-y-6">
-          <h1 className="text-2xl md:text-3xl font-bold text-foreground">
-            {step.question}
-          </h1>
-
-          {step.id !== "searching" ? (
-            <>
-              <div className="relative">
-                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-xl">
-                  {step.emoji}
-                </span>
-                <Input
-                  type={step.id === "age" ? "number" : step.id === "email" ? "email" : "text"}
-                  placeholder={step.placeholder}
-                  value={inputValue}
-                  onChange={(e) => setInputValue(e.target.value)}
-                  onKeyDown={handleKeyDown}
-                  className="h-14 pl-12 pr-4 rounded-xl bg-card border-border text-lg focus-visible:ring-2 focus-visible:ring-lime"
-                  autoFocus
-                />
-              </div>
-
-              <p className="text-muted-foreground text-sm">{step.subtitle}</p>
-
-              {step.proTip && (
-                <div className="bg-lime/20 rounded-xl p-4">
-                  <p className="text-sm">
-                    <span className="font-semibold">Pro Tip:</span> {step.proTip}
-                  </p>
+            {step.id !== "searching" ? (
+              <>
+                <div className="relative">
+                  <span className="absolute left-4 top-1/2 -translate-y-1/2 text-xl">
+                    {step.emoji}
+                  </span>
+                  <Input
+                    type={step.id === "age" ? "number" : step.id === "email" ? "email" : "text"}
+                    placeholder={step.placeholder}
+                    value={inputValue}
+                    onChange={(e) => setInputValue(e.target.value)}
+                    onKeyDown={handleKeyDown}
+                    className="h-14 pl-12 pr-4 rounded-xl bg-card border-2 border-border text-base focus-visible:ring-2 focus-visible:ring-lime focus-visible:border-lime"
+                    autoFocus
+                  />
                 </div>
-              )}
-            </>
-          ) : (
-            <div className="flex flex-col items-center justify-center py-12 space-y-6">
-              <div className="text-6xl animate-bounce">{step.emoji}</div>
-              <div className="flex items-center gap-2">
-                <div className="w-2 h-2 bg-lime rounded-full animate-pulse" />
-                <div className="w-2 h-2 bg-lime rounded-full animate-pulse delay-75" />
-                <div className="w-2 h-2 bg-lime rounded-full animate-pulse delay-150" />
+
+                <p className="text-muted-foreground text-sm">{step.subtitle}</p>
+
+                {step.proTip && (
+                  <div className="bg-lime/30 rounded-xl p-4 border border-lime/50">
+                    <p className="text-sm text-foreground">
+                      <span className="font-bold">Pro Tip:</span> {step.proTip}
+                    </p>
+                  </div>
+                )}
+              </>
+            ) : (
+              <div className="flex flex-col items-center justify-center py-16 space-y-6">
+                <div className="text-6xl animate-bounce">{step.emoji}</div>
+                <div className="flex items-center gap-2">
+                  <div className="w-3 h-3 bg-lime rounded-full animate-pulse" />
+                  <div className="w-3 h-3 bg-lime rounded-full animate-pulse" style={{ animationDelay: "0.2s" }} />
+                  <div className="w-3 h-3 bg-lime rounded-full animate-pulse" style={{ animationDelay: "0.4s" }} />
+                </div>
+                <p className="text-muted-foreground">{step.subtitle}</p>
               </div>
-              <p className="text-muted-foreground">{step.subtitle}</p>
+            )}
+          </div>
+
+          {/* Spacer */}
+          <div className="flex-1 min-h-[100px]" />
+
+          {/* Bottom Section */}
+          {step.id !== "searching" && (
+            <div className="space-y-4 pb-6">
+              <Button
+                onClick={handleNext}
+                disabled={!inputValue.trim()}
+                className="w-full h-14 rounded-xl bg-lime hover:bg-lime-dark text-foreground font-semibold text-base disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-2 transition-colors"
+              >
+                Next
+                <ArrowRight className="w-5 h-5" />
+              </Button>
+
+              <p className="text-center text-sm text-muted-foreground">
+                🍵 Tea has 11M+ women sharing dating experiences
+              </p>
             </div>
           )}
-        </div>
-
-        {/* Spacer */}
-        <div className="flex-1" />
-
-        {/* Bottom Section */}
-        {step.id !== "searching" && (
-          <div className="w-full space-y-4 pb-8">
-            <Button
-              onClick={handleNext}
-              disabled={!inputValue.trim()}
-              className="w-full h-14 rounded-xl bg-lime text-foreground hover:bg-lime/90 font-semibold text-lg disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
-            >
-              Next
-              <ArrowRight className="w-5 h-5" />
-            </Button>
-
-            <p className="text-center text-sm text-muted-foreground">
-              🍵 Tea has 11M+ women sharing dating experiences
-            </p>
-          </div>
-        )}
-      </main>
+        </main>
+      </div>
     </div>
   );
 };
