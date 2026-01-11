@@ -479,7 +479,7 @@ const Search = () => {
                     <span className="text-xl">👀</span>
                   </div>
                   <div>
-                    <p className="font-bold text-gray-900">73% of women</p>
+                    <p className="font-bold text-gray-900">74% of women</p>
                     <p className="text-sm text-gray-500">check Tea before a first date</p>
                   </div>
                 </div>
@@ -489,7 +489,7 @@ const Search = () => {
                     <span className="text-xl">📱</span>
                   </div>
                   <div>
-                    <p className="font-bold text-gray-900">2.3M posts monthly</p>
+                    <p className="font-bold text-gray-900">2.1M posts monthly</p>
                     <p className="text-sm text-gray-700">shared about men on dating apps</p>
                   </div>
                 </div>
