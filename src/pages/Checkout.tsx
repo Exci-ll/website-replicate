@@ -90,7 +90,7 @@ const Checkout = () => {
           <div>
             <h1 className="text-xl font-bold text-gray-900">Results for {answers.name || "You"}</h1>
             <p className="text-gray-500 text-sm">
-              Near {answers.location || "your area"} • Age {answers.age || ""}
+              Near {answers.location || "your area"} • Approximate age {answers.age || ""}
             </p>
           </div>
 
