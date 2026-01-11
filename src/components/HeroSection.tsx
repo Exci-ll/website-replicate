@@ -67,16 +67,17 @@ const HeroSection = () => {
               </span>
             </div>
 
-            {/* CTA Button - Black like original */}
+            {/* CTA Button - Black like original with shine effect */}
             <button 
               onClick={() => navigate("/search")}
-              className="w-full bg-gray-900 text-white rounded-xl py-3.5 px-5 flex items-center justify-between font-semibold hover:bg-gray-800 transition-colors"
+              className="w-full bg-gray-900 text-white rounded-xl py-3.5 px-5 flex items-center justify-between font-semibold hover:bg-gray-800 transition-colors relative overflow-hidden group"
             >
-              <div className="text-left">
+              <div className="absolute inset-0 -translate-x-full group-hover:translate-x-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shine" />
+              <div className="text-left relative z-10">
                 <div className="text-base">Check now</div>
                 <div className="text-xs opacity-70 font-normal">Get your report in 3 min</div>
               </div>
-              <ArrowRight className="w-5 h-5" />
+              <ArrowRight className="w-5 h-5 relative z-10" />
             </button>
 
             <p className="text-center text-xs text-gray-500 mt-3">

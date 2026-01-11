@@ -226,7 +226,7 @@ const Search = () => {
           }
           return prev + 2;
         });
-      }, 60);
+      }, 78);
 
       const timer = setTimeout(() => {
         if (!hasNavigatedRef.current) {
@@ -930,7 +930,7 @@ const Search = () => {
             <div className="w-8 h-8 bg-[#c8e972] rounded-lg flex items-center justify-center">
               <span className="text-lg">🍵</span>
             </div>
-            <span className="font-bold text-gray-800">tea checker</span>
+            <span className="font-bold text-gray-800">tea finder</span>
           </div>
         </header>
 

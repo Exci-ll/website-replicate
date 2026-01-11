@@ -16,10 +16,11 @@ const CTASection = () => {
         
         <button 
           onClick={() => navigate("/search")}
-          className="inline-flex items-center gap-3 bg-gray-900 text-white rounded-full py-4 px-8 font-semibold text-lg hover:bg-gray-800 transition-colors"
+          className="inline-flex items-center gap-3 bg-gray-900 text-white rounded-full py-4 px-8 font-semibold text-lg hover:bg-gray-800 transition-colors relative overflow-hidden group"
         >
-          Check if you've been posted
-          <ArrowRight className="w-5 h-5" />
+          <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shine" />
+          <span className="relative z-10">Check if you've been posted</span>
+          <ArrowRight className="w-5 h-5 relative z-10" />
         </button>
       </div>
     </section>

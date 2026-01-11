@@ -62,6 +62,13 @@ const LoginModal = ({ isOpen, onClose }: LoginModalProps) => {
           <p className="text-center text-xs text-muted-foreground">
             By continuing, you agree to our Terms of Service and Privacy Policy
           </p>
+          
+          <p className="text-center text-sm text-muted-foreground mt-4">
+            Don't have a report yet?{" "}
+            <a href="/search" className="text-foreground underline hover:opacity-80">
+              Start a new search
+            </a>
+          </p>
         </form>
       </DialogContent>
     </Dialog>

@@ -13,7 +13,7 @@ const Header = () => {
           <div className="w-8 h-8 bg-[#c8e972] rounded-lg flex items-center justify-center">
             <span className="text-lg">🍵</span>
           </div>
-          <span className="font-bold text-foreground">tea checker</span>
+          <span className="font-bold text-foreground">tea finder</span>
         </div>
         <Button 
           variant="outline" 
