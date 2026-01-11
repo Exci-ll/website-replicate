@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { X, ArrowRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import {
   Dialog,
   DialogContent,
@@ -15,6 +16,7 @@ interface LoginModalProps {
 }
 
 const LoginModal = ({ isOpen, onClose }: LoginModalProps) => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -65,9 +67,15 @@ const LoginModal = ({ isOpen, onClose }: LoginModalProps) => {
           
           <p className="text-center text-sm text-muted-foreground mt-4">
             Don't have a report yet?{" "}
-            <a href="/search" className="text-foreground underline hover:opacity-80">
+            <button 
+              onClick={() => {
+                onClose();
+                navigate("/search");
+              }}
+              className="text-foreground underline hover:opacity-80"
+            >
               Start a new search
-            </a>
+            </button>
           </p>
         </form>
       </DialogContent>
