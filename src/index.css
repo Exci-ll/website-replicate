@@ -7,49 +7,49 @@
 @layer base {
   :root {
     /* Exact Tea Checker colors - cream/beige background #f5f0e8 */
-    --background: 38 35% 93%;
-    --foreground: 0 0% 10%;
+    --background: 38 30% 94%;
+    --foreground: 0 0% 13%;
 
     --card: 0 0% 100%;
-    --card-foreground: 0 0% 10%;
+    --card-foreground: 0 0% 13%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 10%;
+    --popover-foreground: 0 0% 13%;
 
     /* Bright lime green accent - exact match #c8e972 */
     --primary: 78 70% 68%;
-    --primary-foreground: 0 0% 10%;
+    --primary-foreground: 0 0% 13%;
 
-    --secondary: 38 35% 93%;
-    --secondary-foreground: 0 0% 10%;
+    --secondary: 38 30% 94%;
+    --secondary-foreground: 0 0% 13%;
 
-    --muted: 40 25% 90%;
+    --muted: 40 20% 92%;
     --muted-foreground: 0 0% 45%;
 
     --accent: 78 70% 68%;
-    --accent-foreground: 0 0% 10%;
+    --accent-foreground: 0 0% 13%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 40 15% 85%;
-    --input: 40 15% 85%;
+    --border: 40 10% 88%;
+    --input: 40 10% 88%;
     --ring: 78 70% 58%;
 
     --radius: 1rem;
 
     /* Custom Tea Checker colors - exact match */
-    --cream: 38 35% 93%;
-    --cream-dark: 38 30% 88%;
+    --cream: 38 30% 94%;
+    --cream-dark: 38 25% 88%;
     --lime: 78 70% 68%;
     --lime-light: 78 75% 75%;
     --lime-dark: 78 60% 55%;
-    --dark: 0 0% 10%;
+    --dark: 0 0% 13%;
     --tea-green: 78 70% 68%;
     --pro-tip-bg: 80 50% 80%;
     
     /* Yellow for Amazon Pay */
-    --amazon-yellow: 45 100% 55%;
+    --amazon-yellow: 48 100% 54%;
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
