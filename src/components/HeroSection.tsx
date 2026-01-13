@@ -1,5 +1,8 @@
 import { ArrowRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import avatar1 from "@/assets/avatar1.jpg";
+import avatar2 from "@/assets/avatar2.jpg";
+import avatar3 from "@/assets/avatar3.jpg";
 
 const HeroSection = () => {
   const navigate = useNavigate();
@@ -20,19 +23,19 @@ const HeroSection = () => {
           <div className="flex items-center gap-3">
             <div className="flex -space-x-2">
               <img 
-                src="https://i.pravatar.cc/40?img=52" 
+                src={avatar1} 
                 alt="User" 
-                className="w-9 h-9 rounded-full border-2 border-white"
+                className="w-9 h-9 rounded-full border-2 border-white object-cover"
               />
               <img 
-                src="https://i.pravatar.cc/40?img=22" 
+                src={avatar2} 
                 alt="User" 
-                className="w-9 h-9 rounded-full border-2 border-white"
+                className="w-9 h-9 rounded-full border-2 border-white object-cover"
               />
               <img 
-                src="https://i.pravatar.cc/40?img=23" 
+                src={avatar3} 
                 alt="User" 
-                className="w-9 h-9 rounded-full border-2 border-white"
+                className="w-9 h-9 rounded-full border-2 border-white object-cover"
               />
             </div>
             <span className="text-sm text-gray-800">
