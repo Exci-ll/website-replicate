@@ -1,12 +1,12 @@
 const logos = [
-  "Mashable",
-  "GQ",
-  "Cosmopolitan",
-  "VICE",
-  "Vanity Fair",
-  "TechCrunch",
-  "WIRED",
+  "The Verge",
   "Vogue",
+  "TechCrunch",
+  "GQ",
+  "WIRED",
+  "Complex",
+  "Vanity Fair",
+  "CNET",
 ];
 
 const LogoTicker = () => {

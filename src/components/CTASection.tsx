@@ -11,7 +11,7 @@ const CTASection = () => {
           Ready to find out?
         </h2>
         <p className="text-muted-foreground mb-8">
-          Takes less than 2 minutes. 100% confidential.
+          2 minutes. 100% confidential.
         </p>
         
         <button 
@@ -19,7 +19,7 @@ const CTASection = () => {
           className="inline-flex items-center gap-3 bg-gray-900 text-white rounded-full py-4 px-8 font-semibold text-lg hover:bg-gray-800 transition-colors relative overflow-hidden group"
         >
           <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shine" />
-          <span className="relative z-10">Check if you've been posted</span>
+          <span className="relative z-10">See if you have been posted</span>
           <ArrowRight className="w-5 h-5 relative z-10" />
         </button>
       </div>
