@@ -93,6 +93,10 @@
     @apply border-border;
   }
 
+  html {
+    font-size: 120%; /* Scale everything 20% bigger */
+  }
+
   body {
     @apply bg-background text-foreground font-sans antialiased;
     font-family: 'Inter', sans-serif;
