@@ -7,28 +7,28 @@ import {
 
 const faqs = [
   {
-    question: "What is the Tea app?",
-    answer: "Tea is a popular dating safety app where women can anonymously post reviews and warnings about people they've dated. It has over 11 million users sharing experiences.",
+    question: "What's the Tea app?",
+    answer: "Tea is a popular dating review app where women can post reviews and red flags about people they have dated. It has over 12 million women posting experiences.",
   },
   {
-    question: "How does Tea Checker work?",
-    answer: "We search the Tea app's database using your name, location, and other details to find if anyone has posted about you. Our AI matches profiles even with nicknames or variations.",
+    question: "How does Tea Finder work?",
+    answer: "We search the Tea app database using your name, general location, and other info to check if anyone has made a post about you. Our AI based search tool shows all potential matches.",
   },
   {
-    question: "Is my search confidential?",
-    answer: "100% confidential. We don't store your personal information, and your search is completely private. No one will know you checked.",
+    question: "Is my search anonymous?",
+    answer: "Yes, 100% confidential. We will never store any personal information, and no one will know you searched.",
   },
   {
-    question: "What information do I need to search?",
-    answer: "Just your first name (or nickname), age, and the city/area where you've dated. Photos are optional but increase accuracy.",
+    question: "What information is needed to search?",
+    answer: "First name (or nickname), location details (approximate), and age are enough, with optional AI photo matching for more options.",
   },
   {
-    question: "How accurate are the results?",
-    answer: "Our AI-powered matching achieves 94% accuracy. We use advanced algorithms to match names, locations, and physical descriptions.",
+    question: "Are the results accurate?",
+    answer: "Our AI based search tool achieves 96% accuracy. Our algorithms match names, locations, and display all potential posts about you.",
   },
   {
-    question: "Can I see what was said about me?",
-    answer: "Yes! If we find posts about you, you'll see the full content, when it was posted, and what category it falls under (warning, review, etc).",
+    question: "Can I find posts made about me?",
+    answer: "If we find posts about you, you will be able to view the full post, including the post details (date/time/comments) and content.",
   },
 ];
 

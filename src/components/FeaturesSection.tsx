@@ -3,20 +3,20 @@ import { Search, Eye, Shield, Star } from "lucide-react";
 const features = [
   {
     icon: <Search className="w-5 h-5" />,
-    title: "Find posts about you",
-    description: "Search the Tea database by name, age, and location to find if anyone has posted about you",
+    title: "See posts about you",
+    description: "Search the Tea app by name, age, and location to see if anyone has posted you",
     iconBg: "bg-[#c8e972]",
   },
   {
     icon: <Eye className="w-5 h-5" />,
-    title: "See what's being said",
-    description: "Read the full content of any posts mentioning you, including warnings, reviews, and experiences",
+    title: "Read every post",
+    description: "View any posts mentioning you, including reviews about you made by women.",
     iconBg: "bg-gray-900 text-white",
   },
   {
     icon: <Shield className="w-5 h-5" />,
-    title: "Protect your reputation",
-    description: "Know what's out there so you can address any misunderstandings or false claims",
+    title: "Manage your image",
+    description: "Identify false information immediately so you can take action.",
     iconBg: "bg-[#c8e972]",
   },
 ];
@@ -51,9 +51,9 @@ const FeaturesSection = () => {
           <span className="font-semibold text-sm text-gray-900">274,547+ reviews</span>
         </div>
 
-        {/* Avoid Red Flags */}
+        {/* Spot Red Flags */}
         <div className="mt-6 flex flex-col items-center">
-          <h3 className="text-lg font-bold mb-3 text-gray-900">Avoid Red Flags</h3>
+          <h3 className="text-lg font-bold mb-3 text-gray-900">Spot Red Flags</h3>
           <div className="flex -space-x-2">
             {[10, 11, 12, 13].map((img) => (
               <img 

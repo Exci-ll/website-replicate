@@ -9,11 +9,11 @@ const HeroSection = () => {
         {/* Left Content */}
         <div className="flex-1 max-w-xl">
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-900 leading-tight mb-5">
-            see what's being{" "}
+            find out what's been{" "}
             <span className="text-underline-sketch">said about you</span>
           </h1>
           <p className="text-base md:text-lg text-gray-800 mb-6">
-            Check if you've been posted on Tea, the anonymous dating review app with 11M+ women sharing experiences. 🍵
+            Find out if you have been posted on Tea, the app where 12M+ women share private dating feedback. 🍵
           </p>
           
           {/* Avatar Group */}
@@ -36,7 +36,7 @@ const HeroSection = () => {
               />
             </div>
             <span className="text-sm text-gray-800">
-              <strong>50,000+</strong> guys have checked
+              <strong>35,000+</strong> guys have searched
             </span>
           </div>
         </div>
@@ -49,9 +49,9 @@ const HeroSection = () => {
                 <span className="text-2xl">🍵</span>
               </div>
             </div>
-            <h2 className="text-xl font-bold text-center mb-1 text-gray-900">Have you been posted?</h2>
+            <h2 className="text-xl font-bold text-center mb-1 text-gray-900">Were you posted?</h2>
             <p className="text-gray-500 text-center text-sm mb-5">
-              Find out what women are saying about you on Tea
+              See what women are saying about you on Tea
             </p>
             
             {/* Badges */}
@@ -60,10 +60,10 @@ const HeroSection = () => {
                 🔒 Anonymous
               </span>
               <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-gray-100 text-xs font-medium">
-                ⚡ Instant
+                🎯 96% Accurate
               </span>
               <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-gray-100 text-xs font-medium">
-                🎯 94% Accurate
+                ⚡ Instant
               </span>
             </div>
 
@@ -74,14 +74,14 @@ const HeroSection = () => {
             >
               <div className="absolute inset-0 -translate-x-full group-hover:translate-x-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shine" />
               <div className="text-left relative z-10">
-                <div className="text-base">Check now</div>
-                <div className="text-xs opacity-70 font-normal">Get your report in 3 min</div>
+                <div className="text-base">Search now</div>
+                <div className="text-xs opacity-70 font-normal">See your report in 3 minutes</div>
               </div>
               <ArrowRight className="w-5 h-5 relative z-10" />
             </button>
 
             <p className="text-center text-xs text-gray-500 mt-3">
-              <strong className="text-[#9cbd4a]">50,000+</strong> guys found answers – will you? 👆
+              Join <strong className="text-[#9cbd4a]">35,000+</strong> guys who have searched. 👆
             </p>
           </div>
         </div>
