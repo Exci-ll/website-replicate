@@ -1,10 +1,12 @@
 import testimonialHector from "@/assets/testimonial-hector.jpg";
+import testimonialChris from "@/assets/testimonial-chris.png";
+import testimonialDale from "@/assets/testimonial-dale.jpeg";
 
 const testimonials = [
   {
     name: "Chris T.",
     handle: "@christ_bnb",
-    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop",
+    image: testimonialChris,
     content: "I found my Ex's post about me from 6 months ago which might be why I have been why im getting less matches. Touche! 💪",
     time: "5:37 PM · Dec 17, 2025",
     views: "3,348",
@@ -20,7 +22,7 @@ const testimonials = [
   {
     name: "Dale R.",
     handle: "@dale_nnyc",
-    image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100&h=100&fit=crop",
+    image: testimonialDale,
     content: "Good to know I haven't been posted about on Tea lol. It came up clean for me.",
     time: "8:27 PM · Dec 14, 2025",
     views: "7,258",
