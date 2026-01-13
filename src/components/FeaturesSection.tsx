@@ -1,4 +1,10 @@
 import { Search, Eye, Shield, Star } from "lucide-react";
+import redflag1 from "@/assets/redflag1.jpg";
+import redflag2 from "@/assets/redflag2.jpg";
+import redflag3 from "@/assets/redflag3.jpg";
+import redflag4 from "@/assets/redflag4.jpg";
+
+const redFlagAvatars = [redflag1, redflag2, redflag3, redflag4];
 
 const features = [
   {
@@ -55,12 +61,12 @@ const FeaturesSection = () => {
         <div className="mt-6 flex flex-col items-center">
           <h3 className="text-lg font-bold mb-3 text-gray-900">Spot Red Flags</h3>
           <div className="flex -space-x-2">
-            {[10, 11, 12, 13].map((img) => (
+            {redFlagAvatars.map((avatar, index) => (
               <img 
-                key={img}
-                src={`https://i.pravatar.cc/50?img=${img}`} 
+                key={index}
+                src={avatar} 
                 alt="User"
-                className="w-10 h-10 rounded-full border-2 border-white"
+                className="w-10 h-10 rounded-full border-2 border-white object-cover"
               />
             ))}
           </div>
