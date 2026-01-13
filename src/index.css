@@ -99,7 +99,7 @@
 
   @media (min-width: 1024px) {
     html {
-      font-size: 110%; /* Desktop: 10% bigger */
+      font-size: 125%; /* Desktop: 25% bigger */
     }
   }
 
