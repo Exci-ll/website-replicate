@@ -94,7 +94,13 @@
   }
 
   html {
-    font-size: 120%; /* Scale everything 20% bigger */
+    font-size: 100%; /* Mobile/tablet: normal size */
+  }
+
+  @media (min-width: 1024px) {
+    html {
+      font-size: 110%; /* Desktop: 10% bigger */
+    }
   }
 
   body {
