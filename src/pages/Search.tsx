@@ -4,6 +4,10 @@ import { ArrowLeft, ArrowRight, MapPin, Upload, X, Lock } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
+import testimonialChris from "@/assets/testimonial-chris.png";
+import reviewMatt from "@/assets/review-matt.jpeg";
+import reviewJustin from "@/assets/review-justin.jpeg";
+import reviewDaniel from "@/assets/review-daniel.jpeg";
 
 // Step types for the quiz flow
 type StepType = "text" | "number" | "location" | "info" | "multiselect" | "instagram" | "testimonials" | "photo" | "searching";
@@ -127,39 +131,39 @@ const experienceOptions = [
   { emoji: "🤔", text: "Matches who seemed interested never replied" },
 ];
 
-// Testimonials for Success Stories step
+// Testimonials for Success Stories step - using homepage Chris + 3 crafted reviews
 const testimonials = [
   {
-    name: "Mike T.",
-    handle: "@miket_nyc",
-    avatar: "12",
-    text: "Found out my ex posted about me. Now I get why dates have been off lately. Knowledge is power!",
-    date: "2:30 PM · Dec 8, 2025",
-    views: "12.5K",
+    name: "Chris T.",
+    handle: "@christ_bnb",
+    image: testimonialChris,
+    text: "I found my Ex's post about me from 6 months ago which might be why I have been why im getting less matches. Touche! 💪",
+    date: "5:37 PM · Dec 17, 2025",
+    views: "3,348",
   },
   {
-    name: "James R.",
-    handle: "@jamesryan22",
-    avatar: "33",
-    text: "Nothing came up — huge relief. Worth every penny just for the peace of mind.",
-    date: "9:45 AM · Dec 9, 2025",
-    views: "8,942",
+    name: "Matt T.",
+    handle: "@mattt_chi",
+    image: reviewMatt,
+    text: "Discovered 2 posts about me from last year. Cleared up everything — now I know why a few conversations went cold.",
+    date: "3:22 PM · Dec 19, 2025",
+    views: "4,127",
   },
   {
-    name: "David K.",
-    handle: "@davidk_la",
-    avatar: "59",
-    text: "The accuracy was insane. Found a post from 2 years ago with just my first name and city. Eye-opening.",
-    date: "4:15 PM · Dec 10, 2025",
-    views: "5,231",
+    name: "Justin R.",
+    handle: "@justinr_atl",
+    image: reviewJustin,
+    text: "My search came back completely clean. Such a relief knowing there's nothing out there. Money well spent.",
+    date: "11:45 AM · Dec 20, 2025",
+    views: "2,891",
   },
   {
-    name: "Chris M.",
-    handle: "@chrism_boston",
-    avatar: "45",
-    text: "Found exactly what I needed in under 5 minutes. The report was super detailed.",
-    date: "11:20 AM · Dec 11, 2025",
-    views: "3,890",
+    name: "Daniel K.",
+    handle: "@danielk_mia",
+    image: reviewDaniel,
+    text: "Found an old post about me with just my first name and neighborhood. Spot on results — couldn't believe the accuracy.",
+    date: "8:18 PM · Dec 21, 2025",
+    views: "5,632",
   },
 ];
 
@@ -767,9 +771,9 @@ const Search = () => {
                   <div className="flex items-center justify-between mb-2">
                     <div className="flex items-center gap-2">
                       <img
-                        src={`https://i.pravatar.cc/100?img=${t.avatar}`}
+                        src={t.image}
                         alt={t.name}
-                        className="w-10 h-10 rounded-full"
+                        className="w-10 h-10 rounded-full object-cover"
                       />
                       <div>
                         <div className="flex items-center gap-1">

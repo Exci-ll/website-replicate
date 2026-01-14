@@ -2,7 +2,9 @@ import { useState, useEffect, useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { ArrowRight, Lock, Check, CreditCard, Clock, ChevronDown, ChevronUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
-
+import reviewMatt from "@/assets/review-matt.jpeg";
+import reviewJustin from "@/assets/review-justin.jpeg";
+import reviewDaniel from "@/assets/review-daniel.jpeg";
 interface TeaPost {
   id: number;
   type: string;
@@ -380,7 +382,7 @@ const Checkout = () => {
           </div>
 
           {/* Trust Section */}
-          <div className="bg-white rounded-xl p-4 border border-gray-200">
+          <div className="bg-white rounded-xl p-4 border-2 border-gray-900">
             <h2 className="text-sm font-semibold text-center mb-4 text-gray-900">Trusted by 35,000+ guys</h2>
             <div className="grid grid-cols-3 gap-4 text-center">
               <div>
@@ -403,19 +405,19 @@ const Checkout = () => {
             <h2 className="text-base font-semibold mb-3 text-gray-900">What guys are saying</h2>
             <div className="space-y-3">
               {[
-                { name: "Marcus T.", avatar: "12", text: "Found 3 posts about me. Now I understand why some dates felt off. At least I can address the misconceptions now.", title: "Finally know where I stand" },
-                { name: "Jason R.", avatar: "33", text: "Nothing came up for me which was actually a huge relief. Worth every penny just to know I'm in the clear.", title: "Peace of mind is priceless" },
-                { name: "Derek K.", avatar: "59", text: "Found a post from my ex I didn't even know existed. The details matched perfectly. Eye-opening experience.", title: "Incredibly accurate" },
+                { name: "Matt T.", image: reviewMatt, text: "Discovered 2 posts about me from last year. Cleared up everything — now I know why a few conversations went cold.", title: "Cleared up everything" },
+                { name: "Justin R.", image: reviewJustin, text: "My search came back completely clean. Such a relief knowing there's nothing out there. Money well spent.", title: "Such a relief" },
+                { name: "Daniel K.", image: reviewDaniel, text: "Found an old post about me with just my first name and neighborhood. Spot on results — couldn't believe the accuracy.", title: "Spot on results" },
               ].map((testimonial, index) => (
-                <div key={index} className="bg-white rounded-xl p-4 border border-gray-200">
+                <div key={index} className="bg-white rounded-xl p-4 border-2 border-gray-900">
                   <h3 className="font-semibold text-sm mb-1.5 text-gray-900">{testimonial.title}</h3>
                   <p className="text-xs text-gray-600 mb-3 leading-relaxed">{testimonial.text}</p>
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <img
-                        src={`https://i.pravatar.cc/100?img=${testimonial.avatar}`}
+                        src={testimonial.image}
                         alt={testimonial.name}
-                        className="w-7 h-7 rounded-full"
+                        className="w-7 h-7 rounded-full object-cover"
                       />
                       <span className="text-xs font-medium text-gray-700">{testimonial.name}</span>
                     </div>
@@ -427,7 +429,7 @@ const Checkout = () => {
           </div>
 
           {/* Privacy Note */}
-          <div className="bg-gray-100 rounded-xl p-4 text-center">
+          <div className="bg-gray-100 rounded-xl p-4 text-center border-2 border-gray-900">
             <div className="flex items-center justify-center gap-1.5 mb-1">
               <Lock className="w-4 h-4" />
               <span className="font-semibold text-sm">100% Anonymous & Private</span>
