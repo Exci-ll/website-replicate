@@ -403,20 +403,23 @@ const Checkout = () => {
             <h2 className="text-base font-semibold mb-3 text-gray-900">What guys are saying</h2>
             <div className="space-y-3">
               {[
-                { name: "Mike T.", avatar: "12", text: "Found 3 posts about me. Now I understand why some dates felt off. At least I can address the misconceptions now.", title: "Finally know where I stand" },
-                { name: "James R.", avatar: "33", text: "Nothing came up for me which was actually a huge relief. Worth every penny just to know I'm in the clear.", title: "Peace of mind is priceless" },
-                { name: "David K.", avatar: "59", text: "Found a post from my ex I didn't even know existed. The details matched perfectly. Eye-opening experience.", title: "Incredibly accurate" },
+                { name: "Marcus T.", avatar: "12", text: "Found 3 posts about me. Now I understand why some dates felt off. At least I can address the misconceptions now.", title: "Finally know where I stand" },
+                { name: "Jason R.", avatar: "33", text: "Nothing came up for me which was actually a huge relief. Worth every penny just to know I'm in the clear.", title: "Peace of mind is priceless" },
+                { name: "Derek K.", avatar: "59", text: "Found a post from my ex I didn't even know existed. The details matched perfectly. Eye-opening experience.", title: "Incredibly accurate" },
               ].map((testimonial, index) => (
                 <div key={index} className="bg-white rounded-xl p-4 border border-gray-200">
                   <h3 className="font-semibold text-sm mb-1.5 text-gray-900">{testimonial.title}</h3>
                   <p className="text-xs text-gray-600 mb-3 leading-relaxed">{testimonial.text}</p>
-                  <div className="flex items-center gap-2">
-                    <img
-                      src={`https://i.pravatar.cc/100?img=${testimonial.avatar}`}
-                      alt={testimonial.name}
-                      className="w-7 h-7 rounded-full"
-                    />
-                    <span className="text-xs font-medium text-gray-700">{testimonial.name}</span>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <img
+                        src={`https://i.pravatar.cc/100?img=${testimonial.avatar}`}
+                        alt={testimonial.name}
+                        className="w-7 h-7 rounded-full"
+                      />
+                      <span className="text-xs font-medium text-gray-700">{testimonial.name}</span>
+                    </div>
+                    <div className="flex text-yellow-400 text-xs">★★★★★</div>
                   </div>
                 </div>
               ))}
