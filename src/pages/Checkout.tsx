@@ -136,32 +136,35 @@ const Checkout = () => {
             </div>
           </div>
 
-          {/* Potential Posts - with black locked badges and border */}
+          {/* Potential Posts - Auto-scrolling carousel */}
           <div>
             <h2 className="text-base font-bold mb-3 text-gray-900">Potential posts found</h2>
-            <div className="flex gap-3 overflow-x-auto pb-2 -mx-4 px-4">
-              {mockPosts.slice(0, 6).map((post) => (
-                <div
-                  key={post.id}
-                  className="relative flex-shrink-0 w-40 bg-gray-100 rounded-xl p-3 border-2 border-gray-900 overflow-hidden"
-                >
-                  <div className="blur-sm opacity-50">
-                    <div className="flex items-center gap-1 mb-2">
-                      <span className={`text-[10px] ${post.tagColor} px-1.5 py-0.5 rounded font-medium flex items-center gap-0.5`}>
-                        {post.emoji} {post.type}
-                      </span>
+            <div className="overflow-hidden -mx-4">
+              <div className="flex gap-3 px-4 animate-scroll-right">
+                {/* Duplicate posts for seamless loop */}
+                {[...mockPosts.slice(0, 6), ...mockPosts.slice(0, 6)].map((post, index) => (
+                  <div
+                    key={`${post.id}-${index}`}
+                    className="relative flex-shrink-0 w-40 bg-gray-100 rounded-xl p-3 border-2 border-gray-900 overflow-hidden"
+                  >
+                    <div className="blur-sm opacity-50">
+                      <div className="flex items-center gap-1 mb-2">
+                        <span className={`text-[10px] ${post.tagColor} px-1.5 py-0.5 rounded font-medium flex items-center gap-0.5`}>
+                          {post.emoji} {post.type}
+                        </span>
+                      </div>
+                      <p className="text-[11px] text-gray-600 line-clamp-3 leading-relaxed">{post.preview}</p>
+                      <p className="text-[10px] text-gray-400 mt-2">{post.timeAgo}</p>
                     </div>
-                    <p className="text-[11px] text-gray-600 line-clamp-3 leading-relaxed">{post.preview}</p>
-                    <p className="text-[10px] text-gray-400 mt-2">{post.timeAgo}</p>
-                  </div>
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="flex items-center gap-1.5 bg-gray-900 text-white px-3 py-1.5 rounded-full">
-                      <Lock className="w-3 h-3" />
-                      <span className="text-xs font-medium">Locked</span>
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="flex items-center gap-1.5 bg-gray-900 text-white px-3 py-1.5 rounded-full">
+                        <Lock className="w-3 h-3" />
+                        <span className="text-xs font-medium">Locked</span>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
 
