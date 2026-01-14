@@ -37,7 +37,7 @@ const LoginModal = ({ isOpen, onClose }: LoginModalProps) => {
             Welcome back
           </DialogTitle>
           <p className="text-center text-muted-foreground text-sm">
-            Enter your email to access your reports
+            Sign in with your email to view your results
           </p>
         </DialogHeader>
         
@@ -62,11 +62,11 @@ const LoginModal = ({ isOpen, onClose }: LoginModalProps) => {
           </Button>
           
           <p className="text-center text-xs text-muted-foreground">
-            By continuing, you agree to our Terms of Service and Privacy Policy
+            By continuing, you agree to our Terms and Privacy Policy
           </p>
           
           <p className="text-center text-sm text-muted-foreground mt-4">
-            Don't have a report yet?{" "}
+            No report yet?{" "}
             <button 
               onClick={() => {
                 onClose();
