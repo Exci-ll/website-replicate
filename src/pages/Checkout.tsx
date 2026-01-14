@@ -112,10 +112,10 @@ const Checkout = () => {
           </div>
 
           {/* Tea Posts Found Card */}
-          <div className="bg-white rounded-2xl p-4 border-2 border-[#c8e972] shadow-sm">
+          <div className="bg-[#c8e972] rounded-2xl p-4 border border-gray-300">
             <div className="flex items-center justify-between mb-3">
               <div className="flex items-center gap-2">
-                <div className="w-6 h-6 bg-[#c8e972] rounded flex items-center justify-center">
+                <div className="w-6 h-6 bg-[#b8d962] rounded flex items-center justify-center">
                   <span className="text-sm">🍵</span>
                 </div>
                 <span className="font-semibold text-sm text-gray-900">Tea Posts Found</span>
@@ -147,7 +147,7 @@ const Checkout = () => {
                 {[...mockPosts.slice(0, 6), ...mockPosts.slice(0, 6)].map((post, index) => (
                   <div
                     key={`${post.id}-${index}`}
-                    className="relative flex-shrink-0 w-40 bg-gray-100 rounded-xl p-3 border-2 border-gray-900 overflow-hidden"
+                    className="relative flex-shrink-0 w-40 bg-white rounded-xl p-3 border border-gray-300 overflow-hidden"
                   >
                     <div className="blur-sm opacity-50">
                       <div className="flex items-center gap-1 mb-2">
@@ -360,29 +360,36 @@ const Checkout = () => {
                 By continuing you agree to be charged $17.99/month until canceled
               </p>
 
-              {/* Payment Icons */}
-              <div className="flex items-center justify-center gap-2 mt-3">
-                <div className="w-10 h-6 bg-[#EB001B] rounded flex items-center justify-center overflow-hidden">
-                  <div className="flex">
-                    <div className="w-2.5 h-2.5 bg-[#EB001B] rounded-full"></div>
-                    <div className="w-2.5 h-2.5 bg-[#F79E1B] rounded-full -ml-1"></div>
-                  </div>
+              {/* Payment Icons - Realistic Card Logos */}
+              <div className="flex items-center justify-center gap-3 mt-3">
+                {/* Mastercard */}
+                <div className="w-12 h-8 bg-white border border-gray-200 rounded flex items-center justify-center">
+                  <svg width="32" height="20" viewBox="0 0 32 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="11" cy="10" r="8" fill="#EB001B"/>
+                    <circle cx="21" cy="10" r="8" fill="#F79E1B"/>
+                    <path d="M16 3.5C17.8 5 19 7.4 19 10C19 12.6 17.8 15 16 16.5C14.2 15 13 12.6 13 10C13 7.4 14.2 5 16 3.5Z" fill="#FF5F00"/>
+                  </svg>
                 </div>
-                <div className="w-10 h-6 bg-[#1A1F71] rounded flex items-center justify-center">
-                  <span className="text-white text-[9px] font-bold tracking-tight">VISA</span>
+                {/* Visa */}
+                <div className="w-12 h-8 bg-white border border-gray-200 rounded flex items-center justify-center">
+                  <svg width="40" height="13" viewBox="0 0 40 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M16.5 1L14 12H11L13.5 1H16.5ZM27.5 1L24.5 8.5L24 6L23 2C23 2 22.8 1 21.5 1H16L15.9 1.3C15.9 1.3 17.3 1.6 19 2.5L22 12H25.5L31 1H27.5ZM10 1L6.5 8.5L6 6L5 2C5 2 4.8 1 3.5 1H0L0 1.3C0 1.3 2 1.8 4 3.2L6.5 12H10L15 1H10Z" fill="#1A1F71"/>
+                  </svg>
                 </div>
-                <div className="w-10 h-6 bg-[#006FCF] rounded flex items-center justify-center">
-                  <span className="text-white text-[7px] font-bold">AMEX</span>
+                {/* Amex */}
+                <div className="w-12 h-8 bg-[#006FCF] rounded flex items-center justify-center">
+                  <span className="text-white text-[8px] font-bold tracking-wide">AMEX</span>
                 </div>
-                <div className="w-10 h-6 bg-black rounded flex items-center justify-center">
-                  <span className="text-white text-[10px] font-bold">■</span>
+                {/* Discover */}
+                <div className="w-12 h-8 bg-white border border-gray-200 rounded flex items-center justify-center">
+                  <span className="text-[#FF6000] text-[8px] font-bold">DISCOVER</span>
                 </div>
               </div>
             </div>
           </div>
 
           {/* Trust Section */}
-          <div className="bg-white rounded-xl p-4 border-2 border-gray-900">
+          <div className="bg-[#f5f0e8] rounded-xl p-4 border border-gray-300">
             <h2 className="text-sm font-semibold text-center mb-4 text-gray-900">Trusted by 35,000+ guys</h2>
             <div className="grid grid-cols-3 gap-4 text-center">
               <div>
@@ -409,7 +416,7 @@ const Checkout = () => {
                 { name: "Justin R.", image: reviewJustin, text: "My search came back completely clean. Such a relief knowing there's nothing out there. Money well spent.", title: "Such a relief" },
                 { name: "Daniel K.", image: reviewDaniel, text: "Found an old post about me with just my first name and neighborhood. Spot on results — couldn't believe the accuracy.", title: "Spot on results" },
               ].map((testimonial, index) => (
-                <div key={index} className="bg-white rounded-xl p-4 border-2 border-gray-900">
+                <div key={index} className="bg-[#f5f0e8] rounded-xl p-4 border border-gray-300">
                   <h3 className="font-semibold text-sm mb-1.5 text-gray-900">{testimonial.title}</h3>
                   <p className="text-xs text-gray-600 mb-3 leading-relaxed">{testimonial.text}</p>
                   <div className="flex items-center justify-between">
@@ -429,7 +436,7 @@ const Checkout = () => {
           </div>
 
           {/* Privacy Note */}
-          <div className="bg-gray-100 rounded-xl p-4 text-center border-2 border-gray-900">
+          <div className="bg-[#f5f0e8] rounded-xl p-4 text-center border border-gray-300">
             <div className="flex items-center justify-center gap-1.5 mb-1">
               <Lock className="w-4 h-4" />
               <span className="font-semibold text-sm">100% Anonymous & Private</span>
