@@ -29,7 +29,7 @@ const features = [
 
 const FeaturesSection = () => {
   return (
-<section className="py-12 px-4 md:px-6 bg-[#e8d4f8] mx-4 md:mx-6 rounded-3xl">
+<section className="py-12 px-4 md:px-6 bg-[#e8d4f8] mx-4 md:mx-6 rounded-3xl border border-gray-900">
       <div className="max-w-5xl mx-auto">
         <h2 className="text-2xl md:text-3xl font-extrabold text-center mb-10 uppercase tracking-tight text-gray-900">
           Use Tea Finder to
@@ -37,7 +37,7 @@ const FeaturesSection = () => {
         
         <div className="grid md:grid-cols-3 gap-4 mb-10">
           {features.map((feature, index) => (
-            <div key={index} className="bg-white rounded-2xl p-5 card-hover">
+            <div key={index} className="bg-white rounded-2xl p-5 card-hover border border-gray-900">
               <div className={`w-10 h-10 rounded-xl ${feature.iconBg} flex items-center justify-center mb-3`}>
                 {feature.icon}
               </div>
