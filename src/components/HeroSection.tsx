@@ -7,7 +7,7 @@ import avatar3 from "@/assets/avatar3.jpg";
 const HeroSection = () => {
   const navigate = useNavigate();
   return (
-    <section className="mx-4 md:mx-6 rounded-3xl bg-[#c8e972] p-6 md:p-10 lg:p-14">
+    <section className="mx-4 md:mx-6 rounded-3xl bg-[#c8e972] p-6 md:p-10 lg:p-14 border border-gray-900">
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12">
         {/* Left Content */}
         <div className="flex-1 max-w-xl">
