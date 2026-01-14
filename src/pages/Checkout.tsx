@@ -218,52 +218,91 @@ const Checkout = () => {
               </div>
 
               {/* Payment Buttons */}
-              <div className="space-y-2">
-                {/* Google Pay - shown on desktop/Android, not iOS */}
-                {isGooglePayAvailable && (
+              <div className="space-y-2.5">
+                {/* Desktop/Android with Google Pay: Show Google Pay + Link stacked */}
+                {isGooglePayAvailable && !isIOS && (
+                  <>
+                    {/* Google Pay Button - Black */}
+                    <button 
+                      className="w-full h-12 bg-black hover:bg-gray-900 text-white rounded-lg font-medium text-sm flex items-center justify-center gap-2"
+                      onClick={handlePayment}
+                    >
+                      <svg viewBox="0 0 24 24" className="w-10 h-5" fill="none">
+                        <path d="M12.24 10.285V14.4h6.806c-.275 1.765-2.056 5.174-6.806 5.174-4.095 0-7.439-3.389-7.439-7.574s3.345-7.574 7.439-7.574c2.33 0 3.891.989 4.785 1.849l3.254-3.138C18.189 1.186 15.479 0 12.24 0c-6.635 0-12 5.365-12 12s5.365 12 12 12c6.926 0 11.52-4.869 11.52-11.726 0-.788-.085-1.39-.189-1.989H12.24z" fill="#4285F4"/>
+                        <path d="M12.24 10.285V14.4h6.806c-.275 1.765-2.056 5.174-6.806 5.174-4.095 0-7.439-3.389-7.439-7.574s3.345-7.574 7.439-7.574c2.33 0 3.891.989 4.785 1.849l3.254-3.138C18.189 1.186 15.479 0 12.24 0c-6.635 0-12 5.365-12 12s5.365 12 12 12c6.926 0 11.52-4.869 11.52-11.726 0-.788-.085-1.39-.189-1.989H12.24z" fill="url(#google-gradient)"/>
+                      </svg>
+                      <span className="font-medium">Pay</span>
+                      <span className="text-gray-500 mx-1">|</span>
+                      <div className="w-8 h-5 bg-[#1A1F71] rounded flex items-center justify-center">
+                        <span className="text-white text-[8px] font-bold tracking-tight">VISA</span>
+                      </div>
+                      <span className="text-white">•••• 4930</span>
+                    </button>
+
+                    {/* Link Button - Green */}
+                    <button 
+                      className="w-full h-12 bg-[#00D924] hover:bg-[#00C020] text-white rounded-lg font-medium text-sm flex items-center justify-center gap-2"
+                      onClick={handlePayment}
+                    >
+                      <div className="flex items-center gap-1 bg-white/20 px-2 py-0.5 rounded">
+                        <span className="text-white font-bold">▸</span>
+                        <span className="font-bold">link</span>
+                      </div>
+                      <div className="w-7 h-4 bg-[#EB001B] rounded-sm flex items-center justify-center overflow-hidden">
+                        <div className="flex">
+                          <div className="w-2.5 h-2.5 bg-[#EB001B] rounded-full"></div>
+                          <div className="w-2.5 h-2.5 bg-[#F79E1B] rounded-full -ml-1"></div>
+                        </div>
+                      </div>
+                      <span className="text-white">7567</span>
+                    </button>
+                  </>
+                )}
+
+                {/* iOS: Show Link + Amazon Pay side by side */}
+                {isIOS && (
+                  <div className="flex gap-2">
+                    {/* Link Button - Green */}
+                    <button 
+                      className="flex-1 h-12 bg-[#00D924] hover:bg-[#00C020] text-white rounded-lg font-medium text-sm flex items-center justify-center gap-2"
+                      onClick={handlePayment}
+                    >
+                      <span className="text-white font-bold">▸</span>
+                      <div className="w-7 h-4 bg-[#1A1F71] rounded-sm flex items-center justify-center">
+                        <span className="text-white text-[7px] font-bold">VISA</span>
+                      </div>
+                      <span className="text-white">0375</span>
+                    </button>
+
+                    {/* Amazon Pay Button - Yellow */}
+                    <button 
+                      className="flex-1 h-12 bg-[#FFD814] hover:bg-[#F7CA00] text-gray-900 rounded-lg font-medium text-sm flex items-center justify-center"
+                      onClick={handlePayment}
+                    >
+                      <span className="font-bold italic tracking-tight">amazon</span>
+                      <span className="font-medium ml-1">pay</span>
+                    </button>
+                  </div>
+                )}
+
+                {/* See more toggle - only for desktop/Android */}
+                {isGooglePayAvailable && !isIOS && (
                   <button 
-                    className="w-full h-12 bg-gray-900 hover:bg-gray-800 text-white rounded-xl font-medium text-sm flex items-center justify-center gap-3"
-                    onClick={handlePayment}
+                    onClick={() => setShowSeeMore(!showSeeMore)}
+                    className="w-full flex items-center justify-center gap-1 py-2 text-sm text-gray-600 hover:text-gray-900"
                   >
-                    <span className="flex items-center gap-2">
-                      <span className="font-semibold">G Pay</span>
-                      <span className="text-gray-400">|</span>
-                      <span className="bg-gradient-to-r from-blue-500 via-red-500 to-yellow-500 bg-clip-text text-transparent">🎴</span>
-                      <span>•••• 4930</span>
-                    </span>
+                    See more {showSeeMore ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
                   </button>
                 )}
 
-                {/* Link Button */}
-                <button 
-                  className="w-full h-12 bg-[#00D66F] hover:bg-[#00C064] text-white rounded-xl font-medium text-sm flex items-center justify-center gap-3"
-                  onClick={handlePayment}
-                >
-                  <span className="flex items-center gap-2">
-                    <span className="bg-white text-[#00D66F] rounded px-1 font-bold text-xs">⚡ link</span>
-                    <span className="bg-orange-500 text-white rounded px-1 text-[10px]">●●</span>
-                    <span>7567</span>
-                  </span>
-                </button>
-
-                {/* See more toggle */}
-                <button 
-                  onClick={() => setShowSeeMore(!showSeeMore)}
-                  className="w-full flex items-center justify-center gap-1 py-2 text-sm text-gray-600 hover:text-gray-900"
-                >
-                  See more {showSeeMore ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
-                </button>
-
-                {/* Amazon Pay - hidden by default, shown when "See more" is clicked */}
-                {showSeeMore && (
+                {/* Amazon Pay - shown when "See more" is clicked on desktop/Android */}
+                {showSeeMore && isGooglePayAvailable && !isIOS && (
                   <button 
-                    className="w-full h-12 bg-[#FFD814] hover:bg-[#F7CA00] text-gray-900 rounded-xl font-medium text-sm flex flex-col items-center justify-center"
+                    className="w-full h-12 bg-[#FFD814] hover:bg-[#F7CA00] text-gray-900 rounded-lg font-medium text-sm flex items-center justify-center"
                     onClick={handlePayment}
                   >
-                    <span className="flex items-center gap-1">
-                      Pay with <span className="font-bold italic">amazon</span>
-                    </span>
-                    <span className="text-[10px] text-gray-600">Pay now or later</span>
+                    <span className="font-bold italic tracking-tight">amazon</span>
+                    <span className="font-medium ml-1">pay</span>
                   </button>
                 )}
               </div>
@@ -281,24 +320,28 @@ const Checkout = () => {
               {/* Link Card Selection */}
               <div className="border border-gray-200 rounded-xl p-4 mb-4">
                 <div className="flex items-center justify-between mb-3">
-                  <div className="flex items-center gap-2">
-                    <span className="text-[#00D66F] font-bold text-sm">⚡ link</span>
+                  <div className="flex items-center gap-1">
+                    <span className="text-[#00D924] font-bold text-lg">▸</span>
+                    <span className="font-bold text-gray-900">link</span>
                   </div>
-                  <span className="text-gray-400">•••</span>
+                  <span className="text-gray-400 text-lg">•••</span>
                 </div>
-                <div className="flex items-center justify-between">
+                <div className="flex items-center justify-between bg-gray-50 rounded-lg p-3">
                   <div className="flex items-center gap-3">
-                    <div className="w-8 h-5 bg-orange-500 rounded flex items-center justify-center">
-                      <span className="text-white text-[10px] font-bold">●●</span>
+                    <div className="w-10 h-6 bg-[#EB001B] rounded flex items-center justify-center overflow-hidden">
+                      <div className="flex">
+                        <div className="w-3 h-3 bg-[#EB001B] rounded-full"></div>
+                        <div className="w-3 h-3 bg-[#F79E1B] rounded-full -ml-1.5"></div>
+                      </div>
                     </div>
                     <div>
                       <p className="text-sm font-medium text-gray-900">Mastercard Debit</p>
                       <p className="text-xs text-gray-500">•••• 7567</p>
                     </div>
                   </div>
-                  <ChevronDown className="w-4 h-4 text-gray-400" />
+                  <ChevronDown className="w-5 h-5 text-gray-400 rotate-[-90deg]" />
                 </div>
-                <button className="w-full mt-3 py-2.5 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm font-medium text-gray-900">
+                <button className="w-full mt-3 py-3 bg-gray-200 hover:bg-gray-300 rounded-lg text-sm font-medium text-gray-900">
                   Use this card
                 </button>
               </div>
@@ -307,17 +350,17 @@ const Checkout = () => {
               <div ref={paymentSectionRef}>
                 <Button 
                   onClick={handlePayment}
-                  className="w-full h-12 rounded-xl bg-gray-900 text-white hover:bg-gray-800 font-semibold text-sm flex items-center justify-center gap-2"
+                  className="w-full h-14 rounded-full bg-gray-900 text-white hover:bg-gray-800 font-semibold text-base flex items-center justify-center gap-2"
                 >
                   Pay & Get Report
-                  <ArrowRight className="w-4 h-4" />
+                  <ArrowRight className="w-5 h-5" />
                 </Button>
               </div>
 
               <div className="flex items-center justify-center gap-1 mt-3">
                 <Lock className="w-3 h-3 text-gray-400" />
                 <p className="text-[10px] text-gray-500">
-                  Guaranteed <span className="text-[#00D66F]">safe & secure</span> checkout by Stripe
+                  Guaranteed <span className="text-[#00D924]">safe & secure</span> checkout by Stripe
                 </p>
               </div>
               <p className="text-center text-[10px] text-gray-400 mt-1">
@@ -326,10 +369,21 @@ const Checkout = () => {
 
               {/* Payment Icons */}
               <div className="flex items-center justify-center gap-2 mt-3">
-                <div className="bg-orange-500 px-2 py-1 rounded text-[10px] font-bold text-white">●●</div>
-                <div className="bg-blue-600 px-2 py-1 rounded text-[10px] font-bold text-white">VISA</div>
-                <div className="bg-blue-400 px-2 py-1 rounded text-[10px] font-bold text-white">AMEX</div>
-                <div className="bg-gray-900 px-2 py-1 rounded text-[10px] font-bold text-white">■</div>
+                <div className="w-10 h-6 bg-[#EB001B] rounded flex items-center justify-center overflow-hidden">
+                  <div className="flex">
+                    <div className="w-2.5 h-2.5 bg-[#EB001B] rounded-full"></div>
+                    <div className="w-2.5 h-2.5 bg-[#F79E1B] rounded-full -ml-1"></div>
+                  </div>
+                </div>
+                <div className="w-10 h-6 bg-[#1A1F71] rounded flex items-center justify-center">
+                  <span className="text-white text-[9px] font-bold tracking-tight">VISA</span>
+                </div>
+                <div className="w-10 h-6 bg-[#006FCF] rounded flex items-center justify-center">
+                  <span className="text-white text-[7px] font-bold">AMEX</span>
+                </div>
+                <div className="w-10 h-6 bg-black rounded flex items-center justify-center">
+                  <span className="text-white text-[10px] font-bold">■</span>
+                </div>
               </div>
             </div>
           </div>
