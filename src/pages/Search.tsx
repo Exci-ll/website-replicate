@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import { ArrowLeft, ArrowRight, MapPin, Upload, X } from "lucide-react";
+import { ArrowLeft, ArrowRight, MapPin, Upload, X, Lock } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
@@ -173,6 +173,10 @@ const Search = () => {
   const [locationSuggestions, setLocationSuggestions] = useState<google.maps.places.AutocompletePrediction[]>([]);
   const [mapCenter, setMapCenter] = useState(defaultCenter);
   const [searchProgress, setSearchProgress] = useState(0);
+  const [visiblePosts, setVisiblePosts] = useState(0);
+  const [searchComplete, setSearchComplete] = useState(false);
+  const [showEmailModal, setShowEmailModal] = useState(false);
+  const [emailValue, setEmailValue] = useState("");
   const autocompleteService = useRef<google.maps.places.AutocompleteService | null>(null);
   const placesService = useRef<google.maps.places.PlacesService | null>(null);
   const hasNavigatedRef = useRef(false);
@@ -215,32 +219,59 @@ const Search = () => {
     }
   }, [inputValue, step.type]);
 
-  // Searching animation and auto-navigate to checkout
+  // Searching animation - 11 seconds total, posts appear in first 5 seconds
   useEffect(() => {
     if (step.id === "searching" && !hasNavigatedRef.current) {
+      // Reset states when entering searching step
+      setSearchProgress(0);
+      setVisiblePosts(0);
+      setSearchComplete(false);
+      setShowEmailModal(false);
+
+      // Progress bar: 0 to 100 over 11 seconds (110 intervals of 100ms)
       const progressInterval = setInterval(() => {
         setSearchProgress(prev => {
           if (prev >= 100) {
             clearInterval(progressInterval);
             return 100;
           }
-          return prev + 2;
+          return prev + (100 / 110); // ~0.91% per 100ms = 100% in 11 seconds
         });
-      }, 78);
+      }, 100);
 
-      const timer = setTimeout(() => {
-        if (!hasNavigatedRef.current) {
-          hasNavigatedRef.current = true;
-          navigate("/checkout", { state: { answers } });
-        }
-      }, 3500);
+      // Posts appear one by one over first 5 seconds (833ms apart for 6 posts)
+      const postTimers: NodeJS.Timeout[] = [];
+      for (let i = 1; i <= 6; i++) {
+        const timer = setTimeout(() => {
+          setVisiblePosts(i);
+        }, (i * 5000) / 6); // Spread evenly over 5 seconds
+        postTimers.push(timer);
+      }
+
+      // Search complete after 11 seconds, then show email modal after brief delay
+      const completeTimer = setTimeout(() => {
+        setSearchComplete(true);
+        // Show email modal 500ms after search complete popup appears
+        setTimeout(() => {
+          setShowEmailModal(true);
+        }, 500);
+      }, 11000);
 
       return () => {
         clearInterval(progressInterval);
-        clearTimeout(timer);
+        postTimers.forEach(t => clearTimeout(t));
+        clearTimeout(completeTimer);
       };
     }
-  }, [step.id, navigate, answers]);
+  }, [step.id]);
+
+  // Handle email submission to proceed to checkout
+  const handleEmailSubmit = () => {
+    if (emailValue.trim() && emailValue.includes("@")) {
+      hasNavigatedRef.current = true;
+      navigate("/checkout", { state: { answers: { ...answers, email: emailValue } } });
+    }
+  };
 
   const handleNext = useCallback(() => {
     // For info/testimonials/photo steps, just proceed
@@ -771,38 +802,164 @@ const Search = () => {
 
       case "searching":
         return (
-          <div className="flex flex-col items-center justify-center py-12 space-y-6">
-            <div className="relative">
-              <div className="w-24 h-24 rounded-full bg-[#c8e972]/20 flex items-center justify-center">
-                <div className="w-16 h-16 rounded-full bg-[#c8e972]/40 flex items-center justify-center animate-pulse">
-                  <span className="text-4xl">🔍</span>
+          <div className="flex flex-col space-y-4">
+            {/* Header info box */}
+            <div className="bg-[#c8e972] rounded-xl p-4">
+              <div className="flex justify-between items-start">
+                <div>
+                  <h2 className="font-bold text-gray-900">Searching for {answers.name || "..."}</h2>
+                  <p className="text-sm text-gray-700">Age {answers.age || "..."} • Near {answers.location || "..."}</p>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <div className="w-2 h-2 bg-gray-900 rounded-full animate-pulse" />
+                  <span className="text-sm font-medium text-gray-900">Searching</span>
                 </div>
               </div>
-              <div className="absolute inset-0 rounded-full border-4 border-transparent border-t-[#c8e972] animate-spin" />
             </div>
-            
-            <div className="w-full max-w-xs">
+
+            {/* Progress section */}
+            <div className="space-y-2">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <div className="flex gap-1">
+                    <div className="w-2 h-2 bg-gray-900 rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
+                    <div className="w-2 h-2 bg-gray-900 rounded-full animate-bounce" style={{ animationDelay: "150ms" }} />
+                    <div className="w-2 h-2 bg-gray-900 rounded-full animate-bounce" style={{ animationDelay: "300ms" }} />
+                  </div>
+                  <span className="text-sm text-gray-600">Scanning for name matches...</span>
+                </div>
+                <span className="text-sm font-semibold text-gray-900">{Math.round(searchProgress)}%</span>
+              </div>
               <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
                 <div 
                   className="h-full bg-[#c8e972] rounded-full transition-all duration-100"
                   style={{ width: `${searchProgress}%` }}
                 />
               </div>
-              <p className="text-center text-sm text-gray-500 mt-2">
-                {searchProgress}% complete
+            </div>
+
+            {/* Search complete box */}
+            {searchComplete && (
+              <div className="bg-[#c8e972] rounded-xl p-4 flex items-center gap-3 animate-in fade-in slide-in-from-top-2 duration-300">
+                <div className="w-10 h-10 bg-white/40 rounded-full flex items-center justify-center">
+                  <span className="text-xl">🍵</span>
+                </div>
+                <div>
+                  <p className="font-bold text-gray-900">Search Complete!</p>
+                  <p className="text-sm text-gray-700">Found 6 potential posts about "{answers.name}"</p>
+                </div>
+              </div>
+            )}
+
+            {/* Finding posts section */}
+            <div className="space-y-3">
+              <p className="text-xs font-semibold text-gray-500 tracking-wide uppercase">
+                {searchComplete ? "POSTS FOUND" : "FINDING POSTS..."}
               </p>
+              
+              {/* Locked post cards */}
+              {Array.from({ length: 6 }).map((_, index) => (
+                <div 
+                  key={index}
+                  className={`bg-white border border-gray-200 rounded-xl p-4 transition-all duration-500 ${
+                    index < visiblePosts 
+                      ? "opacity-100 translate-y-0" 
+                      : "opacity-0 translate-y-4 pointer-events-none h-0 p-0 border-0 overflow-hidden"
+                  }`}
+                  style={{ 
+                    transitionDelay: `${index * 100}ms`,
+                    display: index < visiblePosts ? 'block' : 'none'
+                  }}
+                >
+                  {/* Blurred content simulation */}
+                  <div className="relative">
+                    <div className="space-y-2">
+                      <div className="h-3 bg-red-200 rounded w-24 blur-[2px]" />
+                      <div className="h-2 bg-gray-200 rounded w-full blur-[2px]" />
+                      <div className="h-2 bg-gray-200 rounded w-3/4 blur-[2px]" />
+                      <div className="flex gap-4 mt-2">
+                        <div className="h-2 bg-gray-200 rounded w-12 blur-[2px]" />
+                        <div className="h-2 bg-gray-200 rounded w-16 blur-[2px]" />
+                      </div>
+                    </div>
+                    {/* Unlock button overlay */}
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <button className="bg-gray-900 text-white px-4 py-2 rounded-full text-sm font-medium flex items-center gap-2">
+                        <Lock className="w-4 h-4" />
+                        Unlock to view
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
 
-            <div className="text-center space-y-2">
-              <p className="text-gray-600 font-medium">Searching the Tea database...</p>
-              <p className="text-sm text-gray-500">Scanning 12M+ posts for mentions of you</p>
-            </div>
-
-            <div className="flex items-center gap-1.5">
-              <div className="w-2.5 h-2.5 bg-[#c8e972] rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
-              <div className="w-2.5 h-2.5 bg-[#c8e972] rounded-full animate-bounce" style={{ animationDelay: "150ms" }} />
-              <div className="w-2.5 h-2.5 bg-[#c8e972] rounded-full animate-bounce" style={{ animationDelay: "300ms" }} />
-            </div>
+            {/* Email Modal - Non-dismissible with blur background */}
+            {showEmailModal && (
+              <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+                {/* Blur backdrop */}
+                <div className="absolute inset-0 bg-white/60 backdrop-blur-sm" />
+                
+                {/* Modal */}
+                <div className="relative bg-white rounded-2xl shadow-2xl p-6 w-full max-w-sm animate-in zoom-in-95 fade-in duration-300">
+                  {/* Tea icon */}
+                  <div className="flex justify-center -mt-12 mb-4">
+                    <div className="w-16 h-16 bg-[#c8e972] rounded-full flex items-center justify-center shadow-lg">
+                      <span className="text-3xl">🍵</span>
+                    </div>
+                  </div>
+                  
+                  <h3 className="text-xl font-bold text-gray-900 text-center">We found 6 potential posts!</h3>
+                  <p className="text-gray-500 text-center text-sm mt-1">Get access to see what's being said about you</p>
+                  
+                  {/* Results box */}
+                  <div className="bg-purple-100 rounded-xl p-3 mt-4">
+                    <div className="flex items-center gap-2">
+                      <span className="text-red-500">🚩</span>
+                      <span className="font-semibold text-gray-900">6 potential posts found</span>
+                    </div>
+                    <p className="text-sm text-gray-600 mt-1">Posts mentioning "{answers.name}" near {answers.location || "your area"}</p>
+                  </div>
+                  
+                  {/* Email input */}
+                  <div className="mt-4">
+                    <p className="text-sm text-gray-600 mb-2">Where should we send your report?</p>
+                    <div className="relative">
+                      <span className="absolute left-3 top-1/2 -translate-y-1/2">📧</span>
+                      <Input
+                        type="email"
+                        placeholder="enter your email"
+                        value={emailValue}
+                        onChange={(e) => setEmailValue(e.target.value)}
+                        className="h-12 pl-10 pr-4 rounded-xl bg-amber-50 border-2 border-amber-200 focus-visible:ring-2 focus-visible:ring-[#c8e972] focus-visible:border-[#c8e972]"
+                        onKeyDown={(e) => e.key === "Enter" && handleEmailSubmit()}
+                        autoFocus
+                      />
+                    </div>
+                  </div>
+                  
+                  {/* Submit button */}
+                  <Button
+                    onClick={handleEmailSubmit}
+                    disabled={!emailValue.trim() || !emailValue.includes("@")}
+                    className={`w-full h-12 rounded-xl font-semibold text-base mt-4 flex items-center justify-center gap-2 transition-colors ${
+                      !emailValue.trim() || !emailValue.includes("@")
+                        ? "bg-gray-200 text-gray-500 cursor-not-allowed"
+                        : "bg-gray-900 text-white hover:bg-gray-800"
+                    }`}
+                  >
+                    Unlock Full Report
+                    <ArrowRight className="w-5 h-5" />
+                  </Button>
+                  
+                  {/* Privacy note */}
+                  <p className="text-xs text-gray-400 text-center mt-3 flex items-center justify-center gap-1">
+                    <Lock className="w-3 h-3" />
+                    Your search and report are 100% confidential. We never share your information.
+                  </p>
+                </div>
+              </div>
+            )}
           </div>
         );
 
