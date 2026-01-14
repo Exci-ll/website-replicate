@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { ArrowRight, Lock, Check, CreditCard, Clock } from "lucide-react";
+import { ArrowRight, Lock, Check, CreditCard, Clock, ChevronDown, ChevronUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface TeaPost {
@@ -25,14 +25,28 @@ const Checkout = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const answers = location.state?.answers || {};
-  const [timeLeft, setTimeLeft] = useState(251); // 4:11 in seconds
-  const [selectedPayment, setSelectedPayment] = useState<"card" | "klarna" | null>(null);
+  const [timeLeft, setTimeLeft] = useState(251);
+  const [showSeeMore, setShowSeeMore] = useState(false);
+  const [isGooglePayAvailable, setIsGooglePayAvailable] = useState(false);
+  const [isIOS, setIsIOS] = useState(false);
+  const paymentSectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const timer = setInterval(() => {
       setTimeLeft((prev) => (prev > 0 ? prev - 1 : 0));
     }, 1000);
     return () => clearInterval(timer);
+  }, []);
+
+  useEffect(() => {
+    // Detect iOS
+    const ios = /iPad|iPhone|iPod/.test(navigator.userAgent);
+    setIsIOS(ios);
+    
+    // Google Pay available on desktop and Android, not iOS
+    if (!ios) {
+      setIsGooglePayAvailable(true);
+    }
   }, []);
 
   const formatTime = (seconds: number) => {
@@ -42,34 +56,34 @@ const Checkout = () => {
   };
 
   const handlePayment = () => {
-    // Handle payment logic
-    console.log("Processing payment...", { answers, selectedPayment });
+    console.log("Processing payment...", { answers });
   };
 
-  // Generate colorful progress bar segments - exact match to original
-  // Original pattern: green gradient → yellow → orange → pink/red → gray
+  const scrollToPayment = () => {
+    paymentSectionRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+  };
+
   const progressSegments = Array.from({ length: 28 }).map((_, i) => {
-    if (i < 3) return "bg-[#c8e972]"; // lime green
-    if (i < 6) return "bg-[#b8d962]"; // lighter green
-    if (i < 8) return "bg-[#a8c952]"; // green
-    if (i < 10) return "bg-[#9cbd4a]"; // darker green
-    if (i < 12) return "bg-[#8eb342]"; // even darker
-    if (i < 14) return "bg-[#7fa33a]"; // blue-green
-    if (i < 16) return "bg-[#d4e157]"; // yellow-green
-    if (i < 18) return "bg-[#ffeb3b]"; // yellow
-    if (i < 20) return "bg-[#ffc107]"; // orange-yellow
-    if (i < 22) return "bg-[#ff9800]"; // orange
-    if (i < 24) return "bg-[#ff7043]"; // orange-red
-    if (i < 25) return "bg-[#ef5350]"; // red
-    return "bg-gray-200"; // gray for remaining
+    if (i < 3) return "bg-[#c8e972]";
+    if (i < 6) return "bg-[#b8d962]";
+    if (i < 8) return "bg-[#a8c952]";
+    if (i < 10) return "bg-[#9cbd4a]";
+    if (i < 12) return "bg-[#8eb342]";
+    if (i < 14) return "bg-[#7fa33a]";
+    if (i < 16) return "bg-[#d4e157]";
+    if (i < 18) return "bg-[#ffeb3b]";
+    if (i < 20) return "bg-[#ffc107]";
+    if (i < 22) return "bg-[#ff9800]";
+    if (i < 24) return "bg-[#ff7043]";
+    if (i < 25) return "bg-[#ef5350]";
+    return "bg-gray-200";
   });
 
   return (
     <div className="min-h-screen bg-[#f5f0e8] flex flex-col items-center">
-      {/* Card Container */}
       <div className="w-full max-w-md bg-white min-h-screen shadow-xl">
         {/* Header */}
-        <header className="flex items-center justify-between py-3 px-4 bg-white border-b border-gray-100">
+        <header className="flex items-center justify-between py-3 px-4 bg-white border-b border-gray-100 sticky top-0 z-10">
           <div className="flex items-center gap-2">
             <div className="w-8 h-8 bg-[#c8e972] rounded-lg flex items-center justify-center">
               <span className="text-lg">🍵</span>
@@ -79,6 +93,7 @@ const Checkout = () => {
           <Button 
             variant="outline" 
             size="sm"
+            onClick={scrollToPayment}
             className="rounded-full border-gray-300 text-xs bg-gray-900 text-white hover:bg-gray-800"
           >
             Get the report
@@ -90,12 +105,12 @@ const Checkout = () => {
           <div>
             <h1 className="text-xl font-bold text-gray-900">Results for {answers.name || "You"}</h1>
             <p className="text-gray-500 text-sm">
-              Near {answers.location || "your area"} • Approximate age {answers.age || ""}
+              Near {answers.location || "your area"} • Age {answers.age || ""}
             </p>
           </div>
 
           {/* Tea Posts Found Card */}
-          <div className="bg-white rounded-2xl p-4 border border-gray-200 shadow-sm">
+          <div className="bg-white rounded-2xl p-4 border-2 border-[#c8e972] shadow-sm">
             <div className="flex items-center justify-between mb-3">
               <div className="flex items-center gap-2">
                 <div className="w-6 h-6 bg-[#c8e972] rounded flex items-center justify-center">
@@ -106,7 +121,6 @@ const Checkout = () => {
               <span className="text-2xl font-bold text-gray-900">6</span>
             </div>
             
-            {/* Progress indicator - colorful gradient segments like original */}
             <div className="flex gap-0.5 mb-2">
               {progressSegments.map((color, i) => (
                 <div
@@ -122,16 +136,16 @@ const Checkout = () => {
             </div>
           </div>
 
-          {/* Potential Posts - Horizontal Scroll */}
+          {/* Potential Posts - with black locked badges and border */}
           <div>
-            <h2 className="text-base font-semibold mb-3 text-gray-900">Potential posts found</h2>
+            <h2 className="text-base font-bold mb-3 text-gray-900">Potential posts found</h2>
             <div className="flex gap-3 overflow-x-auto pb-2 -mx-4 px-4">
               {mockPosts.slice(0, 6).map((post) => (
                 <div
                   key={post.id}
-                  className="relative flex-shrink-0 w-40 bg-white rounded-xl p-3 border border-gray-200 overflow-hidden"
+                  className="relative flex-shrink-0 w-40 bg-gray-100 rounded-xl p-3 border-2 border-gray-900 overflow-hidden"
                 >
-                  <div className="blur-sm">
+                  <div className="blur-sm opacity-50">
                     <div className="flex items-center gap-1 mb-2">
                       <span className={`text-[10px] ${post.tagColor} px-1.5 py-0.5 rounded font-medium flex items-center gap-0.5`}>
                         {post.emoji} {post.type}
@@ -140,8 +154,8 @@ const Checkout = () => {
                     <p className="text-[11px] text-gray-600 line-clamp-3 leading-relaxed">{post.preview}</p>
                     <p className="text-[10px] text-gray-400 mt-2">{post.timeAgo}</p>
                   </div>
-                  <div className="absolute inset-0 flex items-center justify-center bg-white/70 backdrop-blur-[2px]">
-                    <div className="flex items-center gap-1.5 bg-white px-3 py-1.5 rounded-full border border-gray-200 shadow-sm">
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="flex items-center gap-1.5 bg-gray-900 text-white px-3 py-1.5 rounded-full">
                       <Lock className="w-3 h-3" />
                       <span className="text-xs font-medium">Locked</span>
                     </div>
@@ -158,8 +172,8 @@ const Checkout = () => {
               <h2 className="text-base font-semibold text-gray-900">Unlock your full Tea report</h2>
             </div>
 
-            {/* Discount Timer - lime green background */}
-            <div className="bg-[#c8e972] rounded-t-xl py-3 px-4 flex items-center justify-center gap-2">
+            {/* Discount Timer - black background */}
+            <div className="bg-gray-900 text-white rounded-t-xl py-3 px-4 flex items-center justify-center gap-2">
               <Clock className="w-4 h-4" />
               <span className="font-semibold text-sm">50% discount expires in {formatTime(timeLeft)}</span>
             </div>
@@ -195,22 +209,63 @@ const Checkout = () => {
                         <span className="text-[10px] text-gray-500">per day</span>
                       </div>
                     </div>
-                    <p className="text-xs text-gray-400 line-through">$1.20/day</p>
+                    <p className="text-xs text-gray-400 mt-1">$17.99/mo</p>
                   </div>
                 </div>
               </div>
 
-              {/* Amazon Pay Button - exact match to original */}
-              <button 
-                className="w-full h-12 bg-[#FFD814] hover:bg-[#F7CA00] text-gray-900 rounded-xl font-medium text-sm flex flex-col items-center justify-center"
-                onClick={handlePayment}
-              >
-                <span className="flex items-center gap-1">
-                  Pay with <span className="font-bold italic">amazon</span>
-                </span>
-                <span className="text-[10px] text-gray-600">Pay now or later</span>
-              </button>
+              {/* Payment Buttons */}
+              <div className="space-y-2">
+                {/* Google Pay - shown on desktop/Android, not iOS */}
+                {isGooglePayAvailable && (
+                  <button 
+                    className="w-full h-12 bg-gray-900 hover:bg-gray-800 text-white rounded-xl font-medium text-sm flex items-center justify-center gap-3"
+                    onClick={handlePayment}
+                  >
+                    <span className="flex items-center gap-2">
+                      <span className="font-semibold">G Pay</span>
+                      <span className="text-gray-400">|</span>
+                      <span className="bg-gradient-to-r from-blue-500 via-red-500 to-yellow-500 bg-clip-text text-transparent">🎴</span>
+                      <span>•••• 4930</span>
+                    </span>
+                  </button>
+                )}
 
+                {/* Link Button */}
+                <button 
+                  className="w-full h-12 bg-[#00D66F] hover:bg-[#00C064] text-white rounded-xl font-medium text-sm flex items-center justify-center gap-3"
+                  onClick={handlePayment}
+                >
+                  <span className="flex items-center gap-2">
+                    <span className="bg-white text-[#00D66F] rounded px-1 font-bold text-xs">⚡ link</span>
+                    <span className="bg-orange-500 text-white rounded px-1 text-[10px]">●●</span>
+                    <span>7567</span>
+                  </span>
+                </button>
+
+                {/* See more toggle */}
+                <button 
+                  onClick={() => setShowSeeMore(!showSeeMore)}
+                  className="w-full flex items-center justify-center gap-1 py-2 text-sm text-gray-600 hover:text-gray-900"
+                >
+                  See more {showSeeMore ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+                </button>
+
+                {/* Amazon Pay - hidden by default, shown when "See more" is clicked */}
+                {showSeeMore && (
+                  <button 
+                    className="w-full h-12 bg-[#FFD814] hover:bg-[#F7CA00] text-gray-900 rounded-xl font-medium text-sm flex flex-col items-center justify-center"
+                    onClick={handlePayment}
+                  >
+                    <span className="flex items-center gap-1">
+                      Pay with <span className="font-bold italic">amazon</span>
+                    </span>
+                    <span className="text-[10px] text-gray-600">Pay now or later</span>
+                  </button>
+                )}
+              </div>
+
+              {/* Or pay with card divider */}
               <div className="relative flex items-center justify-center my-4">
                 <div className="absolute inset-0 flex items-center">
                   <div className="w-full border-t border-gray-200" />
@@ -220,54 +275,58 @@ const Checkout = () => {
                 </span>
               </div>
 
-              {/* Payment Options - matching original exactly */}
-              <div className="space-y-2 mb-4">
-                <button
-                  onClick={() => setSelectedPayment("card")}
-                  className={`w-full flex items-center gap-3 p-3.5 rounded-xl border transition-colors ${
-                    selectedPayment === "card" 
-                      ? "border-gray-900" 
-                      : "border-gray-200 hover:border-gray-300"
-                  }`}
-                >
-                  <CreditCard className="w-5 h-5 text-gray-600" />
-                  <span className="font-medium text-sm text-gray-900">Card</span>
-                </button>
-                
-                <button
-                  onClick={() => setSelectedPayment("klarna")}
-                  className={`w-full flex items-center gap-3 p-3.5 rounded-xl border transition-colors ${
-                    selectedPayment === "klarna" 
-                      ? "border-gray-900" 
-                      : "border-gray-200 hover:border-gray-300"
-                  }`}
-                >
-                  <span className="w-5 h-5 bg-[#FFB3C7] text-gray-900 rounded text-[10px] font-bold flex items-center justify-center">K</span>
-                  <span className="font-medium text-sm text-gray-900">Klarna</span>
+              {/* Link Card Selection */}
+              <div className="border border-gray-200 rounded-xl p-4 mb-4">
+                <div className="flex items-center justify-between mb-3">
+                  <div className="flex items-center gap-2">
+                    <span className="text-[#00D66F] font-bold text-sm">⚡ link</span>
+                  </div>
+                  <span className="text-gray-400">•••</span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-5 bg-orange-500 rounded flex items-center justify-center">
+                      <span className="text-white text-[10px] font-bold">●●</span>
+                    </div>
+                    <div>
+                      <p className="text-sm font-medium text-gray-900">Mastercard Debit</p>
+                      <p className="text-xs text-gray-500">•••• 7567</p>
+                    </div>
+                  </div>
+                  <ChevronDown className="w-4 h-4 text-gray-400" />
+                </div>
+                <button className="w-full mt-3 py-2.5 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm font-medium text-gray-900">
+                  Use this card
                 </button>
               </div>
 
-              {/* Pay Button - black */}
-              <Button 
-                onClick={handlePayment}
-                className="w-full h-12 rounded-xl bg-gray-900 text-white hover:bg-gray-800 font-semibold text-sm flex items-center justify-center gap-2"
-              >
-                Pay & Get Report
-                <ArrowRight className="w-4 h-4" />
-              </Button>
+              {/* Pay Button */}
+              <div ref={paymentSectionRef}>
+                <Button 
+                  onClick={handlePayment}
+                  className="w-full h-12 rounded-xl bg-gray-900 text-white hover:bg-gray-800 font-semibold text-sm flex items-center justify-center gap-2"
+                >
+                  Pay & Get Report
+                  <ArrowRight className="w-4 h-4" />
+                </Button>
+              </div>
 
-              <p className="text-center text-[10px] text-gray-500 mt-3">
-                Guaranteed safe & secure checkout by Stripe
-              </p>
-              <p className="text-center text-[10px] text-gray-500 mt-1">
+              <div className="flex items-center justify-center gap-1 mt-3">
+                <Lock className="w-3 h-3 text-gray-400" />
+                <p className="text-[10px] text-gray-500">
+                  Guaranteed <span className="text-[#00D66F]">safe & secure</span> checkout by Stripe
+                </p>
+              </div>
+              <p className="text-center text-[10px] text-gray-400 mt-1">
                 By continuing you agree to be charged $17.99/month until canceled
               </p>
 
               {/* Payment Icons */}
               <div className="flex items-center justify-center gap-2 mt-3">
-                <div className="bg-gray-100 px-2 py-1 rounded text-[10px] font-bold text-blue-700">VISA</div>
-                <div className="bg-gray-100 px-2 py-1 rounded text-[10px] font-bold text-blue-900">AMEX</div>
-                <div className="bg-gray-100 px-2 py-1 rounded text-[10px] font-bold text-red-600">MC</div>
+                <div className="bg-orange-500 px-2 py-1 rounded text-[10px] font-bold text-white">●●</div>
+                <div className="bg-blue-600 px-2 py-1 rounded text-[10px] font-bold text-white">VISA</div>
+                <div className="bg-blue-400 px-2 py-1 rounded text-[10px] font-bold text-white">AMEX</div>
+                <div className="bg-gray-900 px-2 py-1 rounded text-[10px] font-bold text-white">■</div>
               </div>
             </div>
           </div>
