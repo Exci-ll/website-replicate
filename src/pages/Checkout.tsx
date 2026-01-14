@@ -88,7 +88,7 @@ const Checkout = () => {
             <div className="w-8 h-8 bg-[#c8e972] rounded-lg flex items-center justify-center">
               <span className="text-lg">🍵</span>
             </div>
-            <span className="font-bold text-gray-900 text-sm">tea checker</span>
+            <span className="font-bold text-gray-900 text-sm">tea finder</span>
           </div>
           <Button 
             variant="outline" 
@@ -222,39 +222,30 @@ const Checkout = () => {
                 {/* Desktop/Android with Google Pay: Show Google Pay + Link stacked */}
                 {isGooglePayAvailable && !isIOS && (
                   <>
-                    {/* Google Pay Button - Black */}
+                    {/* Google Pay Button - Official Style */}
                     <button 
-                      className="w-full h-12 bg-black hover:bg-gray-900 text-white rounded-lg font-medium text-sm flex items-center justify-center gap-2"
+                      className="w-full h-12 bg-white hover:bg-gray-50 border border-gray-300 rounded-md font-medium text-sm flex items-center justify-center gap-3 shadow-sm"
                       onClick={handlePayment}
                     >
-                      <svg viewBox="0 0 24 24" className="w-10 h-5" fill="none">
-                        <path d="M12.24 10.285V14.4h6.806c-.275 1.765-2.056 5.174-6.806 5.174-4.095 0-7.439-3.389-7.439-7.574s3.345-7.574 7.439-7.574c2.33 0 3.891.989 4.785 1.849l3.254-3.138C18.189 1.186 15.479 0 12.24 0c-6.635 0-12 5.365-12 12s5.365 12 12 12c6.926 0 11.52-4.869 11.52-11.726 0-.788-.085-1.39-.189-1.989H12.24z" fill="#4285F4"/>
-                        <path d="M12.24 10.285V14.4h6.806c-.275 1.765-2.056 5.174-6.806 5.174-4.095 0-7.439-3.389-7.439-7.574s3.345-7.574 7.439-7.574c2.33 0 3.891.989 4.785 1.849l3.254-3.138C18.189 1.186 15.479 0 12.24 0c-6.635 0-12 5.365-12 12s5.365 12 12 12c6.926 0 11.52-4.869 11.52-11.726 0-.788-.085-1.39-.189-1.989H12.24z" fill="url(#google-gradient)"/>
+                      <svg width="41" height="17" viewBox="0 0 41 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M19.526 2.635v4.083h2.518c.6 0 1.096-.202 1.488-.605.403-.402.605-.862.605-1.437 0-.575-.202-1.035-.605-1.437-.392-.403-.888-.604-1.488-.604h-2.518zm0 5.52v4.736h-1.504V1.198h3.99c1.013 0 1.873.337 2.582 1.012.72.675 1.08 1.497 1.08 2.466 0 .991-.36 1.819-1.08 2.482-.697.665-1.559.997-2.582.997h-2.486z" fill="#5F6368"/>
+                        <path d="M27.194 10.442c0 .392.166.718.499.98.332.26.718.391 1.155.391.62 0 1.178-.23 1.675-.688.498-.459.747-1.001.747-1.626-.644-.236-1.323-.354-2.037-.354-.728 0-1.307.166-1.736.498-.419.333-.629.733-.629 1.199l.326-.4zm-.392-3.17c.498-.592 1.195-.888 2.093-.888.898 0 1.618.273 2.16.818.545.545.817 1.29.817 2.235v4.492h-1.407v-.997h-.058c-.52.795-1.207 1.193-2.06 1.193-.74 0-1.36-.222-1.86-.665-.498-.443-.747-1.01-.747-1.7 0-.722.271-1.296.812-1.723.542-.427 1.261-.64 2.16-.64.767 0 1.398.141 1.892.424v-.298c0-.474-.182-.874-.547-1.2-.365-.326-.8-.49-1.307-.49-.74 0-1.324.325-1.753.975l-1.297-.82.102.284z" fill="#5F6368"/>
+                        <path d="M38.844 6.677l-4.93 11.334h-1.56l1.833-3.98-3.242-7.354h1.635l2.35 5.603h.034l2.28-5.603h1.6z" fill="#5F6368"/>
+                        <path d="M13.309 7.505c0-.473-.04-.93-.116-1.37H6.796v2.59h3.654c-.156.856-.636 1.583-1.358 2.072v1.72h2.198c1.286-1.183 2.019-2.927 2.019-4.983v-.029z" fill="#4285F4"/>
+                        <path d="M6.796 14.186c1.837 0 3.378-.608 4.503-1.649l-2.198-1.72c-.608.408-1.388.65-2.305.65-1.773 0-3.273-1.197-3.808-2.806H.71v1.776c1.117 2.216 3.412 3.749 6.086 3.749z" fill="#34A853"/>
+                        <path d="M2.988 8.661c-.136-.408-.214-.843-.214-1.292s.078-.884.214-1.292V4.3H.71C.255 5.204 0 6.216 0 7.369s.255 2.165.71 3.069l2.278-1.777z" fill="#FBBC04"/>
+                        <path d="M6.796 3.27c.999 0 1.896.344 2.602 1.019l1.951-1.951C10.16 1.186 8.622.552 6.796.552c-2.674 0-4.969 1.533-6.086 3.749l2.278 1.777c.535-1.61 2.035-2.806 3.808-2.806z" fill="#EA4335"/>
                       </svg>
-                      <span className="font-medium">Pay</span>
-                      <span className="text-gray-500 mx-1">|</span>
-                      <div className="w-8 h-5 bg-[#1A1F71] rounded flex items-center justify-center">
-                        <span className="text-white text-[8px] font-bold tracking-tight">VISA</span>
-                      </div>
-                      <span className="text-white">•••• 4930</span>
                     </button>
 
-                    {/* Link Button - Green */}
+                    {/* Link Button - Official Style */}
                     <button 
-                      className="w-full h-12 bg-[#00D924] hover:bg-[#00C020] text-white rounded-lg font-medium text-sm flex items-center justify-center gap-2"
+                      className="w-full h-12 bg-[#00D66F] hover:bg-[#00C060] rounded-md font-medium text-sm flex items-center justify-center shadow-sm"
                       onClick={handlePayment}
                     >
-                      <div className="flex items-center gap-1 bg-white/20 px-2 py-0.5 rounded">
-                        <span className="text-white font-bold">▸</span>
-                        <span className="font-bold">link</span>
-                      </div>
-                      <div className="w-7 h-4 bg-[#EB001B] rounded-sm flex items-center justify-center overflow-hidden">
-                        <div className="flex">
-                          <div className="w-2.5 h-2.5 bg-[#EB001B] rounded-full"></div>
-                          <div className="w-2.5 h-2.5 bg-[#F79E1B] rounded-full -ml-1"></div>
-                        </div>
-                      </div>
-                      <span className="text-white">7567</span>
+                      <svg width="33" height="14" viewBox="0 0 33 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1.22 13.04V0.96h2.56v10.32h5.08v1.76H1.22zm9.64 0V3.68h2.44v9.36h-2.44zm1.22-10.68c-.42 0-.77-.13-1.05-.39-.28-.26-.42-.58-.42-.96s.14-.7.42-.96c.28-.26.63-.39 1.05-.39.42 0 .77.13 1.05.39.28.26.42.58.42.96s-.14.7-.42.96c-.28.26-.63.39-1.05.39zm4.86 10.68V3.68h2.32v1.44h.08c.2-.52.52-.92.96-1.2.44-.28.97-.42 1.59-.42.9 0 1.61.29 2.13.87.52.58.78 1.39.78 2.43v6.24h-2.44V7.32c0-.62-.14-1.08-.42-1.38-.28-.3-.68-.45-1.2-.45-.54 0-.97.17-1.29.51-.32.34-.48.82-.48 1.44v5.6h-2.03zm9.84 0V0.96h2.44v5.16h.08l3.48-2.44h3.04l-4.12 2.88 4.4 6.48h-2.96l-3.08-4.68-.84.6v4.08h-2.44z" fill="white"/>
+                      </svg>
                     </button>
                   </>
                 )}
@@ -390,18 +381,18 @@ const Checkout = () => {
 
           {/* Trust Section */}
           <div className="bg-white rounded-xl p-4 border border-gray-200">
-            <h2 className="text-sm font-semibold text-center mb-4 text-gray-900">Trusted by 50,000+ guys</h2>
+            <h2 className="text-sm font-semibold text-center mb-4 text-gray-900">Trusted by 35,000+ guys</h2>
             <div className="grid grid-cols-3 gap-4 text-center">
               <div>
-                <p className="text-xl font-bold text-[#9cbd4a]">94%</p>
+                <p className="text-xl font-bold text-[#9cbd4a]">96%</p>
                 <p className="text-[10px] text-gray-500">Accuracy Rate</p>
               </div>
               <div>
-                <p className="text-xl font-bold text-[#9cbd4a]">50K+</p>
-                <p className="text-[10px] text-gray-500">Searches</p>
+                <p className="text-xl font-bold text-[#9cbd4a]">35K+</p>
+                <p className="text-[10px] text-gray-500">Guys Searched</p>
               </div>
               <div>
-                <p className="text-xl font-bold text-[#9cbd4a]">4.8★</p>
+                <p className="text-xl font-bold text-[#9cbd4a]">4.7★</p>
                 <p className="text-[10px] text-gray-500">User Rating</p>
               </div>
             </div>
@@ -446,8 +437,8 @@ const Checkout = () => {
           {/* Footer */}
           <p className="text-center text-xs text-gray-500 pb-6">
             Questions? Contact us at{" "}
-            <a href="mailto:support@teachecker.app" className="underline">
-              support@teachecker.app
+            <a href="mailto:support@teafinder.app" className="underline">
+              support@teafinder.app
             </a>
           </p>
         </main>
