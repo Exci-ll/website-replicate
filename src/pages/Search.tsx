@@ -31,9 +31,9 @@ const quizSteps: QuizStep[] = [
     question: "What's your first name?",
     emoji: "👋",
     placeholder: "Enter your first name",
-    subtitle: "Or the name/nickname you use on dating apps",
+    subtitle: "Or the name you use on dating apps",
     tipLabel: "Pro Tip:",
-    tipText: "We'll also search for common nicknames and variations of your name to ensure we don't miss any posts.",
+    tipText: "We also scan for nicknames and name variations so nothing slips through.",
     tipColor: "green",
     bottomText: "Tea has 12M+ women sharing dating experiences",
   },
@@ -45,9 +45,9 @@ const quizSteps: QuizStep[] = [
     placeholder: "Enter your age",
     subtitle: "We'll search posts mentioning ages within ±6 years",
     tipLabel: "Why we ask:",
-    tipText: "Tea posts often include age. This helps us find relevant matches more accurately.",
+    tipText: "Tea posts often mention age. This helps us find more accurate matches.",
     tipColor: "purple",
-    bottomText: "We search across all age-related name variations",
+    bottomText: "We scan all age-related name variations",
   },
   {
     id: "location",
@@ -55,7 +55,7 @@ const quizSteps: QuizStep[] = [
     question: "Where do you date?",
     emoji: "📍",
     placeholder: "Start typing your city...",
-    subtitle: "The city or area where you've been active on dating apps",
+    subtitle: "The city or area where you use dating apps",
     bottomText: "Location matching locates nearby posts",
   },
   {
@@ -82,12 +82,12 @@ const quizSteps: QuizStep[] = [
     id: "instagram",
     type: "instagram",
     question: "What's your Instagram? (optional)",
-    subtitle: "This helps us match posts that mention your social media",
+    subtitle: "Helps us match posts that mention your social",
     placeholder: "@yourusername",
     tipLabel: "Why this helps:",
-    tipText: "Tea posts sometimes mention Instagram handles. Adding yours increases the chances of finding relevant posts.",
+    tipText: "Tea posts sometimes tag Instagram handles. Adding yours improves your chances of finding relevant posts.",
     tipColor: "purple",
-    bottomText: "Instagram helps us verify your identity",
+    bottomText: "Instagram helps verify your identity",
     isOptional: true,
   },
   {
@@ -121,10 +121,10 @@ const defaultCenter = {
 // Experience options for "Has this happened" step
 const experienceOptions = [
   { emoji: "😐", text: "The date was going great... then she suddenly went cold" },
-  { emoji: "😤", text: "She stopped replying mid-conversation for no reason" },
-  { emoji: "👀", text: "Her friends gave you weird looks when you first met them" },
-  { emoji: "📱", text: "The vibe shifted after she 'checked her phone'" },
-  { emoji: "🤔", text: "Matches who seemed interested never responded" },
+  { emoji: "😤", text: "She stopped replying mid-conversation for no clear reason" },
+  { emoji: "👀", text: "Her friends gave you weird looks when you first met" },
+  { emoji: "📱", text: "The vibe shifted after she checked her phone" },
+  { emoji: "🤔", text: "Matches who seemed interested never replied" },
 ];
 
 // Testimonials for Success Stories step
@@ -133,7 +133,7 @@ const testimonials = [
     name: "Mike T.",
     handle: "@miket_nyc",
     avatar: "12",
-    text: "Found out my ex posted about me. Now I understand why dates have been weird lately. Knowledge is power!",
+    text: "Found out my ex posted about me. Now I get why dates have been off lately. Knowledge is power!",
     date: "2:30 PM · Dec 8, 2025",
     views: "12.5K",
   },
@@ -141,7 +141,7 @@ const testimonials = [
     name: "James R.",
     handle: "@jamesryan22",
     avatar: "33",
-    text: "Nothing came up which was a huge relief. Worth every penny just for the peace of mind.",
+    text: "Nothing came up — huge relief. Worth every penny just for the peace of mind.",
     date: "9:45 AM · Dec 9, 2025",
     views: "8,942",
   },
@@ -149,7 +149,7 @@ const testimonials = [
     name: "David K.",
     handle: "@davidk_la",
     avatar: "59",
-    text: "The accuracy was insane. Found a post from 2 years ago using just my first name and city. Eye-opening.",
+    text: "The accuracy was insane. Found a post from 2 years ago with just my first name and city. Eye-opening.",
     date: "4:15 PM · Dec 10, 2025",
     views: "5,231",
   },
@@ -157,7 +157,7 @@ const testimonials = [
     name: "Chris M.",
     handle: "@chrism_boston",
     avatar: "45",
-    text: "Found exactly what I was looking for in less than 5 minutes. The report was super detailed.",
+    text: "Found exactly what I needed in under 5 minutes. The report was super detailed.",
     date: "11:20 AM · Dec 11, 2025",
     views: "3,890",
   },
@@ -434,7 +434,7 @@ const Search = () => {
                   </div>
                   <div>
                     <p className="font-bold text-gray-900">37 new posts</p>
-                    <p className="text-sm text-gray-700">added this week in your area</p>
+                    <p className="text-sm text-gray-700">added this week nearby</p>
                   </div>
                 </div>
                 
@@ -444,7 +444,7 @@ const Search = () => {
                   </div>
                   <div>
                     <p className="font-bold text-gray-900">13 searches this hour</p>
-                    <p className="text-sm text-gray-700">women checking profiles nearby</p>
+                    <p className="text-sm text-gray-700">women checking nearby profiles</p>
                   </div>
                 </div>
                 
@@ -454,7 +454,7 @@ const Search = () => {
                   </div>
                   <div>
                     <p className="font-bold text-gray-900">7 hours ago</p>
-                    <p className="text-sm text-gray-500">last post about a man your age</p>
+                    <p className="text-sm text-gray-500">since last post about a man your age</p>
                   </div>
                 </div>
               </div>
@@ -471,7 +471,7 @@ const Search = () => {
           return (
             <>
               <h1 className="text-2xl font-bold text-gray-900">Here's what's at stake...</h1>
-              <p className="text-gray-500 text-sm">What women say on Tea can affect your dating life in ways you might not realize.</p>
+              <p className="text-gray-500 text-sm">What women post on Tea can impact your dating life in ways you might not expect.</p>
               
               <div className="space-y-3 mt-4">
                 <div className="bg-white border border-gray-200 rounded-xl p-4 flex items-center gap-3">
@@ -500,7 +500,7 @@ const Search = () => {
                   </div>
                   <div>
                     <p className="font-bold text-gray-900">1 in 4 guys</p>
-                    <p className="text-sm text-gray-700">have been posted about without knowing</p>
+                    <p className="text-sm text-gray-700">have been posted about without knowing it</p>
                   </div>
                 </div>
               </div>
@@ -511,8 +511,8 @@ const Search = () => {
         if (step.id === "one_post_spreads") {
           return (
             <>
-              <h1 className="text-2xl font-bold text-gray-900">One post. Hundreds of eyes.</h1>
-              <p className="text-gray-500 text-sm">Here's how quickly a Tea post spreads...</p>
+              <h1 className="text-2xl font-bold text-gray-900">One post. Thousands of eyes.</h1>
+              <p className="text-gray-500 text-sm">See how fast a Tea post spreads...</p>
               
               {/* Visual diagram - simplified representation */}
               <div className="relative py-8">
@@ -543,7 +543,7 @@ const Search = () => {
                   <div className="flex-1 border border-gray-200 rounded-xl p-3">
                     <span className="text-xs bg-[#c8e972] px-2 py-0.5 rounded font-medium">MINUTE 1</span>
                     <p className="font-semibold text-sm mt-1">She posts about you</p>
-                    <p className="text-xs text-gray-500">One frustrated message after a bad date</p>
+                    <p className="text-xs text-gray-500">One frustrated message after a date gone wrong</p>
                   </div>
                 </div>
                 
@@ -556,7 +556,7 @@ const Search = () => {
                       <span className="text-xs bg-yellow-400 px-2 py-0.5 rounded font-medium">HOUR 1</span>
                       <span className="text-xs text-gray-500">+500 👀</span>
                     </div>
-                    <p className="font-semibold text-sm mt-1">Women in your area see it</p>
+                    <p className="font-semibold text-sm mt-1">Local women see it</p>
                     <p className="text-xs text-gray-500">Tea surfaces posts by location</p>
                   </div>
                 </div>
@@ -571,7 +571,7 @@ const Search = () => {
                       <span className="text-xs text-gray-500">+2,400 👀</span>
                     </div>
                     <p className="font-semibold text-sm mt-1">Shared in group chats</p>
-                    <p className="text-xs text-gray-500">"Girl, check this guy out before your date"</p>
+                    <p className="text-xs text-gray-500">"Girl, look this guy up before your date"</p>
                   </div>
                 </div>
                 
@@ -585,7 +585,7 @@ const Search = () => {
                       <span className="text-xs text-gray-500">∞ 👀</span>
                     </div>
                     <p className="font-semibold text-sm mt-1">Screenshots live on</p>
-                    <p className="text-xs text-gray-500">Saved, shared, and searched... indefinitely</p>
+                    <p className="text-xs text-gray-500">Saved, shared, and searchable... forever</p>
                   </div>
                 </div>
               </div>
@@ -597,7 +597,7 @@ const Search = () => {
           return (
             <>
               <h1 className="text-2xl font-bold text-gray-900">Found something negative? We can help remove it.</h1>
-              <p className="text-gray-500 text-sm">If we find posts about you, our team can help get them taken down.</p>
+              <p className="text-gray-500 text-sm">If we find posts about you, our team can help take them down.</p>
               
               <div className="bg-[#c8e972] rounded-xl p-4 flex items-center gap-3 mt-4">
                 <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center">
@@ -605,7 +605,7 @@ const Search = () => {
                 </div>
                 <div>
                   <p className="font-bold text-gray-900">Free Removal Service</p>
-                  <p className="text-sm text-gray-700">We handle the legal takedown requests so you don't have to. Most posts are removed within 48-72 hours.</p>
+                  <p className="text-sm text-gray-700">We file legal takedown requests so you don't have to. Most posts are removed within 48–72 hours.</p>
                 </div>
               </div>
 
@@ -616,7 +616,7 @@ const Search = () => {
                   <span className="w-6 h-6 bg-[#c8e972] rounded-full flex items-center justify-center text-xs font-bold">1</span>
                   <div>
                     <span className="font-semibold text-sm">We find the posts</span>
-                    <span className="text-sm text-gray-500"> — our search identifies all mentions of you</span>
+                    <span className="text-sm text-gray-500"> — our search finds all mentions of you</span>
                   </div>
                 </div>
                 
@@ -624,7 +624,7 @@ const Search = () => {
                   <span className="w-6 h-6 bg-[#c8e972] rounded-full flex items-center justify-center text-xs font-bold">2</span>
                   <div>
                     <span className="font-semibold text-sm">You review & choose</span>
-                    <span className="text-sm text-gray-500"> — select which posts you want removed</span>
+                    <span className="text-sm text-gray-500"> — pick which posts you want removed</span>
                   </div>
                 </div>
                 
@@ -632,7 +632,7 @@ const Search = () => {
                   <span className="w-6 h-6 bg-[#c8e972] rounded-full flex items-center justify-center text-xs font-bold">3</span>
                   <div>
                     <span className="font-semibold text-sm">We handle the rest</span>
-                    <span className="text-sm text-gray-500"> — legal takedown requests filed on your behalf</span>
+                    <span className="text-sm text-gray-500"> — takedown requests filed on your behalf</span>
                   </div>
                 </div>
               </div>
@@ -656,7 +656,7 @@ const Search = () => {
         return (
           <>
             <h1 className="text-2xl font-bold text-gray-900">Has this ever happened to you?</h1>
-            <p className="text-gray-500 text-sm">Select any that resonate with you...</p>
+            <p className="text-gray-500 text-sm">Select any that sound familiar...</p>
             
             <div className="space-y-2 mt-4">
               {experienceOptions.map((option, index) => (
@@ -681,7 +681,7 @@ const Search = () => {
                 <span className="font-semibold text-white">The connection?</span>
               </div>
               <p className="text-sm text-gray-300">
-                She may have searched you on Tea <span className="text-[#c8e972] font-medium">before you even met</span>. What she found could have changed everything.
+                She may have searched you on Tea <span className="text-[#c8e972] font-medium">before you even met</span>. What she found might have changed everything.
               </p>
             </div>
           </>
@@ -713,7 +713,7 @@ const Search = () => {
         return (
           <>
             <h1 className="text-2xl font-bold text-gray-900">Success Stories</h1>
-            <p className="text-gray-500 text-sm">See how other guys found out what's being said about them.</p>
+            <p className="text-gray-500 text-sm">See how other guys discovered what's being said about them.</p>
             
             <div className="bg-[#c8e972] rounded-full py-2 px-4 flex items-center justify-center gap-2 mt-4">
               <span className="text-lg">👥</span>
@@ -757,7 +757,7 @@ const Search = () => {
         return (
           <>
             <h1 className="text-2xl font-bold text-gray-900">Add a photo (optional)</h1>
-            <p className="text-gray-500 text-sm">Our AI can match your face against photos shared in Tea posts. This is optional but increases accuracy.</p>
+            <p className="text-gray-500 text-sm">Our AI can match your face against photos shared in Tea posts. Optional, but improves accuracy.</p>
             
             <div className="border-2 border-dashed border-gray-300 rounded-xl p-8 mt-4 flex flex-col items-center justify-center">
               <div className="w-12 h-12 bg-[#c8e972] rounded-full flex items-center justify-center mb-3">
@@ -818,7 +818,7 @@ const Search = () => {
       return (
         <div className="bg-white border border-gray-200 rounded-xl p-4 mt-auto">
           <p className="text-sm">
-            <span className="font-bold">💡 Did you know:</span> Women often search Tea before a first date to see if there's any "tea" on their match.
+            <span className="font-bold">💡 Did you know:</span> Women often search Tea before a first date to check if there's any "tea" on their match.
           </p>
         </div>
       );
@@ -827,7 +827,7 @@ const Search = () => {
       return (
         <div className="bg-white border border-gray-200 rounded-xl p-4 mt-auto">
           <p className="text-sm">
-            <span className="font-bold">🤔 Think about it:</span> That awkward silence on a date? The sudden ghosting? She might have already read about you.
+            <span className="font-bold">🤔 Think about it:</span> That awkward silence on a date? The sudden ghosting? She might've already read about you.
           </p>
         </div>
       );
@@ -845,7 +845,7 @@ const Search = () => {
       return (
         <div className="bg-[#c8e972] rounded-xl p-4 mt-4">
           <p className="text-sm text-gray-800">
-            <span className="font-bold">📊 The data:</span> The average Tea post is viewed by over <span className="font-bold">2,400 women</span> within the first week.
+            <span className="font-bold">📊 The data:</span> The average Tea post gets seen by over <span className="font-bold">2,400 women</span> within the first week.
           </p>
         </div>
       );
@@ -854,7 +854,7 @@ const Search = () => {
       return (
         <div className="bg-[#e8d4f8] rounded-xl p-4 mt-4">
           <p className="text-sm text-gray-800">
-            <span className="font-bold">✨ Good news:</span> Takedown service is included free with your report if posts are found. You're protected either way.
+            <span className="font-bold">✨ Good news:</span> Free takedown service is included with your report if posts are found. You're covered either way.
           </p>
         </div>
       );
@@ -863,7 +863,7 @@ const Search = () => {
       return (
         <div className="bg-[#e8d4f8] rounded-xl p-4 mt-auto">
           <p className="text-sm text-gray-800">
-            <span className="font-bold">Why this helps:</span> Tea posts sometimes mention Instagram handles. Adding yours increases the chances of finding relevant posts.
+            <span className="font-bold">Why this helps:</span> Tea posts sometimes tag Instagram handles. Adding yours improves your chances of finding relevant posts.
           </p>
         </div>
       );
@@ -872,7 +872,7 @@ const Search = () => {
       return (
         <div className="bg-[#e8d4f8] rounded-xl p-4 mt-auto">
           <p className="text-sm text-gray-800">
-            <span className="font-bold">Privacy note:</span> Your photos are only used for matching and are never stored or shared. You can skip this step if you prefer.
+            <span className="font-bold">Privacy note:</span> Your photos are only used for matching — never stored or shared. Skip if you prefer.
           </p>
         </div>
       );
@@ -898,14 +898,14 @@ const Search = () => {
     if (step.bottomText) return step.bottomText;
     
     switch (step.id) {
-      case "area_activity": return "New posts are added every minute";
-      case "whats_at_stake": return "Don't let your reputation be a mystery";
+      case "area_activity": return "New posts added every minute";
+      case "whats_at_stake": return "Don't leave your reputation a mystery";
       case "has_happened": return "73% of women check Tea before a first date";
-      case "one_post_spreads": return "The average Tea post is seen by 2,400+ women";
-      case "removal_service": return "We've helped 5,000+ guys remove unwanted posts";
-      case "success_stories": return "Join thousands who've found answers";
-      case "photo": return "Photos increase search accuracy by 47%";
-      default: return "Tea has 11M+ women sharing dating experiences";
+      case "one_post_spreads": return "The average Tea post reaches 2,400+ women";
+      case "removal_service": return "We've helped 5,000+ guys remove posts";
+      case "success_stories": return "Join thousands who found answers";
+      case "photo": return "Photos boost search accuracy by 47%";
+      default: return "Tea has 12M+ women sharing dating experiences";
     }
   };
 
