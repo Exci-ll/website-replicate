@@ -177,4 +177,18 @@
   .animate-shine {
     animation: shine 2.5s infinite;
   }
+
+  /* Auto-scroll carousel for locked posts */
+  @keyframes scroll-right {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  .animate-scroll-right {
+    animation: scroll-right 20s linear infinite;
+  }
 }
