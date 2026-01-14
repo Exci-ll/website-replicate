@@ -46,7 +46,7 @@ const HeroSection = () => {
 
         {/* Right CTA Card */}
         <div className="w-full max-w-sm">
-          <div className="bg-white rounded-2xl p-5 shadow-lg">
+          <div className="bg-white rounded-2xl p-5 shadow-lg border border-gray-900">
             <div className="text-center mb-3">
               <div className="w-10 h-10 bg-[#c8e972]/30 rounded-lg flex items-center justify-center mx-auto">
                 <span className="text-2xl">🍵</span>
@@ -59,13 +59,13 @@ const HeroSection = () => {
             
             {/* Badges */}
             <div className="flex items-center justify-center gap-1.5 mb-5 flex-wrap">
-              <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-gray-100 text-xs font-medium">
+              <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-gray-100 text-xs font-medium border border-gray-900">
                 🔒 Anonymous
               </span>
-              <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-gray-100 text-xs font-medium">
+              <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-gray-100 text-xs font-medium border border-gray-900">
                 🎯 96% Accurate
               </span>
-              <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-gray-100 text-xs font-medium">
+              <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-gray-100 text-xs font-medium border border-gray-900">
                 ⚡ Instant
               </span>
             </div>
