@@ -35,7 +35,7 @@ const quizSteps: QuizStep[] = [
     tipLabel: "Pro Tip:",
     tipText: "We'll also search for common nicknames and variations of your name to ensure we don't miss any posts.",
     tipColor: "green",
-    bottomText: "Tea has 11M+ women sharing dating experiences",
+    bottomText: "Tea has 12M+ women sharing dating experiences",
   },
   {
     id: "age",
@@ -56,7 +56,7 @@ const quizSteps: QuizStep[] = [
     emoji: "📍",
     placeholder: "Start typing your city...",
     subtitle: "The city or area where you've been active on dating apps",
-    bottomText: "Location matching helps find local posts",
+    bottomText: "Location matching locates nearby posts",
   },
   {
     id: "area_activity",
@@ -795,7 +795,7 @@ const Search = () => {
 
             <div className="text-center space-y-2">
               <p className="text-gray-600 font-medium">Searching the Tea database...</p>
-              <p className="text-sm text-gray-500">Scanning 11M+ posts for mentions of you</p>
+              <p className="text-sm text-gray-500">Scanning 12M+ posts for mentions of you</p>
             </div>
 
             <div className="flex items-center gap-1.5">
