@@ -212,7 +212,7 @@ const Checkout = () => {
                         <span className="text-[10px] text-gray-500">per day</span>
                       </div>
                     </div>
-                    <p className="text-[8px] text-gray-400 mt-1 opacity-60">$17.99/mo</p>
+                    <p className="text-[7.6px] text-gray-400 mt-1 opacity-60">$17.99/mo</p>
                   </div>
                 </div>
               </div>
