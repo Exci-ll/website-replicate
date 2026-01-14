@@ -916,10 +916,10 @@ const Search = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#f5f0e8] flex flex-col items-center">
-      <div className="w-full max-w-md bg-white min-h-screen flex flex-col shadow-xl">
-        {/* Header */}
-        <header className="flex items-center justify-center py-4 px-6 relative border-b border-gray-100">
+    <div className="h-screen bg-[#f5f0e8] flex flex-col items-center overflow-hidden">
+      <div className="w-full max-w-md bg-white h-full flex flex-col shadow-xl">
+        {/* Header - Fixed */}
+        <header className="flex-shrink-0 flex items-center justify-center py-4 px-6 relative border-b border-gray-100">
           <button 
             onClick={handleBack}
             className="absolute left-4 p-2 hover:bg-gray-100 rounded-full transition-colors"
@@ -934,8 +934,8 @@ const Search = () => {
           </div>
         </header>
 
-        {/* Progress Bar - 12 segments */}
-        <div className="px-4 py-2">
+        {/* Progress Bar - Fixed */}
+        <div className="flex-shrink-0 px-4 py-2">
           <div className="flex gap-[3px]">
             {Array.from({ length: 12 }).map((_, index) => (
               <div
@@ -950,37 +950,46 @@ const Search = () => {
           </div>
         </div>
 
-        {/* Content */}
-        <main className="flex-1 flex flex-col px-6 py-4 overflow-y-auto">
-          <div className="space-y-4 flex-1 flex flex-col">
-            {renderStepContent()}
+        {/* Scrollable Content Area */}
+        <main className="flex-1 flex flex-col min-h-0 relative">
+          {/* Scrollable content */}
+          <div className="flex-1 overflow-y-auto px-6 py-4">
+            <div className="space-y-4">
+              {renderStepContent()}
+              
+              {/* Tip box */}
+              {step.type !== "searching" && renderTipBox()}
+            </div>
             
-            {/* Tip box */}
-            {step.type !== "searching" && renderTipBox()}
+            {/* Bottom padding to ensure content doesn't get hidden behind fixed button */}
+            {step.type !== "searching" && <div className="h-4" />}
           </div>
 
-          {/* Spacer */}
-          <div className="min-h-[20px]" />
-
-          {/* Bottom Section */}
+          {/* Fixed Bottom Section with gradient shadow */}
           {step.type !== "searching" && (
-            <div className="space-y-4 pb-6 mt-auto">
-              <Button
-                onClick={handleNext}
-                disabled={isNextDisabled()}
-                className={`w-full h-14 rounded-xl font-semibold text-base flex items-center justify-center gap-2 transition-colors ${
-                  isNextDisabled()
-                    ? "bg-gray-200 text-gray-500 cursor-not-allowed"
-                    : "bg-gray-900 text-white hover:bg-gray-800"
-                }`}
-              >
-                {getButtonText()}
-                <ArrowRight className="w-5 h-5" />
-              </Button>
+            <div className="flex-shrink-0 relative">
+              {/* Gradient shadow overlay */}
+              <div className="absolute bottom-full left-0 right-0 h-12 bg-gradient-to-t from-white via-white/80 to-transparent pointer-events-none" />
+              
+              {/* Button and text container */}
+              <div className="bg-white px-6 pb-6 pt-2 space-y-4">
+                <Button
+                  onClick={handleNext}
+                  disabled={isNextDisabled()}
+                  className={`w-full h-14 rounded-xl font-semibold text-base flex items-center justify-center gap-2 transition-colors ${
+                    isNextDisabled()
+                      ? "bg-gray-200 text-gray-500 cursor-not-allowed"
+                      : "bg-gray-900 text-white hover:bg-gray-800"
+                  }`}
+                >
+                  {getButtonText()}
+                  <ArrowRight className="w-5 h-5" />
+                </Button>
 
-              <p className="text-center text-sm text-gray-500">
-                🍵 {getBottomText()}
-              </p>
+                <p className="text-center text-sm text-gray-500">
+                  🍵 {getBottomText()}
+                </p>
+              </div>
             </div>
           )}
         </main>
