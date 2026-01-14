@@ -239,14 +239,24 @@ const Search = () => {
         });
       }, 100);
 
-      // Posts appear one by one over first 5 seconds (833ms apart for 6 posts)
+      // Posts appear one by one with random-feeling but static timing
+      // First two come fast, rest at varied times, all 6 visible by 7 seconds
+      const postTimings = [
+        600,   // Post 1 - 0.6s (fast)
+        1400,  // Post 2 - 1.4s (fast)
+        2800,  // Post 3 - 2.8s
+        4200,  // Post 4 - 4.2s
+        5500,  // Post 5 - 5.5s
+        6800,  // Post 6 - 6.8s (by 7th second)
+      ];
+      
       const postTimers: NodeJS.Timeout[] = [];
-      for (let i = 1; i <= 6; i++) {
+      postTimings.forEach((timing, index) => {
         const timer = setTimeout(() => {
-          setVisiblePosts(i);
-        }, (i * 5000) / 6); // Spread evenly over 5 seconds
+          setVisiblePosts(index + 1);
+        }, timing);
         postTimers.push(timer);
-      }
+      });
 
       // Search complete after 11 seconds, then show email modal after brief delay
       const completeTimer = setTimeout(() => {
