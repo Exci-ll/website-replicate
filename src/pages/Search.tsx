@@ -236,7 +236,7 @@ const Search = () => {
     }
   }, [inputValue, step.type]);
 
-  // Searching animation - 15 seconds total with random pauses, posts appear in first 7 seconds
+  // Searching animation - 13 seconds total with random pauses, posts appear in first 8 seconds
   useEffect(() => {
     if (step.id === "searching" && !hasNavigatedRef.current) {
       // Reset states when entering searching step
@@ -246,45 +246,57 @@ const Search = () => {
       setShowEmailModal(false);
       setSearchStatusIndex(0);
 
-      // Progress bar: 0 to 100 over 15 seconds with random pauses
-      // ~150 intervals of 100ms, with random pauses and 10% boost intervals
-      const boostIntervals = new Set<number>();
-      while (boostIntervals.size < 15) { // 10% of ~150 = 15 random boosts
-        boostIntervals.add(Math.floor(Math.random() * 150));
+      // Build a sequence of progress values with pauses and skips baked in
+      // 13 seconds = 130 ticks at 100ms each
+      // 10 pauses (repeat same value) + ~5 skips (+2 instead of +1)
+      const totalTicks = 130;
+      const pauseCount = 10;
+      const skipCount = 5;
+      
+      // Generate random pause positions (avoid first 10 and last 10 ticks)
+      const pausePositions = new Set<number>();
+      while (pausePositions.size < pauseCount) {
+        pausePositions.add(Math.floor(Math.random() * 110) + 10);
       }
       
-      // Random pause intervals (3-4 pauses of 300-600ms each)
-      const pauseIntervals = new Set<number>();
-      while (pauseIntervals.size < 4) {
-        pauseIntervals.add(Math.floor(Math.random() * 140) + 10); // Avoid first/last 10 intervals
+      // Generate random skip positions (where we jump +2 instead of normal)
+      const skipPositions = new Set<number>();
+      while (skipPositions.size < skipCount) {
+        const pos = Math.floor(Math.random() * 120) + 5;
+        if (!pausePositions.has(pos)) {
+          skipPositions.add(pos);
+        }
       }
       
-      let intervalCount = 0;
-      let pauseRemaining = 0;
-      const baseIncrement = 100 / 165; // Slightly smaller base to account for boosts and pauses
+      // Calculate base increment: 100% over (130 - 10 pauses) = 120 active ticks, minus skip bonuses
+      const activeTicks = totalTicks - pauseCount;
+      const skipBonus = skipCount * 1; // Each skip adds 1 extra
+      const baseIncrement = 100 / (activeTicks + skipBonus);
+      
+      let tickCount = 0;
+      let currentProgress = 0;
       
       const progressInterval = setInterval(() => {
-        // Handle pauses
-        if (pauseRemaining > 0) {
-          pauseRemaining--;
+        tickCount++;
+        
+        // If this is a pause tick, don't increment progress
+        if (pausePositions.has(tickCount)) {
+          // Just update state with same value (causes visual "pause")
+          setSearchProgress(currentProgress);
           return;
         }
         
-        // Check if we should start a pause
-        if (pauseIntervals.has(intervalCount)) {
-          pauseRemaining = Math.floor(Math.random() * 4) + 3; // 300-600ms pause
-          return;
-        }
+        // Calculate increment - skip positions get double
+        const increment = skipPositions.has(tickCount) 
+          ? baseIncrement * 2 
+          : baseIncrement;
         
-        setSearchProgress(prev => {
-          if (prev >= 100) {
-            clearInterval(progressInterval);
-            return 100;
-          }
-          const boost = boostIntervals.has(intervalCount) ? 2 : 0;
-          intervalCount++;
-          return Math.min(100, prev + baseIncrement + (boost * 0.5));
-        });
+        currentProgress = Math.min(100, currentProgress + increment);
+        setSearchProgress(currentProgress);
+        
+        if (currentProgress >= 100) {
+          clearInterval(progressInterval);
+        }
       }, 100);
 
       // Cycle through search status texts every 2 seconds
@@ -311,14 +323,15 @@ const Search = () => {
         postTimers.push(timer);
       });
 
-      // Search complete after 15 seconds, then show email modal after brief delay
+      // Search complete after 13 seconds, then show email modal after brief delay
       const completeTimer = setTimeout(() => {
+        setSearchProgress(100); // Ensure it shows 100%
         setSearchComplete(true);
         // Show email modal 500ms after search complete popup appears
         setTimeout(() => {
           setShowEmailModal(true);
         }, 500);
-      }, 15000);
+      }, 13000);
 
       return () => {
         clearInterval(progressInterval);
