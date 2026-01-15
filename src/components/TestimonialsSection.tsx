@@ -54,7 +54,7 @@ const TestimonialsSection = () => {
         
         <div className="grid md:grid-cols-3 gap-6">
           {testimonials.map((testimonial, index) => (
-            <div key={index} className="bg-[#16181c] rounded-2xl p-5 shadow-lg card-hover relative">
+            <div key={index} className="bg-[#16181c] rounded-lg p-5 shadow-lg card-hover relative">
               {/* X Logo in top right */}
               <div className="absolute top-5 right-5">
                 <XLogo />

@@ -17,7 +17,7 @@ const Header = () => {
         </div>
         <Button 
           variant="outline" 
-          className="flex items-center gap-2 rounded-full border-foreground/20 bg-card hover:bg-muted text-sm"
+          className="flex items-center gap-2 rounded-full border-gray-900 bg-card hover:bg-muted text-sm"
           onClick={() => setIsLoginOpen(true)}
         >
           <LogIn className="w-4 h-4" />

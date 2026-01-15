@@ -7,7 +7,7 @@ import avatar3 from "@/assets/avatar3.jpg";
 const HeroSection = () => {
   const navigate = useNavigate();
   return (
-    <section className="mx-4 md:mx-6 rounded-3xl bg-[#c8e972] p-6 md:p-10 lg:p-14 border border-gray-900">
+    <section className="mx-4 md:mx-6 rounded-xl bg-[#c8e972] p-6 md:p-10 lg:p-14 border border-gray-900">
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12">
         {/* Left Content */}
         <div className="flex-1 max-w-xl">
@@ -46,7 +46,7 @@ const HeroSection = () => {
 
         {/* Right CTA Card */}
         <div className="w-full max-w-sm">
-          <div className="bg-white rounded-2xl p-5 shadow-lg border border-gray-900">
+          <div className="bg-white rounded-lg p-5 shadow-lg border border-gray-900">
             <div className="text-center mb-3">
               <div className="w-10 h-10 bg-[#c8e972]/30 rounded-lg flex items-center justify-center mx-auto">
                 <span className="text-2xl">🍵</span>
