@@ -112,7 +112,7 @@ const Checkout = () => {
           </div>
 
           {/* Tea Posts Found Card */}
-          <div className="bg-[#c8e972] rounded-2xl p-4 border border-gray-300">
+          <div className="bg-[#c8e972] rounded-lg p-4 border border-gray-900">
             <div className="flex items-center justify-between mb-3">
               <div className="flex items-center gap-2">
                 <div className="w-6 h-6 bg-[#b8d962] rounded flex items-center justify-center">
@@ -150,7 +150,7 @@ const Checkout = () => {
                 {[...mockPosts.slice(0, 6), ...mockPosts.slice(0, 6)].map((post, index) => (
                   <div
                     key={`${post.id}-${index}`}
-                    className="relative flex-shrink-0 w-40 bg-white rounded-xl p-3 border border-gray-300 overflow-hidden"
+                    className="relative flex-shrink-0 w-40 bg-white rounded-lg p-3 border border-gray-900 overflow-hidden"
                   >
                     <div className="blur-sm opacity-50">
                       <div className="flex items-center gap-1 mb-2">
@@ -181,7 +181,7 @@ const Checkout = () => {
             </div>
 
             {/* Discount Timer + Pricing Card - ends after Alerts */}
-            <div className="border border-gray-200 rounded-xl overflow-hidden">
+            <div className="border border-gray-900 rounded-lg overflow-hidden">
               {/* Discount Timer - black background */}
               <div className="bg-gray-900 text-white py-3 px-4 flex items-center justify-center gap-2">
                 <Clock className="w-4 h-4" />
@@ -234,7 +234,7 @@ const Checkout = () => {
               <>
                 {/* Google Pay Button - Official Style */}
                 <button 
-                  className="w-full h-12 bg-white hover:bg-gray-50 border border-gray-300 rounded-md font-medium text-sm flex items-center justify-center gap-3 shadow-sm"
+                  className="w-full h-12 bg-white hover:bg-gray-50 border border-gray-900 rounded-lg font-medium text-sm flex items-center justify-center gap-3 shadow-sm"
                   onClick={handlePayment}
                 >
                   <svg width="41" height="17" viewBox="0 0 41 17" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -250,7 +250,7 @@ const Checkout = () => {
 
                 {/* Link Button - Official Style */}
                 <button 
-                  className="w-full h-12 bg-[#00D66F] hover:bg-[#00C060] rounded-md font-medium text-sm flex items-center justify-center shadow-sm"
+                  className="w-full h-12 bg-[#00D66F] hover:bg-[#00C060] border border-gray-900 rounded-lg font-medium text-sm flex items-center justify-center shadow-sm"
                   onClick={handlePayment}
                 >
                   <svg width="33" height="14" viewBox="0 0 33 14" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -265,7 +265,7 @@ const Checkout = () => {
               <div className="flex gap-2">
                 {/* Link Button - Green */}
                 <button 
-                  className="flex-1 h-12 bg-[#00D924] hover:bg-[#00C020] text-white rounded-lg font-medium text-sm flex items-center justify-center gap-2"
+                  className="flex-1 h-12 bg-[#00D924] hover:bg-[#00C020] text-white rounded-lg border border-gray-900 font-medium text-sm flex items-center justify-center gap-2"
                   onClick={handlePayment}
                 >
                   <span className="text-white font-bold">▸</span>
@@ -277,7 +277,7 @@ const Checkout = () => {
 
                 {/* Amazon Pay Button - Yellow */}
                 <button 
-                  className="flex-1 h-12 bg-[#FFD814] hover:bg-[#F7CA00] text-gray-900 rounded-lg font-medium text-sm flex items-center justify-center"
+                  className="flex-1 h-12 bg-[#FFD814] hover:bg-[#F7CA00] text-gray-900 rounded-lg border border-gray-900 font-medium text-sm flex items-center justify-center"
                   onClick={handlePayment}
                 >
                   <span className="font-bold italic tracking-tight">amazon</span>
@@ -299,7 +299,7 @@ const Checkout = () => {
             {/* Amazon Pay - shown when "See more" is clicked on desktop/Android */}
             {showSeeMore && isGooglePayAvailable && !isIOS && (
               <button 
-                className="w-full h-12 bg-[#FFD814] hover:bg-[#F7CA00] text-gray-900 rounded-lg font-medium text-sm flex items-center justify-center"
+                className="w-full h-12 bg-[#FFD814] hover:bg-[#F7CA00] text-gray-900 rounded-lg border border-gray-900 font-medium text-sm flex items-center justify-center"
                 onClick={handlePayment}
               >
                 <span className="font-bold italic tracking-tight">amazon</span>
@@ -319,7 +319,7 @@ const Checkout = () => {
           </div>
 
           {/* Link Card Selection - Floating */}
-          <div className="border border-gray-200 rounded-xl p-4 bg-white">
+          <div className="border border-gray-900 rounded-lg p-4 bg-white">
             <div className="flex items-center justify-between mb-3">
               <div className="flex items-center gap-1">
                 <span className="text-[#00D924] font-bold text-lg">▸</span>
@@ -327,7 +327,7 @@ const Checkout = () => {
               </div>
               <span className="text-gray-400 text-lg">•••</span>
             </div>
-            <div className="flex items-center justify-between bg-gray-50 rounded-lg p-3">
+            <div className="flex items-center justify-between bg-gray-50 rounded-lg p-3 border border-gray-900">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-6 bg-[#EB001B] rounded flex items-center justify-center overflow-hidden">
                   <div className="flex">
@@ -342,7 +342,7 @@ const Checkout = () => {
               </div>
               <ChevronDown className="w-5 h-5 text-gray-400 rotate-[-90deg]" />
             </div>
-            <button className="w-full mt-3 py-3 bg-gray-200 hover:bg-gray-300 rounded-lg text-sm font-medium text-gray-900">
+            <button className="w-full mt-3 py-3 bg-gray-200 hover:bg-gray-300 rounded-lg border border-gray-900 text-sm font-medium text-gray-900">
               Use this card
             </button>
           </div>
@@ -395,7 +395,7 @@ const Checkout = () => {
           </div>
 
           {/* Trust Section */}
-          <div className="bg-[#f5f0e8] rounded-xl p-4 border border-gray-300">
+          <div className="bg-[#f5f0e8] rounded-lg p-4 border border-gray-900">
             <h2 className="text-sm font-semibold text-center mb-4 text-gray-900">Trusted by 35,000+ guys</h2>
             <div className="grid grid-cols-3 gap-4 text-center">
               <div>
@@ -418,11 +418,11 @@ const Checkout = () => {
             <h2 className="text-base font-semibold mb-3 text-gray-900">What guys are saying</h2>
             <div className="space-y-3">
               {[
-                { name: "Matt T.", image: reviewMatt, text: "Discovered 2 posts about me from last year. Cleared up everything - now I know why a few conversations went cold.", title: "Cleared up everything" },
-                { name: "Justin R.", image: reviewJustin, text: "My search came back completely clean. Such a relief knowing there's nothing out there. Money well spent.", title: "Such a relief" },
-                { name: "Daniel K.", image: reviewDaniel, text: "Found an old post about me with just my first name and neighborhood. Spot on results - couldn't believe the accuracy.", title: "Spot on results" },
+                { name: "Matt T.", handle: "@matttt_22", image: reviewMatt, text: "Discovered 2 posts about me from last year. Cleared up everything… now I know why a few conversations went cold.", title: "Cleared up everything" },
+                { name: "Justin R.", handle: "@justinratl", image: reviewJustin, text: "My search came back completely clean. Such a relief knowing there's nothing out there. Money well spent.", title: "Such a relief" },
+                { name: "Daniel K.", handle: "@DannyT23542", image: reviewDaniel, text: "Found an old post about me with just my first name and neighborhood. Spot on results… couldn't believe the accuracy.", title: "Spot on results" },
               ].map((testimonial, index) => (
-                <div key={index} className="bg-[#f5f0e8] rounded-xl p-4 border border-gray-300">
+                <div key={index} className="bg-[#f5f0e8] rounded-lg p-4 border border-gray-900">
                   <h3 className="font-semibold text-sm mb-1.5 text-gray-900">{testimonial.title}</h3>
                   <p className="text-xs text-gray-600 mb-3 leading-relaxed">{testimonial.text}</p>
                   <div className="flex items-center justify-between">
