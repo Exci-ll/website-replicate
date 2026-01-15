@@ -122,13 +122,24 @@ const defaultCenter = {
   lng: -74.0060,
 };
 
-// Experience options for "Has this happened" step
+// Experience options for "Has this happened" step - reordered last 3
 const experienceOptions = [
   { emoji: "😐", text: "The date was going great... then she suddenly went cold" },
   { emoji: "😤", text: "She stopped replying mid-conversation for no clear reason" },
-  { emoji: "👀", text: "Her friends gave you weird looks when you first met" },
-  { emoji: "📱", text: "The vibe shifted after she checked her phone" },
   { emoji: "🤔", text: "Matches who seemed interested never replied" },
+  { emoji: "📱", text: "The vibe shifted after she checked her phone" },
+  { emoji: "👀", text: "Her friends gave you weird looks when you first met" },
+];
+
+// Search status texts that cycle during the search
+const searchStatusTexts = [
+  "Scanning for name matches...",
+  "Cross-referencing age details...",
+  "Scanning location mentions...",
+  "Analyzing name variations...",
+  "Reviewing dating app tags...",
+  "Processing profile matches...",
+  "Finalizing results...",
 ];
 
 // Testimonials for Success Stories step - using homepage Chris + 3 crafted reviews
@@ -178,6 +189,8 @@ const Search = () => {
   const [mapCenter, setMapCenter] = useState(defaultCenter);
   const [searchProgress, setSearchProgress] = useState(0);
   const [visiblePosts, setVisiblePosts] = useState(0);
+  const [searchStatusIndex, setSearchStatusIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
   const [searchComplete, setSearchComplete] = useState(false);
   const [showEmailModal, setShowEmailModal] = useState(false);
   const [emailValue, setEmailValue] = useState("");
@@ -223,7 +236,7 @@ const Search = () => {
     }
   }, [inputValue, step.type]);
 
-  // Searching animation - 11 seconds total, posts appear in first 5 seconds
+  // Searching animation - 15 seconds total with random pauses, posts appear in first 7 seconds
   useEffect(() => {
     if (step.id === "searching" && !hasNavigatedRef.current) {
       // Reset states when entering searching step
@@ -231,17 +244,38 @@ const Search = () => {
       setVisiblePosts(0);
       setSearchComplete(false);
       setShowEmailModal(false);
+      setSearchStatusIndex(0);
 
-      // Progress bar: 0 to 100 over 12 seconds (120 intervals of 100ms)
-      // 10% of intervals get a +2 boost to look more realistic
+      // Progress bar: 0 to 100 over 15 seconds with random pauses
+      // ~150 intervals of 100ms, with random pauses and 10% boost intervals
       const boostIntervals = new Set<number>();
-      while (boostIntervals.size < 12) { // 10% of 120 = 12 random boosts
-        boostIntervals.add(Math.floor(Math.random() * 120));
+      while (boostIntervals.size < 15) { // 10% of ~150 = 15 random boosts
+        boostIntervals.add(Math.floor(Math.random() * 150));
       }
+      
+      // Random pause intervals (3-4 pauses of 300-600ms each)
+      const pauseIntervals = new Set<number>();
+      while (pauseIntervals.size < 4) {
+        pauseIntervals.add(Math.floor(Math.random() * 140) + 10); // Avoid first/last 10 intervals
+      }
+      
       let intervalCount = 0;
-      const baseIncrement = 100 / 132; // Slightly smaller base to account for boosts
+      let pauseRemaining = 0;
+      const baseIncrement = 100 / 165; // Slightly smaller base to account for boosts and pauses
       
       const progressInterval = setInterval(() => {
+        // Handle pauses
+        if (pauseRemaining > 0) {
+          pauseRemaining--;
+          return;
+        }
+        
+        // Check if we should start a pause
+        if (pauseIntervals.has(intervalCount)) {
+          pauseRemaining = Math.floor(Math.random() * 4) + 3; // 300-600ms pause
+          return;
+        }
+        
         setSearchProgress(prev => {
           if (prev >= 100) {
             clearInterval(progressInterval);
@@ -253,15 +287,20 @@ const Search = () => {
         });
       }, 100);
 
+      // Cycle through search status texts every 2 seconds
+      const statusInterval = setInterval(() => {
+        setSearchStatusIndex(prev => (prev + 1) % searchStatusTexts.length);
+      }, 2000);
+
       // Posts appear one by one with random-feeling but static timing
-      // First two arrive 0.3s apart, rest at varied times, all 6 visible by 7 seconds
+      // First two arrive 0.3s apart, rest at varied times, all 6 visible by 8 seconds
       const postTimings = [
         300,   // Post 1 - 0.3s (fast)
         600,   // Post 2 - 0.6s (0.3s after first)
-        2800,  // Post 3 - 2.8s
-        4200,  // Post 4 - 4.2s
-        5500,  // Post 5 - 5.5s
-        6800,  // Post 6 - 6.8s (by 7th second)
+        3200,  // Post 3 - 3.2s
+        5000,  // Post 4 - 5.0s
+        6500,  // Post 5 - 6.5s
+        8000,  // Post 6 - 8.0s
       ];
       
       const postTimers: NodeJS.Timeout[] = [];
@@ -272,17 +311,18 @@ const Search = () => {
         postTimers.push(timer);
       });
 
-      // Search complete after 12 seconds, then show email modal after brief delay
+      // Search complete after 15 seconds, then show email modal after brief delay
       const completeTimer = setTimeout(() => {
         setSearchComplete(true);
         // Show email modal 500ms after search complete popup appears
         setTimeout(() => {
           setShowEmailModal(true);
         }, 500);
-      }, 12000);
+      }, 15000);
 
       return () => {
         clearInterval(progressInterval);
+        clearInterval(statusInterval);
         postTimers.forEach(t => clearTimeout(t));
         clearTimeout(completeTimer);
       };
@@ -714,20 +754,34 @@ const Search = () => {
             <p className="text-gray-500 text-sm">Select any that sound familiar...</p>
             
             <div className="space-y-2 mt-4">
-              {experienceOptions.map((option, index) => (
-                <button
-                  key={index}
-                  onClick={() => toggleExperience(index)}
-                  className={`w-full flex items-center gap-3 p-4 rounded-xl border transition-all text-left ${
-                    selectedExperiences.includes(index)
-                      ? "border-gray-900 bg-gray-50"
-                      : "border-gray-900 hover:bg-gray-50"
-                  }`}
-                >
-                  <span className="w-8 h-8 flex items-center justify-center bg-gray-100 rounded-lg border border-gray-900 text-lg">{option.emoji}</span>
-                  <span className="text-sm text-gray-700">{option.text}</span>
-                </button>
-              ))}
+              {experienceOptions.map((option, index) => {
+                const isSelected = selectedExperiences.includes(index);
+                return (
+                  <button
+                    key={index}
+                    onClick={() => toggleExperience(index)}
+                    className={`w-full flex items-center justify-between gap-3 p-4 rounded-xl border-2 transition-all text-left ${
+                      isSelected
+                        ? "border-[#a855f7] bg-[#f3e8ff]"
+                        : "border-gray-200 hover:bg-gray-50"
+                    }`}
+                  >
+                    <div className="flex items-center gap-3">
+                      <span className={`w-8 h-8 flex items-center justify-center rounded-lg border text-lg ${
+                        isSelected ? "bg-[#e9d5ff] border-[#a855f7]" : "bg-gray-100 border-gray-900"
+                      }`}>{option.emoji}</span>
+                      <span className={`text-sm ${isSelected ? "text-[#7c3aed] font-medium" : "text-gray-700"}`}>{option.text}</span>
+                    </div>
+                    {isSelected && (
+                      <div className="w-6 h-6 bg-[#a855f7] rounded-full flex items-center justify-center flex-shrink-0">
+                        <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                      </div>
+                    )}
+                  </button>
+                );
+              })}
             </div>
 
             <div className="bg-gray-900 rounded-xl p-4 mt-4 border border-gray-900">
@@ -850,7 +904,7 @@ const Search = () => {
                     <div className="w-2 h-2 bg-gray-900 rounded-full animate-bounce" style={{ animationDelay: "150ms" }} />
                     <div className="w-2 h-2 bg-gray-900 rounded-full animate-bounce" style={{ animationDelay: "300ms" }} />
                   </div>
-                  <span className="text-sm text-gray-600">Scanning for name matches...</span>
+                  <span className="text-sm text-gray-600">{searchStatusTexts[searchStatusIndex]}</span>
                 </div>
                 <span className="text-sm font-semibold text-gray-900">{Math.round(searchProgress)}%</span>
               </div>
