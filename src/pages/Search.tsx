@@ -473,8 +473,8 @@ const Search = () => {
               <p className="text-gray-500 text-sm">Here's what's happening near {getLocationDisplay()}</p>
               
               <div className="space-y-3 mt-4">
-                <div className="bg-[#c8e972] rounded-xl p-4 flex items-center gap-3">
-                  <div className="w-10 h-10 bg-white/30 rounded-lg flex items-center justify-center">
+                <div className="bg-[#c8e972] rounded-xl p-4 flex items-center gap-3 border border-gray-900">
+                  <div className="w-10 h-10 bg-white/30 rounded-lg flex items-center justify-center border border-gray-900">
                     <span className="text-xl">📋</span>
                   </div>
                   <div>
@@ -483,8 +483,8 @@ const Search = () => {
                   </div>
                 </div>
                 
-                <div className="bg-[#e8d4f8] rounded-xl p-4 flex items-center gap-3">
-                  <div className="w-10 h-10 bg-white/30 rounded-lg flex items-center justify-center">
+                <div className="bg-[#e8d4f8] rounded-xl p-4 flex items-center gap-3 border border-gray-900">
+                  <div className="w-10 h-10 bg-white/30 rounded-lg flex items-center justify-center border border-gray-900">
                     <span className="text-xl">🔍</span>
                   </div>
                   <div>
@@ -493,8 +493,8 @@ const Search = () => {
                   </div>
                 </div>
                 
-                <div className="bg-white border border-gray-200 rounded-xl p-4 flex items-center gap-3">
-                  <div className="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center">
+                <div className="bg-white border border-gray-900 rounded-xl p-4 flex items-center gap-3">
+                  <div className="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center border border-gray-900">
                     <span className="text-xl">🚨</span>
                   </div>
                   <div>
@@ -519,8 +519,8 @@ const Search = () => {
               <p className="text-gray-500 text-sm">What women post on Tea can impact your dating life in ways you might not expect.</p>
               
               <div className="space-y-3 mt-4">
-                <div className="bg-white border border-gray-200 rounded-xl p-4 flex items-center gap-3">
-                  <div className="w-10 h-10 bg-[#c8e972] rounded-lg flex items-center justify-center">
+                <div className="bg-white border border-gray-900 rounded-xl p-4 flex items-center gap-3">
+                  <div className="w-10 h-10 bg-[#c8e972] rounded-lg flex items-center justify-center border border-gray-900">
                     <span className="text-xl">👀</span>
                   </div>
                   <div>
@@ -529,8 +529,8 @@ const Search = () => {
                   </div>
                 </div>
                 
-                <div className="bg-[#e8d4f8] rounded-xl p-4 flex items-center gap-3">
-                  <div className="w-10 h-10 bg-white/30 rounded-lg flex items-center justify-center">
+                <div className="bg-[#e8d4f8] rounded-xl p-4 flex items-center gap-3 border border-gray-900">
+                  <div className="w-10 h-10 bg-white/30 rounded-lg flex items-center justify-center border border-gray-900">
                     <span className="text-xl">📱</span>
                   </div>
                   <div>
@@ -539,8 +539,8 @@ const Search = () => {
                   </div>
                 </div>
                 
-                <div className="bg-[#c8e972] rounded-xl p-4 flex items-center gap-3">
-                  <div className="w-10 h-10 bg-white/30 rounded-lg flex items-center justify-center">
+                <div className="bg-[#c8e972] rounded-xl p-4 flex items-center gap-3 border border-gray-900">
+                  <div className="w-10 h-10 bg-white/30 rounded-lg flex items-center justify-center border border-gray-900">
                     <span className="text-xl">❤️</span>
                   </div>
                   <div>
@@ -564,17 +564,17 @@ const Search = () => {
                 <div className="flex justify-center">
                   <div className="relative">
                     {/* Center icon */}
-                    <div className="w-16 h-16 bg-[#c8e972] rounded-xl flex items-center justify-center mx-auto border-2 border-[#c8e972] z-10 relative">
+                    <div className="w-16 h-16 bg-[#c8e972] rounded-xl flex items-center justify-center mx-auto border border-gray-900 z-10 relative">
                       <span className="text-2xl">📋</span>
                     </div>
-                    <div className="bg-[#c8e972] text-xs font-medium px-2 py-1 rounded mt-1 text-center">Your Tea post</div>
+                    <div className="bg-[#c8e972] text-xs font-medium px-2 py-1 rounded mt-1 text-center border border-gray-900">Your Tea post</div>
                     
                     {/* Orbiting avatars - decorative circles */}
-                    <div className="absolute -top-4 -left-8 w-6 h-6 rounded-full bg-gray-200"></div>
-                    <div className="absolute -top-2 left-16 w-8 h-8 rounded-full bg-pink-200"></div>
-                    <div className="absolute top-4 -right-10 w-6 h-6 rounded-full bg-gray-300"></div>
-                    <div className="absolute top-12 -left-12 w-7 h-7 rounded-full bg-gray-200"></div>
-                    <div className="absolute -bottom-2 left-20 w-5 h-5 rounded-full bg-pink-100"></div>
+                    <div className="absolute -top-4 -left-8 w-6 h-6 rounded-full bg-gray-200 border border-gray-900"></div>
+                    <div className="absolute -top-2 left-16 w-8 h-8 rounded-full bg-pink-200 border border-gray-900"></div>
+                    <div className="absolute top-4 -right-10 w-6 h-6 rounded-full bg-gray-300 border border-gray-900"></div>
+                    <div className="absolute top-12 -left-12 w-7 h-7 rounded-full bg-gray-200 border border-gray-900"></div>
+                    <div className="absolute -bottom-2 left-20 w-5 h-5 rounded-full bg-pink-100 border border-gray-900"></div>
                   </div>
                 </div>
               </div>
@@ -582,23 +582,23 @@ const Search = () => {
               {/* Timeline */}
               <div className="space-y-3">
                 <div className="flex items-start gap-3">
-                  <div className="w-8 h-8 bg-[#c8e972] rounded-lg flex items-center justify-center flex-shrink-0">
+                  <div className="w-8 h-8 bg-[#c8e972] rounded-lg flex items-center justify-center flex-shrink-0 border border-gray-900">
                     <span className="text-sm">📋</span>
                   </div>
-                  <div className="flex-1 border border-gray-200 rounded-xl p-3">
-                    <span className="text-xs bg-[#c8e972] px-2 py-0.5 rounded font-medium">MINUTE 1</span>
+                  <div className="flex-1 border border-gray-900 rounded-xl p-3">
+                    <span className="text-xs bg-[#c8e972] px-2 py-0.5 rounded font-medium border border-gray-900">MINUTE 1</span>
                     <p className="font-semibold text-sm mt-1">She posts about you</p>
                     <p className="text-xs text-gray-500">One frustrated message after a date gone wrong</p>
                   </div>
                 </div>
                 
                 <div className="flex items-start gap-3">
-                  <div className="w-8 h-8 bg-yellow-400 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <div className="w-8 h-8 bg-yellow-400 rounded-lg flex items-center justify-center flex-shrink-0 border border-gray-900">
                     <span className="text-sm">💡</span>
                   </div>
-                  <div className="flex-1 border border-gray-200 rounded-xl p-3">
+                  <div className="flex-1 border border-gray-900 rounded-xl p-3">
                     <div className="flex justify-between items-center">
-                      <span className="text-xs bg-yellow-400 px-2 py-0.5 rounded font-medium">HOUR 1</span>
+                      <span className="text-xs bg-yellow-400 px-2 py-0.5 rounded font-medium border border-gray-900">HOUR 1</span>
                       <span className="text-xs text-gray-500">+500 👀</span>
                     </div>
                     <p className="font-semibold text-sm mt-1">Local women see it</p>
@@ -607,12 +607,12 @@ const Search = () => {
                 </div>
                 
                 <div className="flex items-start gap-3">
-                  <div className="w-8 h-8 bg-gray-200 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <div className="w-8 h-8 bg-gray-200 rounded-lg flex items-center justify-center flex-shrink-0 border border-gray-900">
                     <span className="text-sm">💬</span>
                   </div>
-                  <div className="flex-1 border border-gray-200 rounded-xl p-3">
+                  <div className="flex-1 border border-gray-900 rounded-xl p-3">
                     <div className="flex justify-between items-center">
-                      <span className="text-xs bg-gray-200 px-2 py-0.5 rounded font-medium">DAY 1</span>
+                      <span className="text-xs bg-gray-200 px-2 py-0.5 rounded font-medium border border-gray-900">DAY 1</span>
                       <span className="text-xs text-gray-500">+2,400 👀</span>
                     </div>
                     <p className="font-semibold text-sm mt-1">Shared in group chats</p>
@@ -621,12 +621,12 @@ const Search = () => {
                 </div>
                 
                 <div className="flex items-start gap-3">
-                  <div className="w-8 h-8 bg-purple-200 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <div className="w-8 h-8 bg-purple-200 rounded-lg flex items-center justify-center flex-shrink-0 border border-gray-900">
                     <span className="text-sm">📸</span>
                   </div>
-                  <div className="flex-1 border border-gray-200 rounded-xl p-3">
+                  <div className="flex-1 border border-gray-900 rounded-xl p-3">
                     <div className="flex justify-between items-center">
-                      <span className="text-xs bg-purple-200 px-2 py-0.5 rounded font-medium">FOREVER</span>
+                      <span className="text-xs bg-purple-200 px-2 py-0.5 rounded font-medium border border-gray-900">FOREVER</span>
                       <span className="text-xs text-gray-500">∞ 👀</span>
                     </div>
                     <p className="font-semibold text-sm mt-1">Screenshots live on</p>
@@ -644,8 +644,8 @@ const Search = () => {
               <h1 className="text-2xl font-bold text-gray-900">Found something negative? We can help remove it.</h1>
               <p className="text-gray-500 text-sm">If we find posts about you, our team can help take them down.</p>
               
-              <div className="bg-[#c8e972] rounded-xl p-4 flex items-center gap-3 mt-4">
-                <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center">
+              <div className="bg-[#c8e972] rounded-xl p-4 flex items-center gap-3 mt-4 border border-gray-900">
+                <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center border border-gray-900">
                   <span className="text-xl">🛡️</span>
                 </div>
                 <div>
@@ -657,24 +657,24 @@ const Search = () => {
               <p className="font-semibold text-sm mt-6 mb-3 text-gray-500">HOW IT WORKS</p>
               
               <div className="space-y-2">
-                <div className="border border-gray-200 rounded-xl p-3 flex items-start gap-3">
-                  <span className="w-6 h-6 bg-[#c8e972] rounded-full flex items-center justify-center text-xs font-bold">1</span>
+                <div className="border border-gray-900 rounded-xl p-3 flex items-start gap-3">
+                  <span className="w-6 h-6 bg-[#c8e972] rounded-full flex items-center justify-center text-xs font-bold border border-gray-900">1</span>
                   <div>
                     <span className="font-semibold text-sm">We find the posts</span>
                     <span className="text-sm text-gray-500"> — our search finds all mentions of you</span>
                   </div>
                 </div>
                 
-                <div className="border border-gray-200 rounded-xl p-3 flex items-start gap-3">
-                  <span className="w-6 h-6 bg-[#c8e972] rounded-full flex items-center justify-center text-xs font-bold">2</span>
+                <div className="border border-gray-900 rounded-xl p-3 flex items-start gap-3">
+                  <span className="w-6 h-6 bg-[#c8e972] rounded-full flex items-center justify-center text-xs font-bold border border-gray-900">2</span>
                   <div>
                     <span className="font-semibold text-sm">You review & choose</span>
                     <span className="text-sm text-gray-500"> — pick which posts you want removed</span>
                   </div>
                 </div>
                 
-                <div className="border border-gray-200 rounded-xl p-3 flex items-start gap-3">
-                  <span className="w-6 h-6 bg-[#c8e972] rounded-full flex items-center justify-center text-xs font-bold">3</span>
+                <div className="border border-gray-900 rounded-xl p-3 flex items-start gap-3">
+                  <span className="w-6 h-6 bg-[#c8e972] rounded-full flex items-center justify-center text-xs font-bold border border-gray-900">3</span>
                   <div>
                     <span className="font-semibold text-sm">We handle the rest</span>
                     <span className="text-sm text-gray-500"> — takedown requests filed on your behalf</span>
@@ -683,11 +683,11 @@ const Search = () => {
               </div>
 
               <div className="grid grid-cols-2 gap-3 mt-4">
-                <div className="border border-gray-200 rounded-xl p-4 text-center">
+                <div className="border border-gray-900 rounded-xl p-4 text-center">
                   <p className="text-2xl font-bold">94%</p>
                   <p className="text-xs text-gray-500">Success rate</p>
                 </div>
-                <div className="border border-gray-200 rounded-xl p-4 text-center">
+                <div className="border border-gray-900 rounded-xl p-4 text-center">
                   <p className="text-2xl font-bold">48-72h</p>
                   <p className="text-xs text-gray-500">Average removal time</p>
                 </div>
@@ -711,16 +711,16 @@ const Search = () => {
                   className={`w-full flex items-center gap-3 p-4 rounded-xl border transition-all text-left ${
                     selectedExperiences.includes(index)
                       ? "border-gray-900 bg-gray-50"
-                      : "border-gray-200 hover:border-gray-300"
+                      : "border-gray-900 hover:bg-gray-50"
                   }`}
                 >
-                  <span className="text-xl">{option.emoji}</span>
+                  <span className="w-8 h-8 flex items-center justify-center bg-gray-100 rounded-lg border border-gray-900 text-lg">{option.emoji}</span>
                   <span className="text-sm text-gray-700">{option.text}</span>
                 </button>
               ))}
             </div>
 
-            <div className="bg-gray-900 rounded-xl p-4 mt-4">
+            <div className="bg-gray-900 rounded-xl p-4 mt-4 border border-gray-900">
               <div className="flex items-center gap-2 mb-2">
                 <span className="text-xl">💡</span>
                 <span className="font-semibold text-white">The connection?</span>
@@ -739,14 +739,14 @@ const Search = () => {
             <p className="text-gray-500 text-sm">{step.subtitle}</p>
             
             <div className="relative mt-4">
-              <span className="absolute left-4 top-1/2 -translate-y-1/2 text-xl">📷</span>
+              <span className="absolute left-4 top-1/2 -translate-y-1/2 w-8 h-8 bg-gray-100 rounded-lg border border-gray-900 flex items-center justify-center text-lg">📷</span>
               <Input
                 type="text"
                 placeholder={step.placeholder}
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
                 onKeyDown={handleKeyDown}
-                className="h-14 pl-12 pr-4 rounded-xl bg-[#f0e8f8] border-2 border-[#e8d4f8] text-base focus-visible:ring-2 focus-visible:ring-[#c8e972] focus-visible:border-[#c8e972]"
+                className="h-14 pl-14 pr-4 rounded-xl bg-white border border-gray-900 text-base focus-visible:ring-2 focus-visible:ring-[#c8e972] focus-visible:border-[#c8e972]"
                 autoFocus
               />
             </div>
@@ -760,20 +760,20 @@ const Search = () => {
             <h1 className="text-2xl font-bold text-gray-900">Success Stories</h1>
             <p className="text-gray-500 text-sm">See how other guys discovered what's being said about them.</p>
             
-            <div className="bg-[#c8e972] rounded-full py-2 px-4 flex items-center justify-center gap-2 mt-4">
+            <div className="bg-[#c8e972] rounded-full py-2 px-4 flex items-center justify-center gap-2 mt-4 border border-gray-900">
               <span className="text-lg">👥</span>
               <span className="font-semibold text-sm">89 guys checked today</span>
             </div>
 
             <div className="space-y-3 mt-4">
               {testimonials.map((t, index) => (
-                <div key={index} className="bg-gray-900 rounded-xl p-4 text-white">
+                <div key={index} className="bg-gray-900 rounded-xl p-4 text-white border border-gray-900">
                   <div className="flex items-center justify-between mb-2">
                     <div className="flex items-center gap-2">
                       <img
                         src={t.image}
                         alt={t.name}
-                        className="w-10 h-10 rounded-full object-cover"
+                        className="w-10 h-10 rounded-full object-cover border border-gray-700"
                       />
                       <div>
                         <div className="flex items-center gap-1">
@@ -804,8 +804,8 @@ const Search = () => {
             <h1 className="text-2xl font-bold text-gray-900">Add a photo (optional)</h1>
             <p className="text-gray-500 text-sm">Our AI can match your face against photos shared in Tea posts. Optional, but improves accuracy.</p>
             
-            <div className="border-2 border-dashed border-gray-300 rounded-xl p-8 mt-4 flex flex-col items-center justify-center">
-              <div className="w-12 h-12 bg-[#c8e972] rounded-full flex items-center justify-center mb-3">
+            <div className="border border-gray-900 border-dashed rounded-xl p-8 mt-4 flex flex-col items-center justify-center">
+              <div className="w-12 h-12 bg-[#c8e972] rounded-full flex items-center justify-center mb-3 border border-gray-900">
                 <Upload className="w-6 h-6 text-gray-900" />
               </div>
               <p className="font-medium text-gray-900">Click to upload photos</p>
@@ -818,7 +818,7 @@ const Search = () => {
         return (
           <div className="flex flex-col space-y-4">
             {/* Header info box */}
-            <div className="bg-[#c8e972] rounded-xl p-4">
+            <div className="bg-[#c8e972] rounded-xl p-4 border border-gray-900">
               <div className="flex justify-between items-start">
                 <div>
                   <h2 className="font-bold text-gray-900">Searching for {answers.name || "..."}</h2>
@@ -875,7 +875,7 @@ const Search = () => {
               {Array.from({ length: 6 }).map((_, index) => (
                 <div 
                   key={index}
-                  className={`bg-white border border-gray-200 rounded-xl p-4 transition-all duration-500 ${
+                  className={`bg-white border border-gray-900 rounded-xl p-4 transition-all duration-500 ${
                     index < visiblePosts 
                       ? "opacity-100 translate-y-0" 
                       : "opacity-0 translate-y-4 pointer-events-none h-0 p-0 border-0 overflow-hidden"
@@ -987,7 +987,7 @@ const Search = () => {
     // Info step tips
     if (step.id === "area_activity") {
       return (
-        <div className="bg-white border border-gray-200 rounded-xl p-4 mt-auto">
+        <div className="bg-white border border-gray-900 rounded-xl p-4 mt-auto">
           <p className="text-sm">
             <span className="font-bold">💡 Did you know:</span> Women often search Tea before a first date to check if there's any "tea" on their match.
           </p>
@@ -996,7 +996,7 @@ const Search = () => {
     }
     if (step.id === "whats_at_stake") {
       return (
-        <div className="bg-white border border-gray-200 rounded-xl p-4 mt-auto">
+        <div className="bg-white border border-gray-900 rounded-xl p-4 mt-auto">
           <p className="text-sm">
             <span className="font-bold">🤔 Think about it:</span> That awkward silence on a date? The sudden ghosting? She might've already read about you.
           </p>
@@ -1005,7 +1005,7 @@ const Search = () => {
     }
     if (step.id === "has_happened") {
       return (
-        <div className="bg-[#e8d4f8] rounded-xl p-4 mt-4">
+        <div className="bg-[#e8d4f8] rounded-xl p-4 mt-4 border border-gray-900">
           <p className="text-sm text-gray-800">
             <span className="font-bold">The truth:</span> You can't control what's been said. But you can find out what's out there.
           </p>
@@ -1014,7 +1014,7 @@ const Search = () => {
     }
     if (step.id === "one_post_spreads") {
       return (
-        <div className="bg-[#c8e972] rounded-xl p-4 mt-4">
+        <div className="bg-[#c8e972] rounded-xl p-4 mt-4 border border-gray-900">
           <p className="text-sm text-gray-800">
             <span className="font-bold">📊 The data:</span> The average Tea post gets seen by over <span className="font-bold">2,400 women</span> within the first week.
           </p>
@@ -1023,7 +1023,7 @@ const Search = () => {
     }
     if (step.id === "removal_service") {
       return (
-        <div className="bg-[#e8d4f8] rounded-xl p-4 mt-4">
+        <div className="bg-[#e8d4f8] rounded-xl p-4 mt-4 border border-gray-900">
           <p className="text-sm text-gray-800">
             <span className="font-bold">✨ Good news:</span> Free takedown service is included with your report if posts are found. You're covered either way.
           </p>
@@ -1032,7 +1032,7 @@ const Search = () => {
     }
     if (step.id === "instagram") {
       return (
-        <div className="bg-[#e8d4f8] rounded-xl p-4 mt-auto">
+        <div className="bg-[#e8d4f8] rounded-xl p-4 mt-auto border border-gray-900">
           <p className="text-sm text-gray-800">
             <span className="font-bold">Why this helps:</span> Tea posts sometimes tag Instagram handles. Adding yours improves your chances of finding relevant posts.
           </p>
@@ -1041,7 +1041,7 @@ const Search = () => {
     }
     if (step.id === "photo") {
       return (
-        <div className="bg-[#e8d4f8] rounded-xl p-4 mt-auto">
+        <div className="bg-[#e8d4f8] rounded-xl p-4 mt-auto border border-gray-900">
           <p className="text-sm text-gray-800">
             <span className="font-bold">Privacy note:</span> Your photos are only used for matching — never stored or shared. Skip if you prefer.
           </p>
@@ -1053,7 +1053,7 @@ const Search = () => {
     if (step.tipText && step.tipLabel) {
       const bgColor = step.tipColor === "purple" ? "bg-[#e8d4f8]" : "bg-[#d4e8b8]";
       return (
-        <div className={`${bgColor} rounded-xl p-4 mt-auto`}>
+        <div className={`${bgColor} rounded-xl p-4 mt-auto border border-gray-900`}>
           <p className="text-sm text-gray-800">
             <span className="font-bold">{step.tipLabel}</span> {step.tipText}
           </p>
@@ -1088,9 +1088,9 @@ const Search = () => {
 
   return (
     <div className="h-screen bg-[#f5f0e8] flex flex-col items-center overflow-hidden">
-      <div className="w-full max-w-md bg-white h-full flex flex-col shadow-xl">
+      <div className="w-full max-w-md bg-white h-full flex flex-col shadow-xl border-l border-r border-gray-900">
         {/* Header - Fixed */}
-        <header className="flex-shrink-0 flex items-center justify-center py-4 px-6 relative border-b border-gray-100">
+        <header className="flex-shrink-0 flex items-center justify-center py-4 px-6 relative border-b border-gray-900">
           <button 
             onClick={handleBack}
             className="absolute left-4 p-2 hover:bg-gray-100 rounded-full transition-colors"
@@ -1098,15 +1098,15 @@ const Search = () => {
             <ArrowLeft className="w-5 h-5 text-gray-800" />
           </button>
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-[#c8e972] rounded-lg flex items-center justify-center">
+            <div className="w-8 h-8 bg-[#c8e972] rounded-lg flex items-center justify-center border border-gray-900">
               <span className="text-lg">🍵</span>
             </div>
-            <span className="font-bold text-gray-800">tea finder</span>
+            <span className="font-bold text-gray-800">tea checker</span>
           </div>
         </header>
 
-        {/* Progress Bar - Fixed */}
-        <div className="flex-shrink-0 px-4 py-2">
+        {/* Progress Bar - Fixed with borders */}
+        <div className="flex-shrink-0 px-4 py-2 border-b border-gray-900">
           <div className="flex gap-[3px]">
             {Array.from({ length: 12 }).map((_, index) => (
               <div
