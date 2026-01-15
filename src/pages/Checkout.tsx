@@ -164,8 +164,8 @@ const Checkout = () => {
             <h2 className="text-base font-bold mb-3 text-gray-900">Potential posts found</h2>
             <div className="overflow-hidden -mx-4">
               <div className="flex gap-3 px-4 animate-scroll-right">
-              {/* Repeat posts 5x for 25+ seconds of seamless scrolling */}
-                {[...mockPosts, ...mockPosts, ...mockPosts, ...mockPosts, ...mockPosts].map((post, index) => (
+              {/* Repeat posts 10x for 25 seconds of fast seamless scrolling */}
+                {[...mockPosts, ...mockPosts, ...mockPosts, ...mockPosts, ...mockPosts, ...mockPosts, ...mockPosts, ...mockPosts, ...mockPosts, ...mockPosts].map((post, index) => (
                   <div
                     key={`${post.id}-${index}`}
                     className="relative flex-shrink-0 w-40 bg-white rounded-lg p-3 border border-gray-900 overflow-hidden"
