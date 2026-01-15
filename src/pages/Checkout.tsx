@@ -125,35 +125,35 @@ const Checkout = () => {
             </p>
           </div>
 
-          {/* Tea Posts Found Card */}
-          <div className="bg-[#c8e972] rounded-lg p-4 border border-gray-900">
-            <div className="flex items-center justify-between mb-3">
+          {/* Tea Posts Found Card - 20% smaller height, 8% smaller on desktop */}
+          <div className="bg-[#c8e972] rounded-lg p-3 lg:p-2.5 border border-gray-900 lg:scale-[0.92] lg:origin-top">
+            <div className="flex items-center justify-between mb-2 lg:mb-1.5">
               <div className="flex items-center gap-2">
-                <div className="w-6 h-6 bg-[#b8d962] rounded flex items-center justify-center">
-                  <span className="text-sm">🍵</span>
+                <div className="w-5 h-5 lg:w-4 lg:h-4 bg-[#b8d962] rounded flex items-center justify-center">
+                  <span className="text-xs lg:text-[10px]">🍵</span>
                 </div>
-                <span className="font-semibold text-sm text-gray-900">Tea Posts Found</span>
+                <span className="font-semibold text-xs lg:text-[11px] text-gray-900">Tea Posts Found</span>
               </div>
-              <span className="text-2xl font-bold text-gray-900">6</span>
+              <span className="text-xl lg:text-lg font-bold text-gray-900">6</span>
             </div>
             
             {/* Progress dots in white cylinder */}
-            <div className="bg-white rounded-full px-3 py-2 mb-2">
+            <div className="bg-white rounded-full px-2.5 py-1.5 lg:py-1 mb-1.5 lg:mb-1">
               <div className="flex gap-0.5">
                 {progressSegments.map((color, i) => (
                   <div
                     key={i}
-                    className={`h-2 flex-1 rounded-sm ${color}`}
+                    className={`h-1.5 lg:h-1 flex-1 rounded-sm ${color}`}
                   />
                 ))}
               </div>
             </div>
             <div className="flex justify-end relative">
               {/* Triangle pointer pointing to last red dot */}
-              <div className="absolute -top-4 right-[60px]">
-                <div className="w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-b-[8px] border-b-gray-900"></div>
+              <div className="absolute -top-3 lg:-top-2.5 right-[55px] lg:right-[50px]">
+                <div className="w-0 h-0 border-l-[5px] border-l-transparent border-r-[5px] border-r-transparent border-b-[6px] border-b-gray-900"></div>
               </div>
-              <span className="text-xs bg-gray-900 text-white px-2.5 py-1 rounded-full">
+              <span className="text-[10px] lg:text-[9px] bg-gray-900 text-white px-2 py-0.5 rounded-full">
                 6 posts mentioning you
               </span>
             </div>
@@ -200,10 +200,10 @@ const Checkout = () => {
 
             {/* Discount Timer + Pricing Card - ends after Alerts */}
             <div className="border border-gray-900 rounded-lg overflow-hidden">
-              {/* Discount Timer - black background */}
-              <div className="bg-gray-900 text-white py-3 px-4 flex items-center justify-center gap-2">
-                <Clock className="w-4 h-4" />
-                <span className="font-semibold text-sm">50% discount expires in {formatTime(timeLeft)}</span>
+            {/* Discount Timer - black background - 30% smaller height, 8% smaller on desktop */}
+              <div className="bg-gray-900 text-white py-2 lg:py-1.5 px-3 lg:px-2.5 flex items-center justify-center gap-1.5 lg:scale-[0.92] lg:origin-top">
+                <Clock className="w-3.5 h-3.5 lg:w-3 lg:h-3" />
+                <span className="font-semibold text-xs lg:text-[11px]">50% discount expires in {formatTime(timeLeft)}</span>
               </div>
 
               {/* Pricing Card Content */}
