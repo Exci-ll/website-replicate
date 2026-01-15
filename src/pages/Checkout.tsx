@@ -101,7 +101,7 @@ const Checkout = () => {
         {/* Header */}
         <header className="flex items-center justify-between py-3 px-4 bg-white border-b-2 border-gray-900 sticky top-0 z-10">
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-[#c8e972] rounded-lg flex items-center justify-center">
+            <div className="w-8 h-8 bg-[#c8e972] rounded-lg flex items-center justify-center border border-gray-900">
               <span className="text-lg">🍵</span>
             </div>
             <span className="font-bold text-gray-900 text-sm">tea finder</span>
@@ -125,8 +125,8 @@ const Checkout = () => {
             </p>
           </div>
 
-          {/* Tea Posts Found Card */}
-          <div className="bg-[#c8e972] rounded-lg p-4 border border-gray-900">
+          {/* Tea Posts Found Card - 10% smaller on desktop */}
+          <div className="bg-[#c8e972] rounded-lg p-4 border border-gray-900 lg:scale-[0.90] lg:origin-top">
             <div className="flex items-center justify-between mb-3">
               <div className="flex items-center gap-2">
                 <div className="w-6 h-6 bg-[#b8d962] rounded flex items-center justify-center">
@@ -198,8 +198,8 @@ const Checkout = () => {
               <h2 className="text-base font-semibold text-gray-900">Unlock your full Tea report</h2>
             </div>
 
-            {/* Discount Timer + Pricing Card - ends after Alerts */}
-            <div className="border border-gray-900 rounded-lg overflow-hidden">
+            {/* Discount Timer + Pricing Card - 10% smaller on desktop */}
+            <div className="border border-gray-900 rounded-lg overflow-hidden lg:scale-[0.90] lg:origin-top">
               {/* Discount Timer - black background */}
               <div className="bg-gray-900 text-white py-3 px-4 flex items-center justify-center gap-2">
                 <Clock className="w-4 h-4" />
