@@ -21,6 +21,20 @@ const mockPosts: TeaPost[] = [
   { id: 4, type: "Heartbreak", emoji: "💔", preview: "Update on my previous post about the guy from your area...", timeAgo: "8 months ago", tagColor: "bg-pink-100 text-pink-600" },
   { id: 5, type: "Review", emoji: "🗣️", preview: "Just found out he was talking to multiple girls at the same time...", timeAgo: "3 months ago", tagColor: "bg-blue-100 text-blue-600" },
   { id: 6, type: "Experience", emoji: "📝", preview: "Has anyone else matched with ? He's around ...", timeAgo: "1 month ago", tagColor: "bg-green-100 text-green-600" },
+  { id: 7, type: "Alert", emoji: "🔔", preview: "Anyone know this guy? He ghosted me after 3 dates...", timeAgo: "2 weeks ago", tagColor: "bg-orange-100 text-orange-600" },
+  { id: 8, type: "Question", emoji: "❓", preview: "Is anyone else dating someone from this area? Need advice...", timeAgo: "4 months ago", tagColor: "bg-indigo-100 text-indigo-600" },
+  { id: 9, type: "Story", emoji: "📖", preview: "Let me tell you about my experience with this guy...", timeAgo: "6 months ago", tagColor: "bg-teal-100 text-teal-600" },
+  { id: 10, type: "Vent", emoji: "😤", preview: "I can't believe what happened last weekend...", timeAgo: "3 weeks ago", tagColor: "bg-rose-100 text-rose-600" },
+  { id: 11, type: "Red Flag", emoji: "🚩", preview: "Another one to avoid in your neighborhood...", timeAgo: "1 week ago", tagColor: "bg-red-100 text-red-600" },
+  { id: 12, type: "Warning", emoji: "⚠️", preview: "Be careful with guys who do this on first dates...", timeAgo: "7 months ago", tagColor: "bg-yellow-100 text-yellow-700" },
+  { id: 13, type: "Tea", emoji: "👀", preview: "The tea is hot today ladies, listen up...", timeAgo: "2 months ago", tagColor: "bg-purple-100 text-purple-600" },
+  { id: 14, type: "Heartbreak", emoji: "💔", preview: "I thought he was the one but then I found out...", timeAgo: "4 weeks ago", tagColor: "bg-pink-100 text-pink-600" },
+  { id: 15, type: "Review", emoji: "🗣️", preview: "Dating app review: this guy is NOT what he seems...", timeAgo: "5 weeks ago", tagColor: "bg-blue-100 text-blue-600" },
+  { id: 16, type: "Experience", emoji: "📝", preview: "My honest experience dating in this city...", timeAgo: "9 months ago", tagColor: "bg-green-100 text-green-600" },
+  { id: 17, type: "Alert", emoji: "🔔", preview: "PSA about someone on Bumble in your area...", timeAgo: "10 days ago", tagColor: "bg-orange-100 text-orange-600" },
+  { id: 18, type: "Question", emoji: "❓", preview: "Has anyone else noticed this pattern with guys...", timeAgo: "3 months ago", tagColor: "bg-indigo-100 text-indigo-600" },
+  { id: 19, type: "Story", emoji: "📖", preview: "Storytime: what really happened on our second date...", timeAgo: "11 months ago", tagColor: "bg-teal-100 text-teal-600" },
+  { id: 20, type: "Vent", emoji: "😤", preview: "I'm so done with dating apps after this experience...", timeAgo: "6 weeks ago", tagColor: "bg-rose-100 text-rose-600" },
 ];
 
 const Checkout = () => {
@@ -134,7 +148,11 @@ const Checkout = () => {
                 ))}
               </div>
             </div>
-            <div className="flex justify-end">
+            <div className="flex justify-end relative">
+              {/* Triangle pointer pointing to last red dot */}
+              <div className="absolute -top-4 right-[60px]">
+                <div className="w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-b-[8px] border-b-gray-900"></div>
+              </div>
               <span className="text-xs bg-gray-900 text-white px-2.5 py-1 rounded-full">
                 6 posts mentioning you
               </span>
@@ -146,8 +164,8 @@ const Checkout = () => {
             <h2 className="text-base font-bold mb-3 text-gray-900">Potential posts found</h2>
             <div className="overflow-hidden -mx-4">
               <div className="flex gap-3 px-4 animate-scroll-right">
-                {/* Duplicate posts for seamless loop */}
-                {[...mockPosts.slice(0, 6), ...mockPosts.slice(0, 6)].map((post, index) => (
+              {/* 20 posts for seamless loop */}
+                {[...mockPosts, ...mockPosts].map((post, index) => (
                   <div
                     key={`${post.id}-${index}`}
                     className="relative flex-shrink-0 w-40 bg-white rounded-lg p-3 border border-gray-900 overflow-hidden"
@@ -395,8 +413,8 @@ const Checkout = () => {
           </div>
 
           {/* Divider line before trusted section */}
-          <div className="mx-4">
-            <div className="border-t border-gray-300" />
+          <div className="mx-6">
+            <div className="border-t-2 border-gray-400" />
           </div>
 
           {/* Trust Section - no container, just text */}
@@ -419,8 +437,8 @@ const Checkout = () => {
           </div>
 
           {/* Divider line after trusted section */}
-          <div className="mx-4">
-            <div className="border-t border-gray-300" />
+          <div className="mx-6">
+            <div className="border-t-2 border-gray-400" />
           </div>
 
           {/* Testimonials */}
@@ -452,12 +470,12 @@ const Checkout = () => {
           </div>
 
           {/* Divider line before anonymous section */}
-          <div className="mx-4">
-            <div className="border-t border-gray-300" />
+          <div className="mx-6">
+            <div className="border-t-2 border-gray-400" />
           </div>
 
           {/* Privacy Note - Light purple button style */}
-          <div className="bg-[#e8d4f8] rounded-full py-3 px-6 text-center">
+          <div className="bg-[#e8d4f8] rounded-full py-3 px-6 text-center border border-gray-900">
             <div className="flex items-center justify-center gap-1.5">
               <Lock className="w-4 h-4" />
               <span className="font-semibold text-sm">100% Anonymous & Private</span>
