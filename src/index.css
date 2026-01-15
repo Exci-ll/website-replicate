@@ -184,11 +184,11 @@
       transform: translateX(0);
     }
     100% {
-      transform: translateX(-50%);
+      transform: translateX(-60%);
     }
   }
 
   .animate-scroll-right {
-    animation: scroll-right 25s linear infinite;
+    animation: scroll-right 12s linear infinite;
   }
 }
