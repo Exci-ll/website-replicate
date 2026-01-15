@@ -31,7 +31,9 @@ const LoginModal = ({ isOpen, onClose }: LoginModalProps) => {
       <DialogContent className="sm:max-w-md bg-card border-border">
         <DialogHeader>
           <div className="flex items-center justify-center gap-2 mb-2">
-            <span className="text-3xl">🍵</span>
+            <div className="w-12 h-12 bg-[#c8e972] rounded-lg flex items-center justify-center border border-gray-900">
+              <span className="text-3xl">🍵</span>
+            </div>
           </div>
           <DialogTitle className="text-center text-2xl font-bold">
             Welcome back
