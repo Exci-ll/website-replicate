@@ -244,10 +244,10 @@ const Search = () => {
       }, 100);
 
       // Posts appear one by one with random-feeling but static timing
-      // First two come fast, rest at varied times, all 6 visible by 7 seconds
+      // First two arrive 0.3s apart, rest at varied times, all 6 visible by 7 seconds
       const postTimings = [
-        600,   // Post 1 - 0.6s (fast)
-        1400,  // Post 2 - 1.4s (fast)
+        300,   // Post 1 - 0.3s (fast)
+        600,   // Post 2 - 0.6s (0.3s after first)
         2800,  // Post 3 - 2.8s
         4200,  // Post 4 - 4.2s
         5500,  // Post 5 - 5.5s
@@ -1101,7 +1101,7 @@ const Search = () => {
             <div className="w-8 h-8 bg-[#c8e972] rounded-lg flex items-center justify-center border border-gray-900">
               <span className="text-lg">🍵</span>
             </div>
-            <span className="font-bold text-gray-800">tea checker</span>
+            <span className="font-bold text-gray-800">tea finder</span>
           </div>
         </header>
 
