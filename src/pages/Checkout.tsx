@@ -83,9 +83,9 @@ const Checkout = () => {
 
   return (
     <div className="min-h-screen bg-[#f5f0e8] flex flex-col items-center">
-      <div className="w-full max-w-md bg-white min-h-screen shadow-xl">
+      <div className="w-full max-w-md bg-white min-h-screen shadow-xl border-l border-r border-gray-900">
         {/* Header */}
-        <header className="flex items-center justify-between py-3 px-4 bg-white border-b border-gray-100 sticky top-0 z-10">
+        <header className="flex items-center justify-between py-3 px-4 bg-white border-b-2 border-gray-900 sticky top-0 z-10">
           <div className="flex items-center gap-2">
             <div className="w-8 h-8 bg-[#c8e972] rounded-lg flex items-center justify-center">
               <span className="text-lg">🍵</span>
@@ -394,9 +394,14 @@ const Checkout = () => {
             </div>
           </div>
 
-          {/* Trust Section */}
-          <div className="bg-[#f5f0e8] rounded-lg p-4 border border-gray-900">
-            <h2 className="text-sm font-semibold text-center mb-4 text-gray-900">Trusted by 35,000+ guys</h2>
+          {/* Divider line before trusted section */}
+          <div className="mx-4">
+            <div className="border-t border-gray-300" />
+          </div>
+
+          {/* Trust Section - no container, just text */}
+          <div className="text-center py-2">
+            <h2 className="text-base font-bold text-gray-900 mb-4">Trusted by 35,000+ guys</h2>
             <div className="grid grid-cols-3 gap-4 text-center">
               <div>
                 <p className="text-xl font-bold text-[#9cbd4a]">96%</p>
@@ -413,14 +418,19 @@ const Checkout = () => {
             </div>
           </div>
 
+          {/* Divider line after trusted section */}
+          <div className="mx-4">
+            <div className="border-t border-gray-300" />
+          </div>
+
           {/* Testimonials */}
           <div>
-            <h2 className="text-base font-semibold mb-3 text-gray-900">What guys are saying</h2>
+            <h2 className="text-lg font-semibold mb-3 text-gray-900 text-center">What guys are saying</h2>
             <div className="space-y-3">
               {[
-                { name: "Matt T.", handle: "@matttt_22", image: reviewMatt, text: "Discovered 2 posts about me from last year. Cleared up everything… now I know why a few conversations went cold.", title: "Cleared up everything" },
+                { name: "Matt T.", handle: "@matttt_22", image: reviewMatt, text: "Discovered 2 posts about me from last year. Cleared up everything, now I know why a few conversations went cold.", title: "Cleared up everything" },
                 { name: "Justin R.", handle: "@justinratl", image: reviewJustin, text: "My search came back completely clean. Such a relief knowing there's nothing out there. Money well spent.", title: "Such a relief" },
-                { name: "Daniel K.", handle: "@DannyT23542", image: reviewDaniel, text: "Found an old post about me with just my first name and neighborhood. Spot on results… couldn't believe the accuracy.", title: "Spot on results" },
+                { name: "Daniel K.", handle: "@DannyT23542", image: reviewDaniel, text: "Found an old post about me with just my first name and neighborhood. Spot on results, couldn't believe the accuracy.", title: "Spot on results" },
               ].map((testimonial, index) => (
                 <div key={index} className="bg-[#f5f0e8] rounded-lg p-4 border border-gray-900">
                   <h3 className="font-semibold text-sm mb-1.5 text-gray-900">{testimonial.title}</h3>
@@ -432,7 +442,7 @@ const Checkout = () => {
                         alt={testimonial.name}
                         className="w-7 h-7 rounded-full object-cover"
                       />
-                      <span className="text-xs font-medium text-gray-700">{testimonial.name}</span>
+                      <span className="text-xs font-bold text-gray-700">{testimonial.name}</span>
                     </div>
                     <div className="flex text-yellow-400 text-xs">★★★★★</div>
                   </div>
@@ -441,16 +451,21 @@ const Checkout = () => {
             </div>
           </div>
 
-          {/* Privacy Note */}
-          <div className="bg-[#f5f0e8] rounded-xl p-4 text-center border border-gray-300">
-            <div className="flex items-center justify-center gap-1.5 mb-1">
+          {/* Divider line before anonymous section */}
+          <div className="mx-4">
+            <div className="border-t border-gray-300" />
+          </div>
+
+          {/* Privacy Note - Light purple button style */}
+          <div className="bg-[#e8d4f8] rounded-full py-3 px-6 text-center">
+            <div className="flex items-center justify-center gap-1.5">
               <Lock className="w-4 h-4" />
               <span className="font-semibold text-sm">100% Anonymous & Private</span>
             </div>
-            <p className="text-xs text-gray-500">
-              Your search is completely confidential. We never share your information or notify anyone that you checked.
-            </p>
           </div>
+          <p className="text-xs text-gray-500 text-center -mt-3">
+            Your search is completely confidential. We never share your information or notify anyone that you checked.
+          </p>
 
           {/* Footer */}
           <p className="text-center text-xs text-gray-500 pb-6">
