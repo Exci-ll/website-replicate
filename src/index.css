@@ -189,6 +189,6 @@
   }
 
   .animate-scroll-right {
-    animation: scroll-right 25s linear infinite;
+    animation: scroll-right 12s linear infinite;
   }
 }
