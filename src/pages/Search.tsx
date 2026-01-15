@@ -232,14 +232,24 @@ const Search = () => {
       setSearchComplete(false);
       setShowEmailModal(false);
 
-      // Progress bar: 0 to 100 over 11 seconds (110 intervals of 100ms)
+      // Progress bar: 0 to 100 over 12 seconds (120 intervals of 100ms)
+      // 10% of intervals get a +2 boost to look more realistic
+      const boostIntervals = new Set<number>();
+      while (boostIntervals.size < 12) { // 10% of 120 = 12 random boosts
+        boostIntervals.add(Math.floor(Math.random() * 120));
+      }
+      let intervalCount = 0;
+      const baseIncrement = 100 / 132; // Slightly smaller base to account for boosts
+      
       const progressInterval = setInterval(() => {
         setSearchProgress(prev => {
           if (prev >= 100) {
             clearInterval(progressInterval);
             return 100;
           }
-          return prev + (100 / 110); // ~0.91% per 100ms = 100% in 11 seconds
+          const boost = boostIntervals.has(intervalCount) ? 2 : 0;
+          intervalCount++;
+          return Math.min(100, prev + baseIncrement + (boost * 0.5));
         });
       }, 100);
 
@@ -262,14 +272,14 @@ const Search = () => {
         postTimers.push(timer);
       });
 
-      // Search complete after 11 seconds, then show email modal after brief delay
+      // Search complete after 12 seconds, then show email modal after brief delay
       const completeTimer = setTimeout(() => {
         setSearchComplete(true);
         // Show email modal 500ms after search complete popup appears
         setTimeout(() => {
           setShowEmailModal(true);
         }, 500);
-      }, 11000);
+      }, 12000);
 
       return () => {
         clearInterval(progressInterval);
