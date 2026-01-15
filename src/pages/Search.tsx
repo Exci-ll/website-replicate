@@ -156,7 +156,7 @@ const testimonials = [
     name: "Matt T.",
     handle: "@matttt_22",
     image: reviewMatt,
-    text: "Discovered 2 posts about me from last year. Cleared up everything… now I know why a few conversations went cold.",
+    text: "Discovered 2 posts about me from last year. Cleared up everything, now I know why a few conversations went cold.",
     date: "3:22 PM · Dec 19, 2025",
     views: "4,127",
   },
@@ -172,7 +172,7 @@ const testimonials = [
     name: "Daniel K.",
     handle: "@DannyT23542",
     image: reviewDaniel,
-    text: "Found an old post about me with just my first name and neighborhood. Spot on results… couldn't believe the accuracy.",
+    text: "Found an old post about me with just my first name and neighborhood. Spot on results, couldn't believe the accuracy.",
     date: "8:18 PM · Dec 21, 2025",
     views: "5,632",
   },
@@ -471,7 +471,7 @@ const Search = () => {
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
                 onKeyDown={handleKeyDown}
-                className="h-14 pl-12 pr-4 rounded-lg bg-[#f5f0e8] border border-gray-900 text-base focus-visible:ring-2 focus-visible:ring-[#c8e972] focus-visible:border-[#c8e972]"
+                className="h-14 pl-12 pr-4 rounded-lg bg-[#f5f0e8] border border-gray-900 text-base focus-visible:ring-[#c8e972] focus-visible:ring-2 focus-visible:ring-offset-0"
                 autoFocus
               />
             </div>
@@ -493,7 +493,7 @@ const Search = () => {
                   onChange={(e) => setInputValue(e.target.value)}
                   onKeyDown={handleKeyDown}
                   onFocus={() => inputValue.length > 1 && setShowLocationSuggestions(true)}
-                  className="h-14 pl-12 pr-4 rounded-lg bg-[#f5f0e8] border border-gray-900 text-base focus-visible:ring-2 focus-visible:ring-[#c8e972] focus-visible:border-[#c8e972]"
+                  className="h-14 pl-12 pr-4 rounded-lg bg-[#f5f0e8] border border-gray-900 text-base focus-visible:ring-[#c8e972] focus-visible:ring-2 focus-visible:ring-offset-0"
                   autoFocus
                 />
               </div>
@@ -604,7 +604,7 @@ const Search = () => {
                     <span className="text-xl">👀</span>
                   </div>
                   <div>
-                    <p className="font-bold text-gray-900">74% of women</p>
+                    <p className="font-bold text-gray-900">73% of women</p>
                     <p className="text-sm text-gray-500">check Tea before a first date</p>
                   </div>
                 </div>
@@ -840,7 +840,7 @@ const Search = () => {
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
                 onKeyDown={handleKeyDown}
-                className="h-14 pl-14 pr-4 rounded-lg bg-[#f5f0e8] border border-gray-900 text-base focus-visible:ring-2 focus-visible:ring-[#c8e972] focus-visible:border-[#c8e972]"
+                className="h-14 pl-14 pr-4 rounded-lg bg-[#f5f0e8] border border-gray-900 text-base focus-visible:ring-[#c8e972] focus-visible:ring-2 focus-visible:ring-offset-0"
                 autoFocus
               />
             </div>
@@ -1043,7 +1043,7 @@ const Search = () => {
                         placeholder="enter your email"
                         value={emailValue}
                         onChange={(e) => setEmailValue(e.target.value)}
-                        className="h-12 pl-10 pr-4 rounded-lg bg-[#f5f0e8] border border-gray-900 focus-visible:ring-2 focus-visible:ring-[#c8e972] focus-visible:border-[#c8e972]"
+                        className="h-12 pl-10 pr-4 rounded-lg bg-[#f5f0e8] border border-gray-900 focus-visible:ring-[#c8e972] focus-visible:ring-2 focus-visible:ring-offset-0"
                         onKeyDown={(e) => e.key === "Enter" && handleEmailSubmit()}
                         autoFocus
                       />
@@ -1067,8 +1067,8 @@ const Search = () => {
                   
                   {/* Privacy note */}
                   <p className="text-xs text-gray-400 text-center mt-3 flex items-center justify-center gap-1">
-                    <div className="w-5 h-5 rounded-full bg-gray-900 flex items-center justify-center flex-shrink-0">
-                      <Lock className="w-3 h-3 text-white" />
+                    <div className="w-5 h-5 rounded-full bg-white border border-gray-900 flex items-center justify-center flex-shrink-0">
+                      <Lock className="w-3 h-3 text-gray-900" />
                     </div>
                     Your search and report are 100% confidential. We never share your information.
                   </p>
@@ -1172,7 +1172,7 @@ const Search = () => {
     switch (step.id) {
       case "area_activity": return "New posts added every minute";
       case "whats_at_stake": return "Don't leave your reputation a mystery";
-      case "has_happened": return "73% of women check Tea before a first date";
+      case "has_happened": return "74% of women check Tea before a first date";
       case "one_post_spreads": return "The average Tea post reaches 3,500+ women";
       case "removal_service": return "We've helped 6,000+ guys remove posts";
       case "success_stories": return "Join thousands who found answers";
