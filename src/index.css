@@ -99,7 +99,7 @@
 
   @media (min-width: 1024px) {
     html {
-      font-size: 140%; /* Desktop: 40% bigger */
+      font-size: 129%; /* Desktop: 40% bigger base, then 8% zoom out = ~129% */
     }
   }
 
@@ -189,6 +189,6 @@
   }
 
   .animate-scroll-right {
-    animation: scroll-right 24s linear infinite;
+    animation: scroll-right 12s linear infinite;
   }
 }

@@ -41,10 +41,11 @@ const Checkout = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const answers = location.state?.answers || {};
-  const [timeLeft, setTimeLeft] = useState(251);
+  const [timeLeft, setTimeLeft] = useState(300); // 5 minutes = 300 seconds
   const [showSeeMore, setShowSeeMore] = useState(false);
   const [isGooglePayAvailable, setIsGooglePayAvailable] = useState(false);
   const [isIOS, setIsIOS] = useState(false);
+  const [showPayWithoutLink, setShowPayWithoutLink] = useState(false);
   const paymentSectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -159,12 +160,16 @@ const Checkout = () => {
             </div>
           </div>
 
-          {/* Potential Posts - Auto-scrolling carousel */}
+          {/* Potential Posts - Auto-scrolling carousel with edge blur */}
           <div>
             <h2 className="text-base font-bold mb-3 text-gray-900">Potential posts found</h2>
-            <div className="overflow-hidden -mx-4">
+            <div className="relative overflow-hidden -mx-4">
+              {/* Left blur gradient */}
+              <div className="absolute left-0 top-0 bottom-0 w-12 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
+              {/* Right blur gradient */}
+              <div className="absolute right-0 top-0 bottom-0 w-12 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
               <div className="flex gap-3 px-4 animate-scroll-right">
-                {/* Quadruple for 24s seamless loop at same speed */}
+                {/* Quadruple for seamless loop */}
                 {[...mockPosts, ...mockPosts, ...mockPosts, ...mockPosts].map((post, index) => (
                   <div
                     key={`${post.id}-${index}`}
@@ -201,44 +206,48 @@ const Checkout = () => {
             {/* Discount Timer + Pricing Card - 10% smaller on desktop */}
             <div className="border border-gray-900 rounded-lg overflow-hidden lg:scale-[0.90] lg:origin-top">
               {/* Discount Timer - black background */}
-              <div className="bg-gray-900 text-white py-3 px-4 flex items-center justify-center gap-2">
+              <div className="bg-gray-900 text-white py-2 px-3 flex items-center justify-center gap-2">
                 <Clock className="w-4 h-4" />
                 <span className="font-semibold text-sm">50% discount expires in {formatTime(timeLeft)}</span>
               </div>
 
-              {/* Pricing Card Content */}
-              <div className="bg-white p-4">
+              {/* Pricing Card Content - reduced padding */}
+              <div className="bg-white p-3">
                 <div className="flex items-start justify-between">
                   <div>
-                    <h3 className="font-semibold text-gray-900 mb-2">Full Tea Report</h3>
-                    <ul className="space-y-2">
+                    <h3 className="font-semibold text-gray-900 mb-1.5">Full Tea Report</h3>
+                    <ul className="space-y-1">
                       <li className="flex items-center gap-2 text-sm text-gray-700">
-                        <Check className="w-4 h-4 text-[#9cbd4a]" />
-                        <span>Full post content</span>
+                        <Check className="w-4 h-4 text-gray-900" />
+                        <span>Full post content & context</span>
                       </li>
                       <li className="flex items-center gap-2 text-sm text-gray-700">
-                        <Check className="w-4 h-4 text-[#9cbd4a]" />
-                        <span>Comments</span>
+                        <Check className="w-4 h-4 text-gray-900" />
+                        <span>Comments & engagement</span>
                       </li>
                       <li className="flex items-center gap-2 text-sm text-gray-700">
-                        <Check className="w-4 h-4 text-[#9cbd4a]" />
+                        <Check className="w-4 h-4 text-gray-900" />
                         <span>Alerts for new posts</span>
                       </li>
                     </ul>
                   </div>
                   <div className="text-right relative">
-                    <div className="absolute left-0 top-0 bottom-0 w-1 bg-[#c8e972] rounded-full" />
-                    <div className="pl-4">
-                      <div className="flex items-start justify-end">
-                        <span className="text-sm mt-1">$</span>
-                        <span className="text-3xl font-bold">0</span>
-                        <div className="flex flex-col ml-0.5">
-                          <span className="text-lg font-bold">.59</span>
-                          <span className="text-[10px] text-gray-500">per day</span>
+                    {/* Price tag shape - flipped (pointing left) */}
+                    <div className="relative inline-block">
+                      <div className="bg-[#c8e972] py-1.5 px-3 pr-4 rounded-r-md relative" style={{
+                        clipPath: 'polygon(15% 0%, 100% 0%, 100% 100%, 15% 100%, 0% 50%)'
+                      }}>
+                        <div className="flex items-start">
+                          <span className="text-xs mt-0.5 font-bold">$</span>
+                          <span className="text-2xl font-bold leading-none">0</span>
+                          <div className="flex flex-col ml-0.5">
+                            <span className="text-sm font-bold leading-none">59</span>
+                            <span className="text-[8px] text-gray-700">per day</span>
+                          </div>
                         </div>
                       </div>
-                      <p className="text-[7.6px] text-gray-400 mt-1 opacity-60">$17.99/mo</p>
                     </div>
+                    <p className="text-[9px] text-gray-400 mt-1">$17.99/mo</p>
                   </div>
                 </div>
               </div>
@@ -266,11 +275,12 @@ const Checkout = () => {
                   </svg>
                 </button>
 
-                {/* Link Button - Official Style */}
+                {/* Link Button - Official Style with Pay with text */}
                 <button 
-                  className="w-full h-12 bg-[#00D66F] hover:bg-[#00C060] border border-gray-900 rounded-lg font-medium text-sm flex items-center justify-center shadow-sm"
+                  className="w-full h-12 bg-[#00D924] hover:bg-[#00C020] border border-gray-900 rounded-lg font-medium text-sm flex items-center justify-center gap-2 shadow-sm"
                   onClick={handlePayment}
                 >
+                  <span className="text-white font-medium">Pay with</span>
                   <svg width="33" height="14" viewBox="0 0 33 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M1.22 13.04V0.96h2.56v10.32h5.08v1.76H1.22zm9.64 0V3.68h2.44v9.36h-2.44zm1.22-10.68c-.42 0-.77-.13-1.05-.39-.28-.26-.42-.58-.42-.96s.14-.7.42-.96c.28-.26.63-.39 1.05-.39.42 0 .77.13 1.05.39.28.26.42.58.42.96s-.14.7-.42.96c-.28.26-.63.39-1.05.39zm4.86 10.68V3.68h2.32v1.44h.08c.2-.52.52-.92.96-1.2.44-.28.97-.42 1.59-.42.9 0 1.61.29 2.13.87.52.58.78 1.39.78 2.43v6.24h-2.44V7.32c0-.62-.14-1.08-.42-1.38-.28-.3-.68-.45-1.2-.45-.54 0-.97.17-1.29.51-.32.34-.48.82-.48 1.44v5.6h-2.03zm9.84 0V0.96h2.44v5.16h.08l3.48-2.44h3.04l-4.12 2.88 4.4 6.48h-2.96l-3.08-4.68-.84.6v4.08h-2.44z" fill="white"/>
                   </svg>
@@ -337,13 +347,32 @@ const Checkout = () => {
           </div>
 
           {/* Link Card Selection - Floating */}
-          <div className="border border-gray-900 rounded-lg p-4 bg-white">
+          <div className="border border-gray-900 rounded-lg p-4 bg-white relative">
             <div className="flex items-center justify-between mb-3">
               <div className="flex items-center gap-1">
                 <span className="text-[#00D924] font-bold text-lg">▸</span>
                 <span className="font-bold text-gray-900">link</span>
               </div>
-              <span className="text-gray-400 text-lg">•••</span>
+              <button 
+                onClick={() => setShowPayWithoutLink(!showPayWithoutLink)}
+                className="text-gray-400 text-lg hover:text-gray-600 relative"
+              >
+                •••
+              </button>
+              {/* Pay without link dropdown */}
+              {showPayWithoutLink && (
+                <div className="absolute top-12 right-4 bg-white border border-gray-200 rounded-lg shadow-lg z-20 py-2 px-3">
+                  <button 
+                    onClick={() => {
+                      setShowPayWithoutLink(false);
+                      // Scroll to card payment options below
+                    }}
+                    className="text-sm text-gray-700 hover:text-gray-900 whitespace-nowrap"
+                  >
+                    Pay without link
+                  </button>
+                </div>
+              )}
             </div>
             <div className="flex items-center justify-between bg-gray-50 rounded-lg p-3 border border-gray-900">
               <div className="flex items-center gap-3">
@@ -360,10 +389,31 @@ const Checkout = () => {
               </div>
               <ChevronDown className="w-5 h-5 text-gray-400 rotate-[-90deg]" />
             </div>
-            <button className="w-full mt-3 py-3 bg-gray-200 hover:bg-gray-300 rounded-lg border border-gray-900 text-sm font-medium text-gray-900">
+            <button className="w-full mt-3 py-3 bg-gray-900 hover:bg-gray-800 rounded-lg text-sm font-medium text-white">
               Use this card
             </button>
           </div>
+
+          {/* Alternative payment options - shown when "pay without link" is clicked */}
+          {showPayWithoutLink && (
+            <div className="space-y-2 border border-gray-200 rounded-lg p-3 bg-white">
+              <button className="w-full flex items-center gap-3 p-3 rounded-lg border border-gray-200 hover:bg-gray-50">
+                <CreditCard className="w-5 h-5 text-gray-600" />
+                <span className="text-sm font-medium text-gray-900">Card</span>
+              </button>
+              <button className="w-full flex items-center justify-between p-3 rounded-lg border border-gray-200 hover:bg-gray-50">
+                <div className="flex items-center gap-3">
+                  <span className="text-gray-600">🏦</span>
+                  <span className="text-sm font-medium text-gray-900">Bank</span>
+                </div>
+                <span className="text-xs bg-pink-400 text-white px-2 py-0.5 rounded font-medium">$5 back</span>
+              </button>
+              <button className="w-full flex items-center gap-3 p-3 rounded-lg border border-gray-200 hover:bg-gray-50">
+                <span className="w-5 h-5 bg-black text-white text-xs font-bold flex items-center justify-center rounded">K</span>
+                <span className="text-sm font-medium text-gray-900">Klarna</span>
+              </button>
+            </div>
+          )}
 
           {/* Pay Button */}
           <div ref={paymentSectionRef}>
@@ -379,7 +429,7 @@ const Checkout = () => {
           <div className="flex items-center justify-center gap-1">
             <Lock className="w-3 h-3 text-gray-400" />
             <p className="text-[10px] text-gray-500">
-              Guaranteed <span className="text-[#00D924]">safe & secure</span> checkout by Stripe
+              Guaranteed <span className="text-gray-900 font-bold">safe & secure</span> checkout by Stripe
             </p>
           </div>
           <p className="text-center text-[10px] text-gray-400">
@@ -417,21 +467,21 @@ const Checkout = () => {
             <div className="border-t-2 border-gray-400" />
           </div>
 
-          {/* Trust Section - no container, just text */}
+          {/* Trust Section - no container, just text - 20% larger */}
           <div className="text-center py-2">
-            <h2 className="text-base font-bold text-gray-900 mb-4">Trusted by 35,000+ guys</h2>
+            <h2 className="text-lg font-bold text-gray-900 mb-4">Trusted by 35,000+ guys</h2>
             <div className="grid grid-cols-3 gap-4 text-center">
               <div>
-                <p className="text-xl font-bold text-[#9cbd4a]">96%</p>
-                <p className="text-[10px] text-gray-500">Accuracy Rate</p>
+                <p className="text-2xl font-bold text-gray-900">96%</p>
+                <p className="text-xs text-gray-500">Accuracy Rate</p>
               </div>
               <div>
-                <p className="text-xl font-bold text-[#9cbd4a]">35K+</p>
-                <p className="text-[10px] text-gray-500">Guys Searched</p>
+                <p className="text-2xl font-bold text-gray-900">35K+</p>
+                <p className="text-xs text-gray-500">Guys Searched</p>
               </div>
               <div>
-                <p className="text-xl font-bold text-[#9cbd4a]">4.7★</p>
-                <p className="text-[10px] text-gray-500">User Rating</p>
+                <p className="text-2xl font-bold text-gray-900">4.7★</p>
+                <p className="text-xs text-gray-500">User Rating</p>
               </div>
             </div>
           </div>
@@ -441,9 +491,9 @@ const Checkout = () => {
             <div className="border-t-2 border-gray-400" />
           </div>
 
-          {/* Testimonials */}
+          {/* Testimonials - 20% larger text */}
           <div>
-            <h2 className="text-lg font-semibold mb-3 text-gray-900 text-center">What guys are saying</h2>
+            <h2 className="text-xl font-semibold mb-3 text-gray-900 text-center">What guys are saying</h2>
             <div className="space-y-3">
               {[
                 { name: "Matt T.", handle: "@matttt_22", image: reviewMatt, text: "Discovered 2 posts about me from last year. Cleared up everything, now I know why a few conversations went cold.", title: "Cleared up everything" },
@@ -488,7 +538,7 @@ const Checkout = () => {
           {/* Footer */}
           <p className="text-center text-xs text-gray-500 pb-6">
             Questions? Contact us at{" "}
-            <a href="mailto:support@teafinder.app" className="underline">
+            <a href="mailto:support@teafinder.app" className="hover:underline">
               support@teafinder.app
             </a>
           </p>
