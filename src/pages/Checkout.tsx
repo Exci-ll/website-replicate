@@ -96,7 +96,7 @@ const Checkout = () => {
   });
 
   return (
-    <div className="min-h-screen bg-[#f5f0e8] flex flex-col items-center">
+    <div className="min-h-screen bg-[#eeecda] flex flex-col items-center">
       <div className="w-full max-w-md bg-white min-h-screen shadow-xl border-l border-r border-gray-900">
         {/* Header */}
         <header className="flex items-center justify-between py-3 px-4 bg-white border-b-2 border-gray-900 sticky top-0 z-10">
@@ -331,7 +331,7 @@ const Checkout = () => {
             <div className="absolute inset-0 flex items-center">
               <div className="w-full border-t border-gray-200" />
             </div>
-            <span className="relative bg-[#f5f0e8] px-3 text-xs text-gray-500">
+            <span className="relative bg-[#eeecda] px-3 text-xs text-gray-500">
               Or pay with card
             </span>
           </div>
@@ -450,7 +450,7 @@ const Checkout = () => {
                 { name: "Justin R.", handle: "@justinratl", image: reviewJustin, text: "My search came back completely clean. Such a relief knowing there's nothing out there. Money well spent.", title: "Such a relief" },
                 { name: "Daniel K.", handle: "@DannyT23542", image: reviewDaniel, text: "Found an old post about me with just my first name and neighborhood. Spot on results, couldn't believe the accuracy.", title: "Spot on results" },
               ].map((testimonial, index) => (
-                <div key={index} className="bg-[#f5f0e8] rounded-lg p-4 border border-gray-900">
+                <div key={index} className="bg-[#eeecda] rounded-lg p-4 border border-gray-900">
                   <h3 className="font-semibold text-sm mb-1.5 text-gray-900">{testimonial.title}</h3>
                   <p className="text-xs text-gray-600 mb-3 leading-relaxed">{testimonial.text}</p>
                   <div className="flex items-center justify-between">

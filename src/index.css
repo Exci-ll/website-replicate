@@ -6,8 +6,8 @@
 
 @layer base {
   :root {
-    /* Exact Tea Finder colors - cream/beige background #f5f0e8 */
-    --background: 38 30% 94%;
+    /* Exact Tea Finder colors - cream/beige background #eeecda */
+    --background: 48 31% 89%;
     --foreground: 0 0% 13%;
 
     --card: 0 0% 100%;
@@ -20,7 +20,7 @@
     --primary: 78 70% 68%;
     --primary-foreground: 0 0% 13%;
 
-    --secondary: 38 30% 94%;
+    --secondary: 48 31% 89%;
     --secondary-foreground: 0 0% 13%;
 
     --muted: 40 20% 92%;
@@ -39,7 +39,7 @@
     --radius: 1rem;
 
     /* Custom Tea Finder colors - exact match */
-    --cream: 38 30% 94%;
+    --cream: 48 31% 89%;
     --cream-dark: 38 25% 88%;
     --lime: 78 70% 68%;
     --lime-light: 78 75% 75%;
