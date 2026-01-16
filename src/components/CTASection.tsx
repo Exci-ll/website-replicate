@@ -6,6 +6,10 @@ const CTASection = () => {
 
   return (
     <section className="py-16 px-4 md:px-6 mb-8">
+      {/* Separator line above section */}
+      <div className="max-w-2xl mx-auto mb-12">
+        <div className="mx-6 border-t-2 border-gray-400" />
+      </div>
       <div className="max-w-2xl mx-auto text-center">
         <h2 className="text-3xl md:text-4xl font-extrabold mb-4">
           Ready to find out?

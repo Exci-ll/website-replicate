@@ -44,6 +44,10 @@ const VerifiedBadge = () => (
 const TestimonialsSection = () => {
   return (
     <section className="py-16 px-4 md:px-6">
+      {/* Separator line above section */}
+      <div className="max-w-6xl mx-auto mb-12">
+        <div className="mx-6 border-t-2 border-gray-400" />
+      </div>
       <div className="max-w-6xl mx-auto">
         <h2 className="text-3xl md:text-4xl font-extrabold text-center mb-4">
           What guys have said
