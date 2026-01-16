@@ -8,7 +8,7 @@ const Header = () => {
 
   return (
     <>
-      <header className="w-full py-4 px-4 md:px-6 flex items-center justify-between bg-[#eeecda]">
+      <header className="w-full py-4 px-4 md:px-6 flex items-center justify-between bg-[#FFE5E5]">
         <div className="flex items-center gap-2">
           <div className="w-8 h-8 bg-[#c8e972] rounded-lg flex items-center justify-center border border-gray-900">
             <span className="text-lg">🍵</span>
