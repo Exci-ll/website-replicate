@@ -315,12 +315,12 @@ const Search = () => {
       // Posts appear one by one with random-feeling but static timing
       // First 4 arrive normally, last 2 arrive 1 second later each
       const postTimings = [
-        300,   // Post 1 - 0.3s (fast)
-        600,   // Post 2 - 0.6s (0.3s after first)
-        3200,  // Post 3 - 3.2s
-        5000,  // Post 4 - 5.0s
-        7500,  // Post 5 - 7.5s (1s later than before)
-        10000, // Post 6 - 10s (2s later than before)
+        1800,  // Post 1 - 1.8s (1.5s later)
+        2100,  // Post 2 - 2.1s (0.3s after first)
+        4700,  // Post 3 - 4.7s
+        6500,  // Post 4 - 6.5s
+        9000,  // Post 5 - 9.0s
+        11500, // Post 6 - 11.5s
       ];
       
       const postTimers: NodeJS.Timeout[] = [];
