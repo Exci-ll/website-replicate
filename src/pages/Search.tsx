@@ -472,7 +472,6 @@ const Search = () => {
                 onChange={(e) => setInputValue(e.target.value)}
                 onKeyDown={handleKeyDown}
                 className="h-14 pl-12 pr-4 rounded-lg bg-[#FFE5E5] border border-gray-900 text-base focus-visible:ring-[#c8e972] focus-visible:ring-2 focus-visible:ring-offset-0"
-                autoFocus
               />
             </div>
             <p className="text-gray-500 text-sm">{step.subtitle}</p>
@@ -494,7 +493,6 @@ const Search = () => {
                   onKeyDown={handleKeyDown}
                   onFocus={() => inputValue.length > 1 && setShowLocationSuggestions(true)}
                   className="h-14 pl-12 pr-4 rounded-lg bg-[#FFE5E5] border border-gray-900 text-base focus-visible:ring-[#c8e972] focus-visible:ring-2 focus-visible:ring-offset-0"
-                  autoFocus
                 />
               </div>
               
@@ -841,7 +839,6 @@ const Search = () => {
                 onChange={(e) => setInputValue(e.target.value)}
                 onKeyDown={handleKeyDown}
                 className="h-14 pl-14 pr-4 rounded-lg bg-[#FFE5E5] border border-gray-900 text-base focus-visible:ring-[#c8e972] focus-visible:ring-2 focus-visible:ring-offset-0"
-                autoFocus
               />
             </div>
             <p className="text-gray-400 text-sm mt-2">You can skip this step if you prefer</p>
@@ -900,7 +897,7 @@ const Search = () => {
         return (
           <>
             <h1 className="text-2xl font-bold text-gray-900">Add a photo (optional)</h1>
-            <p className="text-gray-500 text-sm">Our AI can match your face against photos shared in Tea posts. Optional, but improves accuracy.</p>
+            <p className="text-gray-500 text-sm">Our AI can match your face against photos shared in Tea posts. Optional, but improves accuracy by <span className="font-semibold text-[#c8e972]">41%</span>.</p>
             
             <div className="border border-gray-900 border-dashed rounded-lg p-8 mt-4 flex flex-col items-center justify-center">
               <div className="w-12 h-12 bg-[#c8e972] rounded-full flex items-center justify-center mb-3 border border-gray-900">

@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { ArrowRight, Lock, Check, CreditCard, Clock, ChevronDown, ChevronUp } from "lucide-react";
+import { ArrowRight, Lock, Check, CreditCard, Clock, ChevronDown, ChevronUp, Bell } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import reviewMatt from "@/assets/review-matt.jpeg";
 import reviewJustin from "@/assets/review-justin.jpeg";
@@ -41,7 +41,7 @@ const Checkout = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const answers = location.state?.answers || {};
-  const [timeLeft, setTimeLeft] = useState(300); // 5 minutes = 300 seconds
+  const [timeLeft, setTimeLeft] = useState(540); // 9 minutes = 540 seconds
   const [showSeeMore, setShowSeeMore] = useState(false);
   const [isGooglePayAvailable, setIsGooglePayAvailable] = useState(false);
   const [isIOS, setIsIOS] = useState(false);
@@ -227,7 +227,10 @@ const Checkout = () => {
                       </li>
                       <li className="flex items-center gap-2 text-sm text-gray-700">
                         <Check className="w-4 h-4 text-gray-900" />
-                        <span>Alerts for new posts</span>
+                        <span className="flex items-center gap-1.5">
+                          Alerts for new posts
+                          <Bell className="w-4 h-4 text-yellow-500 fill-yellow-500" />
+                        </span>
                       </li>
                     </ul>
                   </div>
@@ -277,7 +280,7 @@ const Checkout = () => {
 
                 {/* Link Button - Official Style with Pay with text */}
                 <button 
-                  className="w-full h-12 bg-[#00D924] hover:bg-[#00C020] border border-gray-900 rounded-lg font-medium text-sm flex items-center justify-center gap-2 shadow-sm"
+                  className="w-full h-12 bg-[#00A81C] hover:bg-[#008F17] border border-gray-900 rounded-lg font-medium text-sm flex items-center justify-center gap-2 shadow-sm"
                   onClick={handlePayment}
                 >
                   <span className="text-white font-medium">Pay with</span>
@@ -428,8 +431,8 @@ const Checkout = () => {
 
           <div className="flex items-center justify-center gap-1">
             <Lock className="w-3 h-3 text-gray-400" />
-            <p className="text-[10px] text-gray-500">
-              Guaranteed <span className="text-gray-900 font-bold">safe & secure</span> checkout by Stripe
+            <p className="text-[10px] text-gray-900 font-bold">
+              Guaranteed <span className="text-base font-extrabold">safe & secure</span> checkout by Stripe
             </p>
           </div>
           <p className="text-center text-[10px] text-gray-400">
@@ -467,21 +470,21 @@ const Checkout = () => {
             <div className="border-t-2 border-gray-400" />
           </div>
 
-          {/* Trust Section - no container, just text - 20% larger */}
+          {/* Trust Section - no container, just text - 44% larger (20% + 20%) */}
           <div className="text-center py-2">
-            <h2 className="text-lg font-bold text-gray-900 mb-4">Trusted by 35,000+ guys</h2>
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">Trusted by 35,000+ guys</h2>
             <div className="grid grid-cols-3 gap-4 text-center">
               <div>
-                <p className="text-2xl font-bold text-gray-900">96%</p>
-                <p className="text-xs text-gray-500">Accuracy Rate</p>
+                <p className="text-3xl font-bold text-gray-900">96%</p>
+                <p className="text-sm text-gray-500">Accuracy Rate</p>
               </div>
               <div>
-                <p className="text-2xl font-bold text-gray-900">35K+</p>
-                <p className="text-xs text-gray-500">Guys Searched</p>
+                <p className="text-3xl font-bold text-gray-900">35K+</p>
+                <p className="text-sm text-gray-500">Guys Searched</p>
               </div>
               <div>
-                <p className="text-2xl font-bold text-gray-900">4.7★</p>
-                <p className="text-xs text-gray-500">User Rating</p>
+                <p className="text-3xl font-bold text-gray-900">4.7★</p>
+                <p className="text-sm text-gray-500">User Rating</p>
               </div>
             </div>
           </div>
@@ -491,9 +494,9 @@ const Checkout = () => {
             <div className="border-t-2 border-gray-400" />
           </div>
 
-          {/* Testimonials - 20% larger text */}
+          {/* Testimonials - 44% larger text (20% + 20%) */}
           <div>
-            <h2 className="text-xl font-semibold mb-3 text-gray-900 text-center">What guys are saying</h2>
+            <h2 className="text-2xl font-bold mb-3 text-gray-900 text-center">What guys are saying</h2>
             <div className="space-y-3">
               {[
                 { name: "Matt T.", handle: "@matttt_22", image: reviewMatt, text: "Discovered 2 posts about me from last year. Cleared up everything, now I know why a few conversations went cold.", title: "Cleared up everything" },
@@ -538,7 +541,7 @@ const Checkout = () => {
           {/* Footer */}
           <p className="text-center text-xs text-gray-500 pb-6">
             Questions? Contact us at{" "}
-            <a href="mailto:support@teafinder.app" className="hover:underline">
+            <a href="mailto:support@teafinder.app" className="text-gray-500">
               support@teafinder.app
             </a>
           </p>

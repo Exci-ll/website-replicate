@@ -189,6 +189,23 @@
   }
 
   .animate-scroll-right {
-    animation: scroll-right 12s linear infinite;
+    animation: scroll-right 6s linear infinite;
+    animation-delay: 0s;
+    animation-iteration-count: infinite;
+    animation-fill-mode: both;
+  }
+
+  /* Reset animation every 20 seconds */
+  @keyframes scroll-right-reset {
+    0%, 30% {
+      transform: translateX(0);
+    }
+    95%, 100% {
+      transform: translateX(-60%);
+    }
+  }
+
+  .animate-scroll-right {
+    animation: scroll-right-reset 20s linear infinite;
   }
 }
