@@ -471,7 +471,7 @@ const Search = () => {
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
                 onKeyDown={handleKeyDown}
-                className="h-14 pl-12 pr-4 rounded-lg bg-[#eeecda] border border-gray-900 text-base focus-visible:ring-[#c8e972] focus-visible:ring-2 focus-visible:ring-offset-0"
+                className="h-14 pl-12 pr-4 rounded-lg bg-[#FFE5E5] border border-gray-900 text-base focus-visible:ring-[#c8e972] focus-visible:ring-2 focus-visible:ring-offset-0"
                 autoFocus
               />
             </div>
@@ -493,7 +493,7 @@ const Search = () => {
                   onChange={(e) => setInputValue(e.target.value)}
                   onKeyDown={handleKeyDown}
                   onFocus={() => inputValue.length > 1 && setShowLocationSuggestions(true)}
-                  className="h-14 pl-12 pr-4 rounded-lg bg-[#eeecda] border border-gray-900 text-base focus-visible:ring-[#c8e972] focus-visible:ring-2 focus-visible:ring-offset-0"
+                  className="h-14 pl-12 pr-4 rounded-lg bg-[#FFE5E5] border border-gray-900 text-base focus-visible:ring-[#c8e972] focus-visible:ring-2 focus-visible:ring-offset-0"
                   autoFocus
                 />
               </div>
@@ -840,7 +840,7 @@ const Search = () => {
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
                 onKeyDown={handleKeyDown}
-                className="h-14 pl-14 pr-4 rounded-lg bg-[#eeecda] border border-gray-900 text-base focus-visible:ring-[#c8e972] focus-visible:ring-2 focus-visible:ring-offset-0"
+                className="h-14 pl-14 pr-4 rounded-lg bg-[#FFE5E5] border border-gray-900 text-base focus-visible:ring-[#c8e972] focus-visible:ring-2 focus-visible:ring-offset-0"
                 autoFocus
               />
             </div>
@@ -1043,7 +1043,7 @@ const Search = () => {
                         placeholder="enter your email"
                         value={emailValue}
                         onChange={(e) => setEmailValue(e.target.value)}
-                        className="h-12 pl-10 pr-4 rounded-lg bg-[#eeecda] border border-gray-900 focus-visible:ring-[#c8e972] focus-visible:ring-2 focus-visible:ring-offset-0"
+                        className="h-12 pl-10 pr-4 rounded-lg bg-[#FFE5E5] border border-gray-900 focus-visible:ring-[#c8e972] focus-visible:ring-2 focus-visible:ring-offset-0"
                         onKeyDown={(e) => e.key === "Enter" && handleEmailSubmit()}
                         autoFocus
                       />
@@ -1188,7 +1188,7 @@ const Search = () => {
   };
 
   return (
-    <div className="h-screen bg-[#eeecda] flex flex-col items-center overflow-hidden">
+    <div className="h-screen bg-[#FFE5E5] flex flex-col items-center overflow-hidden">
       <div className="w-full max-w-md bg-white h-full flex flex-col shadow-xl border-l border-r border-gray-900">
         {/* Header - Fixed */}
         <header className="flex-shrink-0 flex items-center justify-center py-4 px-6 relative border-b border-gray-900">
