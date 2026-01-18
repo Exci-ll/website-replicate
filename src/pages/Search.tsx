@@ -199,7 +199,7 @@ const Search = () => {
   const hasNavigatedRef = useRef(false);
 
   const { isLoaded } = useLoadScript({
-    googleMapsApiKey: "AIzaSyBtoiqRpEWSG1Mc4XLINiT9GMo6J27NvXs",
+    googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY || "",
     libraries,
   });
 
