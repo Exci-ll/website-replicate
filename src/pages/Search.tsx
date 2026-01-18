@@ -198,10 +198,35 @@ const Search = () => {
   const placesService = useRef<google.maps.places.PlacesService | null>(null);
   const hasNavigatedRef = useRef(false);
 
+  // Get user's location for biasing autocomplete results
+  const [userLocation, setUserLocation] = useState<google.maps.LatLngLiteral | null>(null);
+
   const { isLoaded } = useLoadScript({
-    googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY || "",
+    googleMapsApiKey: import.meta.env.GOOGLE_MAPS_API_KEY || "",
     libraries,
   });
+
+  // Get user's current location for biasing
+  useEffect(() => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          setUserLocation({
+            lat: position.coords.latitude,
+            lng: position.coords.longitude,
+          });
+          setMapCenter({
+            lat: position.coords.latitude,
+            lng: position.coords.longitude,
+          });
+        },
+        () => {
+          // User denied or error - use default
+          console.log("Could not get user location");
+        }
+      );
+    }
+  }, []);
 
   const step = quizSteps[currentStep];
   const totalSteps = quizSteps.length;
@@ -213,14 +238,24 @@ const Search = () => {
     }
   }, [isLoaded]);
 
-  // Handle location autocomplete
+  // Handle location autocomplete - full addresses with location biasing
   useEffect(() => {
     if (step.type === "location" && inputValue.length > 1 && autocompleteService.current) {
+      const options: google.maps.places.AutocompletionRequest = {
+        input: inputValue,
+        types: ["address"], // Full street addresses
+      };
+      
+      // Bias results to user's location if available
+      if (userLocation) {
+        options.locationBias = {
+          center: userLocation,
+          radius: 50000, // 50km radius
+        } as google.maps.places.LocationBias;
+      }
+
       autocompleteService.current.getPlacePredictions(
-        {
-          input: inputValue,
-          types: ["(cities)"],
-        },
+        options,
         (predictions, status) => {
           if (status === google.maps.places.PlacesServiceStatus.OK && predictions) {
             setLocationSuggestions(predictions);
@@ -234,7 +269,7 @@ const Search = () => {
     } else if (step.type === "location" && inputValue.length <= 1) {
       setShowLocationSuggestions(false);
     }
-  }, [inputValue, step.type]);
+  }, [inputValue, step.type, userLocation]);
 
   // Searching animation - 15 seconds total with random pauses, posts appear in first 9 seconds
   useEffect(() => {
@@ -497,34 +532,30 @@ const Search = () => {
               </div>
               
               {showLocationSuggestions && locationSuggestions.length > 0 && (
-                <div className="absolute top-full left-0 right-0 mt-1 bg-white rounded-lg border border-gray-900 shadow-lg z-50 overflow-hidden">
+                <div className="absolute top-full left-0 right-0 mt-1 bg-white rounded-lg border border-gray-900 shadow-lg z-50 overflow-hidden max-h-64 overflow-y-auto">
                   {locationSuggestions.map((prediction) => (
                     <button
                       key={prediction.place_id}
                       onClick={() => selectLocation(prediction)}
-                      className="w-full flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors text-left border-b border-gray-100 last:border-b-0"
+                      className="w-full flex items-start gap-3 px-4 py-3 hover:bg-gray-50 transition-colors text-left border-b border-gray-100 last:border-b-0"
                     >
-                      <MapPin className="w-4 h-4 text-gray-400 flex-shrink-0" />
-                      <div>
+                      <MapPin className="w-4 h-4 text-red-500 flex-shrink-0 mt-0.5" />
+                      <div className="flex flex-col">
                         <span className="text-sm font-medium text-gray-900">
                           {prediction.structured_formatting?.main_text}
                         </span>
-                        <span className="text-sm text-gray-500 ml-1">
+                        <span className="text-xs text-gray-500">
                           {prediction.structured_formatting?.secondary_text}
                         </span>
                       </div>
                     </button>
                   ))}
-                  <div className="px-4 py-2 text-right border-t border-gray-100 bg-gray-50">
-                    <span className="text-xs text-gray-400">powered by </span>
-                    <span className="text-xs font-medium text-gray-600">Google</span>
-                  </div>
                 </div>
               )}
             </div>
             <p className="text-gray-500 text-sm">{step.subtitle}</p>
 
-            {isLoaded && inputValue.length > 3 && (
+            {isLoaded && (
               <div className="mt-4 rounded-lg overflow-hidden border border-gray-900">
                 <GoogleMap
                   mapContainerStyle={mapContainerStyle}
@@ -534,6 +565,18 @@ const Search = () => {
                   options={{
                     disableDefaultUI: true,
                     zoomControl: true,
+                    styles: [
+                      {
+                        featureType: "water",
+                        elementType: "geometry",
+                        stylers: [{ color: "#a8d4e6" }]
+                      },
+                      {
+                        featureType: "road",
+                        elementType: "geometry",
+                        stylers: [{ color: "#f5a623" }]
+                      },
+                    ]
                   }}
                 >
                   <Marker position={mapCenter} />
