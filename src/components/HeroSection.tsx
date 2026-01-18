@@ -65,22 +65,21 @@ const HeroSection = () => {
               <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-gray-100 text-xs font-medium border border-gray-900">
                 🎯 96% Accurate
               </span>
-              <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-gray-100 text-xs font-medium border border-gray-900">
-                ⚡ Instant
-              </span>
             </div>
 
-            {/* CTA Button - Black like original with shine effect */}
+            {/* CTA Button - Black like original with shine effect and green arrow */}
             <button 
               onClick={() => navigate("/search")}
               className="w-full bg-gray-900 text-white rounded-xl py-3.5 px-5 flex items-center justify-between font-semibold hover:bg-gray-800 transition-colors relative overflow-hidden group"
             >
               <div className="absolute inset-0 -translate-x-full group-hover:translate-x-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shine" />
               <div className="text-left relative z-10">
-                <div className="text-base">Search now</div>
-                <div className="text-xs opacity-70 font-normal">See your report in 3 minutes</div>
+                <div className="text-base">Check now</div>
+                <div className="text-xs opacity-70 font-normal">Get your report in 3 min</div>
               </div>
-              <ArrowRight className="w-5 h-5 relative z-10" />
+              <div className="w-8 h-8 bg-[#c8e972] rounded-full flex items-center justify-center relative z-10">
+                <ArrowRight className="w-4 h-4 text-gray-900" />
+              </div>
             </button>
 
             <p className="text-center text-xs text-gray-500 mt-3">

@@ -99,7 +99,7 @@
 
   @media (min-width: 1024px) {
     html {
-      font-size: 129%; /* Desktop: 40% bigger base, then 8% zoom out = ~129% */
+      font-size: 121%; /* Desktop: 40% bigger base, then 14% zoom out = ~121% */
     }
   }
 

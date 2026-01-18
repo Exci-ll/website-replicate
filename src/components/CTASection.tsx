@@ -23,8 +23,10 @@ const CTASection = () => {
           className="inline-flex items-center gap-3 bg-gray-900 text-white rounded-full py-4 px-8 font-semibold text-lg hover:bg-gray-800 transition-colors relative overflow-hidden group"
         >
           <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shine" />
-          <span className="relative z-10">See if you have been posted</span>
-          <ArrowRight className="w-5 h-5 relative z-10" />
+          <span className="relative z-10">Check now</span>
+          <div className="w-8 h-8 bg-[#c8e972] rounded-full flex items-center justify-center relative z-10">
+            <ArrowRight className="w-4 h-4 text-gray-900" />
+          </div>
         </button>
       </div>
     </section>
